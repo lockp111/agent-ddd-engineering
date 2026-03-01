@@ -17,17 +17,20 @@ This skill forces a "Contract-First" development approach. Before any internal b
 **Instead of:** Directly importing database models or internal structs from another module (e.g., `import "inventory/models"` inside the `order` package).
 **Do this:** Define a pure, language-specific interface or a validation schema (Zod, Pydantic) that acts as an Anti-Corruption Layer (ACL).
 
-## Implementation
+## Implementation (Interactive Q&A Session)
 
-1. **Review Context Map:** Check the relationship pattern (e.g., ACL, Conformist) established during the `mapping-bounded-contexts` phase. The contract must reflect this relationship.
+**CRITICAL RULE:** Do NOT just generate the contract files and stop. You must guide the user through an interactive, step-by-step API design process.
+
+1. **Review Context Map:** Check the relationship pattern (e.g., ACL, Conformist) established during the `mapping-bounded-contexts` phase. Explain this relationship to the user.
 2. **Boundary Challenge (Mandatory Checkpoint):** 
-   - *Question:* Does this contract require sharing deep domain concepts (like a massive God object) tightly across boundaries? 
-   - *Action:* If YES, **STOP IMMEDIATELY**. Do not write the contract. You must revert to `mapping-bounded-contexts` to redraw the system boundaries. The current boundaries are flawed.
-3. **Define Pure Interfaces:** Write pure, logic-less interfaces for the expected inputs and outputs. 
+   - *Question:* Ask the user: "Does this contract require sharing deep domain concepts (like a massive God object) tightly across boundaries? Or is it passing minimal needed data?"
+   - *Action:* If the user indicates it's sharing too much, **STOP IMMEDIATELY**. Do not write the contract. Advise the user to revert to `mapping-bounded-contexts` to redraw the system boundaries.
+3. **Draft Pure Interfaces:** Write a *draft* of pure, logic-less interfaces for the expected inputs and outputs. 
    - *Golang:* Define `interface` types in the domain layer.
    - *TypeScript:* Define `interface` or `type` aliases.
 4. **Implement Structured Outputs (ACL):** For data crossing the boundary, define strict schemas using tools like Zod, Pydantic, or strict Go struct tags (mapped *only* for the external boundary, not the domain core).
-5. **No Implementation:** Do NOT write the code that implements these interfaces yet. Present the contracts for human review.
+5. **Human Review (Crucial):** Present the `types`, `interfaces`, and `schemas` to the user. Ask: "Does this API contract fulfill the needs of both Contexts without leaking internal business rules? Do you approve these definitions?"
+   - **Do NOT write any business logic or internal implementations until the user explicitly approves this contract.**
 
 ### Example (TypeScript)
 ```typescript

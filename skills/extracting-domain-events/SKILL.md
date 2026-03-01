@@ -1,6 +1,6 @@
 ---
 name: extracting-domain-events
-description: Use when presented with a new PRD, feature request, or unstructured business requirements before writing any code or architecture plans. Triggers on "PRD", "需求分析", "事件风暴", "领域事件", "event storming", "提取核心模型".
+description: Use when presented with a new PRD, feature request, or unstructured business requirements before writing any code or architecture plans. Triggers on "PRD", "DDD", "需求分析", "事件风暴", "领域事件", "event storming", "提取核心模型".
 ---
 
 # Extracting Domain Events
@@ -18,17 +18,20 @@ This skill forces text-based EventStorming from PRDs or requirements. It transla
 **Instead of:** Jumping straight to database schemas or REST API endpoints.
 **Do this:** Act as a Domain Expert and perform a text-based EventStorming session.
 
-## Implementation
+## Implementation (Interactive Q&A Session)
 
-1. **Read and Analyze:** Thoroughly read the provided requirements or PRD.
-2. **Identify Elements:** Extract the core components of the domain:
+**CRITICAL RULE:** Do NOT just generate the final table and stop. You must guide the user through an interactive, step-by-step extraction process.
+
+1. **Acknowledge & Analyze:** Acknowledge the user's request, summarize your understanding of their business goal, and ask clarifying questions if the core Actor or Action is ambiguous.
+2. **First Draft Extraction:** Propose an initial, high-level list of Domain Events based on the user's input. Ask the user: "Does this cover the main happy path? What happens if [insert edge case] fails?"
+3. **Iterative Refinement:** Extract the core components iteratively with the user:
    - **Actor:** Who or what triggers the action (e.g., User, System, External Service).
    - **Command:** The intent or action requested by the Actor (e.g., `SubmitOrder`, `CancelSubscription`).
    - **Domain Event:** A past-tense business fact indicating something significant happened (e.g., `OrderSubmitted`, `SubscriptionCancelled`).
    - **Business Rules / Invariants:** The conditions that must be met for the Command to succeed and the Event to be generated.
-3. **Enforce Naming Conventions:** All Domain Events MUST be named as past-tense business facts. Reject imperative or technical naming (e.g., use `PaymentReceived` not `ProcessPayment`).
-4. **Include Failure Paths:** You MUST identify and include events for failure scenarios or compensating actions (e.g., `PaymentFailed`, `InventoryShortage`). Do not only map the "happy path".
-5. **Output Format:** Output the results as a Markdown table.
+4. **Enforce Naming Conventions:** All Domain Events MUST be named as past-tense business facts. Reject imperative or technical naming (e.g., use `PaymentReceived` not `ProcessPayment`). Explain why if you correct the user.
+5. **Include Failure Paths:** Prominently ask the user about failure scenarios or compensating actions (e.g., `PaymentFailed`, `InventoryShortage`). Do not only map the "happy path".
+6. **Final Output Format:** Once the user agrees the events cover the necessary scenarios, output the finalized results as a Markdown table.
 
 ### Example Output Table
 | Actor           | Command           | Domain Event        | Business Rules / Invariants        |

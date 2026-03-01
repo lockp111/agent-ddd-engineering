@@ -18,20 +18,23 @@ This skill forces the physical and cognitive isolation of different domain areas
 **Instead of:** Putting all logic into a single monolithic `Service` or `models` directory.
 **Do this:** Group related events into isolated contexts, classify their strategic value, map their integrations, and enforce a strict domain dictionary.
 
-## Implementation
+## Implementation (Interactive Q&A Session)
 
-1. **Partitioning:** Group the provided Domain Events into high-cohesion clusters. Each cluster becomes a Bounded Context (e.g., `Order`, `Inventory`, `Payment`).
-2. **Strategic Classification:** For each Bounded Context, you MUST classify it as:
+**CRITICAL RULE:** Do NOT just generate the context files and stop. You must guide the user through an interactive, step-by-step design process.
+
+1. **Partitioning & Proposal:** Group the provided Domain Events into high-cohesion clusters (Bounded Contexts). **Pause here.** Present these proposed boundaries to the user and ask: "Do these boundaries align with the business organization and teams? Should any events be moved?"
+2. **Refine Boundaries:** Adjust the boundaries based on user feedback.
+3. **Strategic Classification:** For each approved Context, classify it and explain why to the user:
    - **Core Domain:** The primary business differentiator. Demands the highest quality, strict Hexagonal Architecture, and Rich Domain Models.
    - **Supporting Subdomain:** Necessary for the business but not a differentiator. Can use simpler architectures.
    - **Generic Subdomain:** Solved problems (e.g., Notifications, Identity). Should use off-the-shelf solutions or simple CRUD.
-3. **Context Mapping:** You MUST output a Context Map detailing how these contexts interact. Specify the Relationship Pattern for each integration:
+4. **Context Mapping:** Propose a Context Map detailing how these contexts interact. Ask the user to confirm the Relationship Patterns:
    - **ACL (Anti-Corruption Layer):** Downstream builds a translation layer.
    - **Conformist:** Downstream adopts upstream's model without translation.
    - **Customer-Supplier:** Upstream and downstream negotiate contracts.
    - **Open Host Service:** Upstream provides a standardized protocol.
-4. **Ubiquitous Language Dictionary:** Generate a bilingual (if needed) terminology dictionary for each context. Clearly define the exact terms to be used and explicitly list **prohibited synonyms**.
-5. **Constraint File Generation (Crucial):** You MUST automatically generate a constraint rules file for each Bounded Context based on the agent type in use. Do not just output instructions; actually write the files to the workspace.
+5. **Ubiquitous Language Dictionary:** Generate a terminology dictionary for each context. Clearly define exact terms and list **prohibited synonyms**. Ask the user: "Are there any company-specific terms we should add or forbid?"
+6. **Constraint File Generation (Crucial):** Once the boundaries, relationships, and dictionary are approved by the user, you MUST automatically generate a constraint rules file for each Bounded Context.
    - Ask for or detect the user's Agent Type (e.g., Cursor, Windsurf, Claude Code, OpenCode).
    - Generate the file in the appropriate format and location for each context, using the latest project-level rules directory:
      - **Cursor**: `.cursor/rules/[context-name].mdc` (Add frontmatter `globs` targeting the `[context-directory]/**/*`)

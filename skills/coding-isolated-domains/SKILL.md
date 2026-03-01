@@ -17,9 +17,16 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 **Instead of:** Creating a single `Order` struct with `gorm` tags and writing all logic in `OrderService`.
 **Do this:** Create a pure `Order` Aggregate Root with behavior methods (e.g., `pay()`, `cancel()`) and zero external dependencies.
 
-## Implementation: The Iron Laws of the Domain Core
+## Implementation: The Iron Laws of the Domain Core (Interactive Q&A Session)
 
-### 1. Zero Infrastructure Dependencies
+**CRITICAL RULE:** Do NOT just generate the final code and stop. You must guide the user through an interactive, step-by-step domain implementation process.
+
+### Step 1: Aggregate Design Proposal
+- Propose the structure of the Aggregate Root and its Entities/Value Objects to the user.
+- **Ask:** "Does this accurately represent the business concepts? Have we missed any critical invariants or properties?"
+- Refine the design based on user feedback.
+
+### Step 2: Zero Infrastructure Dependencies
 - **NO ORM Tags:** The domain model must not know how it is persisted. (e.g., in Go: NO `gorm:"column:id"`, NO `json:"id"`. In TS: NO `@Entity()` TypeORM decorators).
 - **NO HTTP Logic:** The domain model must not return HTTP status codes or know about web requests.
 
@@ -35,8 +42,13 @@ When designing an Aggregate Root, you MUST follow these 4 rules:
 3. **Reference by ID Only:** Aggregates must NOT hold direct object references to other Aggregates. They must only hold their IDs (e.g., `customerId string`, NOT `customer Customer`).
 4. **Invariants inside the Root:** All business rules must be validated inside the Aggregate Root's methods.
 
-### 4. Domain TDD (Test-Driven Development)
-- **Mandatory TDD:** You MUST generate unit tests for the domain behavior (testing the invariant rules and domain events) BEFORE or ALONG WITH the entity implementation. Because the Domain Core is pure logic, these tests should require zero mocking of external services.
+### Step 5: Domain TDD (Test-Driven Development) Checkpoint
+- **Mandatory TDD:** You MUST generate unit tests for the domain behavior (testing the invariant rules and domain events) BEFORE generating the actual entity implementation.
+- Present these tests to the user. **Ask:** "Do these tests cover all expected behaviors and edge cases? Shall I proceed to implement the logic to make these tests pass?"
+- Because the Domain Core is pure logic, these tests should require zero mocking of external services.
+
+### Step 6: Implementation Generation
+- ONLY after user approval of the Aggregate design and TDD tests, implement the Rich Domain Model conforming to the rules above.
 
 ## Language Idioms
 
