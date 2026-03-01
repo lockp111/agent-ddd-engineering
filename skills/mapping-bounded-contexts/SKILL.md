@@ -39,7 +39,7 @@ This skill forces the physical and cognitive isolation of different domain areas
    - Generate the file in the appropriate format and location for each context, using the latest project-level rules directory:
      - **Cursor**: `.cursor/rules/[context-name].mdc` (Add frontmatter `globs` targeting the `[context-directory]/**/*`)
      - **Windsurf**: `.windsurf/rules/[context-name].md`
-     - **Antigravity IDE**: `.agent/workflows/[context-name].md` or `.agents/workflows/[context-name].md` (with YAML frontmatter stating it is a workflow)
+     - **Antigravity**: `.agent/rules/[context-name].md`
      - **Claude Code**: 
        - If generating a global project rule: `CLAUDE.md`
        - If generating modular context rules (recommended): `.claude/rules/[context-name].md` (and reference it in `CLAUDE.md`)
