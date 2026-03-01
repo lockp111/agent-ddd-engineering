@@ -1,6 +1,6 @@
 ---
 name: coding-isolated-domains
-description: Use when implementing core business logic, domain entities, aggregates, or when encountering anemic models and infrastructure coupling.
+description: Use when implementing core business logic, domain entities, aggregates, or when encountering anemic models and infrastructure coupling. Triggers on "实现业务逻辑", "充血模型", "六边形架构", "代码实现", "实体行为", "领域层隔离".
 ---
 
 # Coding Isolated Domains

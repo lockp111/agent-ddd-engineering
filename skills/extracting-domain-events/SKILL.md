@@ -1,6 +1,6 @@
 ---
 name: extracting-domain-events
-description: Use when presented with a new PRD, feature request, or unstructured business requirements before writing any code or architecture plans.
+description: Use when presented with a new PRD, feature request, or unstructured business requirements before writing any code or architecture plans. Triggers on "PRD", "需求分析", "事件风暴", "领域事件", "event storming", "提取核心模型".
 ---
 
 # Extracting Domain Events
@@ -31,12 +31,12 @@ This skill forces text-based EventStorming from PRDs or requirements. It transla
 5. **Output Format:** Output the results as a Markdown table.
 
 ### Example Output Table
-| Actor | Command | Domain Event | Business Rules / Invariants |
-| :--- | :--- | :--- | :--- |
-| Customer | Submit Checkout | `CartCheckedOut` | Cart must not be empty. |
-| System | Reserve Inventory | `InventoryReserved` | Sufficient stock must exist. |
-| System | Reserve Inventory | `InventoryShortage` | Triggers if stock is insufficient. |
-| Payment Gateway | Authorize Payment | `PaymentAuthorized` | Payment details must be valid. |
+| Actor           | Command           | Domain Event        | Business Rules / Invariants        |
+| :-------------- | :---------------- | :------------------ | :--------------------------------- |
+| Customer        | Submit Checkout   | `CartCheckedOut`    | Cart must not be empty.            |
+| System          | Reserve Inventory | `InventoryReserved` | Sufficient stock must exist.       |
+| System          | Reserve Inventory | `InventoryShortage` | Triggers if stock is insufficient. |
+| Payment Gateway | Authorize Payment | `PaymentAuthorized` | Payment details must be valid.     |
 
 ## Common Mistakes & Red Flags
 - 🚨 **Red Flag:** Starting to write `struct`, `class`, or `interface` definitions.

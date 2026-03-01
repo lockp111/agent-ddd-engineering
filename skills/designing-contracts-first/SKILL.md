@@ -1,6 +1,6 @@
 ---
 name: designing-contracts-first
-description: Use when two different modules need to communicate, when defining cross-context APIs, or before implementing logic that depends on external data.
+description: Use when two different modules need to communicate, when defining cross-context APIs, or before implementing logic that depends on external data. Triggers on "contract first", "契约优先", "定义接口", "API 设计", "交互协议", "防腐层", "ACL".
 ---
 
 # Designing Contracts First

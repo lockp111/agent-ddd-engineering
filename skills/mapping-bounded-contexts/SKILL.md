@@ -1,6 +1,6 @@
 ---
 name: mapping-bounded-contexts
-description: Use when determining system boundaries, setting up a new module, or when facing vocabulary drift and context contamination across features.
+description: Use when determining system boundaries, setting up a new module, or when facing vocabulary drift and context contamination across features. Triggers on "bounded context", "context map", "划分上下文", "Agent 约束", "生成约束文件".
 ---
 
 # Mapping Bounded Contexts
@@ -31,7 +31,16 @@ This skill forces the physical and cognitive isolation of different domain areas
    - **Customer-Supplier:** Upstream and downstream negotiate contracts.
    - **Open Host Service:** Upstream provides a standardized protocol.
 4. **Ubiquitous Language Dictionary:** Generate a bilingual (if needed) terminology dictionary for each context. Clearly define the exact terms to be used and explicitly list **prohibited synonyms**.
-5. **Enforcement (Crucial):** You MUST output instructions for the user to append this dictionary and the context definitions to the project's `CLAUDE.md` (for standard project conventions) or `AGENTS.md` (if using OhMyOpenCode deep agent knowledge routing).
+5. **Constraint File Generation (Crucial):** You MUST automatically generate a constraint rules file for each Bounded Context based on the agent type in use. Do not just output instructions; actually write the files to the workspace.
+   - Ask for or detect the user's Agent Type (e.g., Cursor, Windsurf, Claude Code, OpenCode).
+   - Generate the file in the appropriate format and location for each context, using the latest project-level rules directory:
+     - **Cursor**: `.cursor/rules/[context-name].mdc` (Add frontmatter `globs` targeting the `[context-directory]/**/*`)
+     - **Windsurf**: `.windsurf/rules/[context-name].md`
+     - **Antigravity IDE**: `.agent/workflows/[context-name].md` or `.agents/workflows/[context-name].md` (with YAML frontmatter stating it is a workflow)
+     - **Claude Code**: 
+       - If generating a global project rule: `CLAUDE.md`
+       - If generating modular context rules (recommended): `.claude/rules/[context-name].md` (and reference it in `CLAUDE.md`)
+   - The generated constraint file MUST include: the context's definition, the Relationship Pattern, the Ubiquitous Language Dictionary, and strict instructions to the agent to avoid out-of-boundary dependencies.
 
 ### Example Output
 **Context: Inventory (Core Domain)**
@@ -39,6 +48,19 @@ This skill forces the physical and cognitive isolation of different domain areas
 *Dictionary:*
 - `StockLevel`: The available quantity of a product. (Prohibited: `Quantity`, `Amount`).
 - `Reservation`: A time-boxed lock on inventory. (Prohibited: `Hold`, `Lock`).
+
+*(Agent detects Cursor is in use)*
+**Generated Constraint File:** `.cursor/rules/inventory.mdc`
+```markdown
+---
+description: Context mapping rules and ubiquitous language for the Inventory Bounded Context.
+globs:
+  - "inventory/**/*"
+---
+
+# Inventory Context (Core Domain)
+... (Includes Dictionary and Relationship Pattern) ...
+```
 
 ## Common Mistakes & Red Flags
 - 🚨 **Red Flag:** Defining boundaries based on technical layers (e.g., a "Database Context" or "UI Context") instead of business capabilities.
