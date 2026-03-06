@@ -1,6 +1,6 @@
 ---
 name: mapping-bounded-contexts
-description: Use when determining system boundaries, setting up a new module, or when facing vocabulary drift and context contamination across features. Triggers on "bounded context", "context map", "划分上下文", "Agent 约束", "生成约束文件".
+description: Use when determining system boundaries, setting up a new module, or encountering a shared God-object model (e.g. a User struct used across multiple domains). Use when facing vocabulary drift, terms used inconsistently, or code organized by technical layers instead of business capabilities. 划分上下文, bounded context, context map, ubiquitous language.
 ---
 
 # Mapping Bounded Contexts
@@ -8,15 +8,26 @@ description: Use when determining system boundaries, setting up a new module, or
 ## Overview
 This skill forces the physical and cognitive isolation of different domain areas. It translates extracted domain events into high-cohesion Bounded Contexts, determines their strategic importance, maps their relationships, and establishes a strict Ubiquitous Language to prevent AI hallucination and vocabulary drift.
 
-## When to Use
-- After identifying Domain Events from a PRD.
-- When setting up the directory structure for a new module.
-- When you notice terms being used inconsistently across the codebase (e.g., using `User` and `Account` interchangeably).
-- When code from one domain starts inappropriately leaking into another domain.
+**Foundational Principle:** All deliverables — boundaries, classifications, relationships, dictionaries, AND constraint files — are **mandatory outputs, not optional documentation**. Skipping any deliverable causes vocabulary drift and context contamination. "Add later" means "never add."
 
-## Core Pattern
-**Instead of:** Putting all logic into a single monolithic `Service` or `models` directory.
-**Do this:** Group related events into isolated contexts, classify their strategic value, map their integrations, and enforce a strict domain dictionary.
+## When to Use
+- After identifying Domain Events from a PRD, or when setting up a new module.
+- When terms are used inconsistently (e.g., `User`/`Account` interchangeably) or code leaks across domains.
+- **When a shared God-object model exists** (e.g., a 25-field `User` struct across multiple domains).
+
+**Do NOT use when:** boundaries are already defined (**NEXT STEP:** `designing-contracts-first`), or working within a single context (use `coding-isolated-domains`).
+
+## Quick Reference
+
+| Step | Action | Output |
+|:---|:---|:---|
+| 1 | Event Clustering | Proposed Bounded Contexts |
+| 2 | Boundary Confirmation | Human-approved boundaries |
+| 3 | Strategic Classification | Core / Supporting / Generic |
+| 4 | Context Mapping | Relationship pattern diagram |
+| 5 | Ubiquitous Language | Term dictionary + prohibited synonyms |
+| 6 | Constraint Files | Agent rules files |
+|| 7 | Persist Approved Output | `docs/ddd/phase-2-context-map.md` |
 
 ## Implementation (Interactive Q&A Session)
 
@@ -24,26 +35,15 @@ This skill forces the physical and cognitive isolation of different domain areas
 
 1. **Partitioning & Proposal:** Group the provided Domain Events into high-cohesion clusters (Bounded Contexts). **Pause here.** Present these proposed boundaries to the user and ask: "Do these boundaries align with the business organization and teams? Should any events be moved?"
 2. **Refine Boundaries:** Adjust the boundaries based on user feedback.
-3. **Strategic Classification:** For each approved Context, classify it and explain why to the user:
-   - **Core Domain:** The primary business differentiator. Demands the highest quality, strict Hexagonal Architecture, and Rich Domain Models.
-   - **Supporting Subdomain:** Necessary for the business but not a differentiator. Can use simpler architectures.
-   - **Generic Subdomain:** Solved problems (e.g., Notifications, Identity). Should use off-the-shelf solutions or simple CRUD.
-4. **Context Mapping:** Propose a Context Map detailing how these contexts interact. Ask the user to confirm the Relationship Patterns:
-   - **ACL (Anti-Corruption Layer):** Downstream builds a translation layer.
-   - **Conformist:** Downstream adopts upstream's model without translation.
-   - **Customer-Supplier:** Upstream and downstream negotiate contracts.
-   - **Open Host Service:** Upstream provides a standardized protocol.
+3. **Strategic Classification:** Classify each context as Core / Supporting / Generic and explain rationale to the user.
+4. **Context Mapping:** Propose a Context Map with relationship patterns (ACL, Conformist, Customer-Supplier, Open Host). Ask user to confirm.
 5. **Ubiquitous Language Dictionary:** Generate a terminology dictionary for each context. Clearly define exact terms and list **prohibited synonyms**. Ask the user: "Are there any company-specific terms we should add or forbid?"
-6. **Constraint File Generation (Crucial):** Once the boundaries, relationships, and dictionary are approved by the user, you MUST automatically generate a constraint rules file for each Bounded Context.
-   - Ask for or detect the user's Agent Type (e.g., Cursor, Windsurf, Claude Code, OpenCode).
-   - Generate the file in the appropriate format and location for each context, using the latest project-level rules directory:
-     - **Cursor**: `.cursor/rules/[context-name].mdc` (Add frontmatter `globs` targeting the `[context-directory]/**/*`)
-     - **Windsurf**: `.windsurf/rules/[context-name].md`
-     - **Antigravity**: `.agent/rules/[context-name].md`
-     - **Claude Code**: 
-       - If generating a global project rule: `CLAUDE.md`
-       - If generating modular context rules (recommended): `.claude/rules/[context-name].md` (and reference it in `CLAUDE.md`)
-   - The generated constraint file MUST include: the context's definition, the Relationship Pattern, the Ubiquitous Language Dictionary, and strict instructions to the agent to avoid out-of-boundary dependencies.
+6. **Constraint File Generation (Crucial):** You MUST auto-generate a constraint rules file per Bounded Context. Detect the user's Agent Type and generate in the appropriate location:
+   - **Cursor**: `.cursor/rules/[context-name].mdc` (with `globs` targeting `[context-dir]/**/*`)
+   - **Windsurf**: `.windsurf/rules/[context-name].md`
+   - **Claude Code**: `.claude/rules/[context-name].md` (reference in `CLAUDE.md`)
+   - Each file MUST include: context definition, relationship pattern, Ubiquitous Language dictionary, and out-of-boundary dependency prohibitions.
+7. **Persist to Filesystem:** After user approval, write the COMPLETE context mapping record to `docs/ddd/phase-2-context-map.md`. This MUST include: event clustering, boundary decisions, strategic classification (Core/Supporting/Generic), context map diagram, ALL Ubiquitous Language dictionaries, and a list of generated constraint files. Use the template from `skills/full-ddd/templates/phase-2-context-map.md`. Update `docs/ddd/ddd-progress.md` Phase 2 status to `complete`. Append key decisions to `docs/ddd/decisions-log.md`. **Write the full record even though constraint files contain partial information — they serve different purposes (AI enforcement vs human traceability).**
 
 ### Example Output
 **Context: Inventory (Core Domain)**
@@ -65,9 +65,20 @@ globs:
 ... (Includes Dictionary and Relationship Pattern) ...
 ```
 
-## Common Mistakes & Red Flags
-- 🚨 **Red Flag:** Defining boundaries based on technical layers (e.g., a "Database Context" or "UI Context") instead of business capabilities.
-- 🚨 **Red Flag:** Allowing the same entity definition (e.g., a massive `User` struct) to span multiple contexts.
-- 🚨 **Red Flag:** Skipping the relationship pattern (Context Map), leaving it ambiguous how the contexts will communicate.
+## Rationalization Table
 
-**If any red flags occur: STOP, delete the proposed structure, and redraw the boundaries based strictly on domain events.**
+These are real excuses agents use to bypass context mapping rules. Every one of them is wrong.
+
+| Excuse | Reality |
+|:---|:---|
+| "Launch deadline overrides context splitting" | Splitting is cheaper now than retrofitting. A 25-field God-object across 40+ files costs 10x more to refactor post-launch. |
+| "Document ideal boundaries, implement later" | "Later" never comes. Only enforced boundaries (code + constraint files) prevent drift. |
+| "Shared model is fine — sunk cost too high" | Sunk cost grows daily. Every new import adds another dependency to refactor. The cost curve only goes up. |
+| "Dictionaries are documentation overhead" | Dictionaries enforce Ubiquitous Language. Without them, `User`/`Customer`/`Account`/`Member` blur your boundaries. |
+| "Constraint files are optional / team won't read" | Constraint files are for AI agents to enforce, not humans to read. Skipping = zero runtime enforcement. |
+| "Split directories but share the model" | Directories without separate models are fake boundaries — just organizational theater. |
+| "Team voted against splitting" | Team votes cannot override mandatory deliverables. A 4-1 vote does not make a God-object maintainable. |
+
+## Red Flags — STOP and Redo Boundaries
+
+If you catch yourself thinking "split later", "shared model is fine for MVP", or "constraint files are optional" — **STOP. Complete ALL deliverables — boundaries, classifications, relationships, dictionaries, AND constraint files — before proceeding.**
