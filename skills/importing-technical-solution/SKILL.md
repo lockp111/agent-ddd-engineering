@@ -1,6 +1,7 @@
 ---
 name: importing-technical-solution
-description: Use when user has an existing technical solution, architecture document, or design spec and wants to onboard it into the DDD pipeline. Use when a tech solution exists but lacks structured DDD artifacts, or when reverse-engineering existing decisions into phase artifacts. 导入技术方案, 已有方案, 接入DDD, import to DDD, existing tech solution, import technical solution, reverse-engineer.
+version: "1.0.0"
+description: Use when the user already has an existing technical solution, architecture document, ADR, design spec, or system design doc and wants to onboard it into the DDD pipeline — instead of starting from a raw PRD. Trigger IMMEDIATELY when someone says "we already have a tech doc, can we skip the DDD phases?" or "the architect already designed this, just map it to DDD format". Use this instead of full-ddd when structured decisions already exist. Do NOT auto-approve reverse-extracted artifacts — each phase requires separate human validation. 导入技术方案, 已有方案, 接入DDD, import to DDD, existing tech solution, import technical solution, reverse-engineer, 已有架构文档, 反向提取.
 hooks:
   PreToolUse:
     - matcher: "Write|Edit|Bash|Read|Glob|Grep"
@@ -35,16 +36,16 @@ This skill bridges existing technical solutions into the DDD pipeline. It revers
 
 ## Quick Reference
 
-| Step | Action | Output | Gate |
-|:---|:---|:---|:---|
-| 0 | Pre-flight Checks | Input validated + source persisted | — |
-| 1 | Reverse-Extract Phase 1 | Domain Events Table | Human approval |
-| 2 | Reverse-Extract Phase 2 | Context Map | Human approval |
-| 3 | Reverse-Extract Phase 3 | Interface Contracts | Human approval |
-| 4 | Validate 7 Dimensions | Coverage table (COVERED/PARTIAL/MISSING) | — |
-| 5 | Fill Gaps | Gap decisions recorded | Human approval per gap |
-| 6 | Persist Phase 4 | `docs/ddd/phase-4-technical-solution.md` | Human approval |
-| 7 | Handoff | Next steps to user | — |
+| Step | Action                  | Output                                   | Gate                   |
+| :--- | :---------------------- | :--------------------------------------- | :--------------------- |
+| 0    | Pre-flight Checks       | Input validated + source persisted       | —                      |
+| 1    | Reverse-Extract Phase 1 | Domain Events Table                      | Human approval         |
+| 2    | Reverse-Extract Phase 2 | Context Map                              | Human approval         |
+| 3    | Reverse-Extract Phase 3 | Interface Contracts                      | Human approval         |
+| 4    | Validate 7 Dimensions   | Coverage table (COVERED/PARTIAL/MISSING) | —                      |
+| 5    | Fill Gaps               | Gap decisions recorded                   | Human approval per gap |
+| 6    | Persist Phase 4         | `docs/ddd/phase-4-technical-solution.md` | Human approval         |
+| 7    | Handoff                 | Next steps to user                       | —                      |
 
 ## Implementation (Interactive Q&A Session)
 
@@ -73,7 +74,7 @@ The user may provide the source as:
 Write the source document to `docs/ddd/import-source.md` with a header noting the input type, date, and original location.
 
 **(e) Initialize Progress Tracking:**
-Create `docs/ddd/` directory (if not exists) and initialize `ddd-progress.md` from the template (`skills/full-ddd/templates/ddd-progress.md`) with `workflow_mode: import`. Initialize `decisions-log.md` from the template.
+Create `docs/ddd/` directory (if not exists) and initialize `ddd-progress.md` from the template (`skills/full-ddd/assets/templates/ddd-progress.md`) with `workflow_mode: import`. Initialize `decisions-log.md` from the template.
 
 ### Step 1: Reverse-Extract Phase 1 (Domain Events)
 
@@ -84,12 +85,12 @@ Analyze the technical solution for business events, commands, and actors.
 - Present in the same format as `extracting-domain-events` output:
 
 | Actor | Command | Domain Event | Business Rules / Invariants | Source Reference |
-|:------|:--------|:-------------|:---------------------------|:-----------------|
-|       |         |              |                            |                  |
+| :---- | :------ | :----------- | :-------------------------- | :--------------- |
+|       |         |              |                             |                  |
 
 **Checkpoint:** "Does this events table accurately reflect your technical solution? Are the [GAP] items real gaps that need to be addressed?"
 
-After approval, persist to `docs/ddd/phase-1-domain-events.md` using the template from `skills/full-ddd/templates/phase-1-domain-events.md`. Update `ddd-progress.md` Phase 1 status to `complete`. Append key decisions to `decisions-log.md`. **This step is mandatory — do not skip even if the table is already visible in the conversation.**
+After approval, persist to `docs/ddd/phase-1-domain-events.md` using the template from `skills/full-ddd/assets/templates/phase-1-domain-events.md`. Update `ddd-progress.md` Phase 1 status to `complete`. Append key decisions to `decisions-log.md`. **This step is mandatory — do not skip even if the table is already visible in the conversation.**
 
 ### Step 2: Reverse-Extract Phase 2 (Bounded Contexts)
 
@@ -105,7 +106,7 @@ Extract context boundaries, strategic classification (Core/Supporting/Generic), 
 
 **Checkpoint:** "Do these boundaries match your intended architecture? Is the strategic classification correct?"
 
-After approval, persist to `docs/ddd/phase-2-context-map.md` using the template from `skills/full-ddd/templates/phase-2-context-map.md`. Update `ddd-progress.md` Phase 2 status to `complete`. Append key decisions to `decisions-log.md`.
+After approval, persist to `docs/ddd/phase-2-context-map.md` using the template from `skills/full-ddd/assets/templates/phase-2-context-map.md`. Update `ddd-progress.md` Phase 2 status to `complete`. Append key decisions to `decisions-log.md`.
 
 > **Note:** Constraint files (`.cursor/rules/`, `.windsurf/rules/`, etc.) are NOT generated during import. Run `mapping-bounded-contexts` on the approved context map to generate platform-specific constraint files if needed.
 
@@ -120,11 +121,11 @@ Extract interface definitions, port interfaces, boundary structs, and ACL patter
 
 **Checkpoint:** "Do these contracts accurately represent the integration points in your technical solution?"
 
-After approval, persist to `docs/ddd/phase-3-contracts.md` using the template from `skills/full-ddd/templates/phase-3-contracts.md`. Update `ddd-progress.md` Phase 3 status to `complete`. Append key decisions to `decisions-log.md`.
+After approval, persist to `docs/ddd/phase-3-contracts.md` using the template from `skills/full-ddd/assets/templates/phase-3-contracts.md`. Update `ddd-progress.md` Phase 3 status to `complete`. Append key decisions to `decisions-log.md`.
 
 ### Step 4: Validate Against 7 Technical Dimensions
 
-Using `skills/architecting-technical-solution/technical-dimensions-reference.md` as reference, validate the source document's coverage of all 7 dimensions:
+Using `references/technical-dimensions.md` as reference, validate the source document's coverage of all 7 dimensions:
 
 1. Data Model & Persistence
 2. Interface Type
@@ -143,15 +144,15 @@ For each dimension:
 
 Present summary table:
 
-| # | Dimension | Status | Source Citation | Notes |
-|:--|:----------|:-------|:---------------|:------|
-| 1 | Data Model & Persistence | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 2 | Interface Type | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 3 | Consistency Strategy | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 4 | External Dependency Integration | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 5 | Observability | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 6 | Error Handling | COVERED/PARTIAL/MISSING | [section] | [assessment] |
-| 7 | Test Strategy | COVERED/PARTIAL/MISSING | [section] | [assessment] |
+| #    | Dimension                       | Status                  | Source Citation | Notes        |
+| :--- | :------------------------------ | :---------------------- | :-------------- | :----------- |
+| 1    | Data Model & Persistence        | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 2    | Interface Type                  | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 3    | Consistency Strategy            | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 4    | External Dependency Integration | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 5    | Observability                   | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 6    | Error Handling                  | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
+| 7    | Test Strategy                   | COVERED/PARTIAL/MISSING | [section]       | [assessment] |
 
 ### Step 5: Fill Gaps
 
@@ -164,7 +165,7 @@ After all gaps are addressed, present the complete Phase 4 artifact for final re
 
 ### Step 6: Final Review & Persist Phase 4
 
-Present the complete technical solution in the exact format of `skills/full-ddd/templates/phase-4-technical-solution.md`.
+Present the complete technical solution in the exact format of `skills/full-ddd/assets/templates/phase-4-technical-solution.md`.
 
 - Each decision must cite its source: original document section OR gap-filling Q&A exchange.
 - Include the Dimension Challenge assessment: "Are these decisions grounded in the source document and gap-filling Q&A, or speculative?"
@@ -209,20 +210,20 @@ This protocol is the universal fallback (Layer 2). Even if platform-native hooks
 
 Hooks provide automated runtime verification (Layer 1). They call shared shell scripts from `skills/full-ddd/scripts/` (Layer 3) that check artifact persistence at key lifecycle points. During **Step 0 initialization**, detect the Agent platform and set up the corresponding hooks configuration.
 
-| Platform | Config Location | Hook Mapping | Template |
-|:---|:---|:---|:---|
-| **Claude Code** | SKILL.md frontmatter (already defined above) | `PreToolUse` / `PostToolUse` / `Stop` | N/A (built-in) |
-| **Cursor** | `.cursor/hooks.json` (project-level) | `preToolUse` / `postToolUse` / `stop` | `skills/full-ddd/templates/cursor-hooks.json` |
-| **Windsurf** | `.windsurf/hooks.json` (project-level) | `pre_read_code` / `post_write_code` / `post_run_command` | `skills/full-ddd/templates/windsurf-hooks.json` |
-| **OpenCode** | `.opencode/plugins/ddd-workflow.ts` | `tool.execute.before` / `tool.execute.after` / `stop` | `skills/full-ddd/templates/opencode-ddd-plugin.ts` |
-| **Antigravity** | `.gemini/settings.json` | `BeforeTool` / `AfterTool` / `AfterAgent` | `skills/full-ddd/templates/antigravity-hooks-settings.json` |
+| Platform        | Config Location                              | Hook Mapping                                             | Template                                                           |
+| :-------------- | :------------------------------------------- | :------------------------------------------------------- | :----------------------------------------------------------------- |
+| **Claude Code** | SKILL.md frontmatter (already defined above) | `PreToolUse` / `PostToolUse` / `Stop`                    | N/A (built-in)                                                     |
+| **Cursor**      | `.cursor/hooks.json` (project-level)         | `preToolUse` / `postToolUse` / `stop`                    | `skills/full-ddd/assets/templates/cursor-hooks.json`               |
+| **Windsurf**    | `.windsurf/hooks.json` (project-level)       | `pre_read_code` / `post_write_code` / `post_run_command` | `skills/full-ddd/assets/templates/windsurf-hooks.json`             |
+| **OpenCode**    | `.opencode/plugins/ddd-workflow.ts`          | `tool.execute.before` / `tool.execute.after` / `stop`    | `skills/full-ddd/assets/templates/opencode-ddd-plugin.ts`          |
+| **Antigravity** | `.gemini/settings.json`                      | `BeforeTool` / `AfterTool` / `AfterAgent`                | `skills/full-ddd/assets/templates/antigravity-hooks-settings.json` |
 
 ### Hooks Setup During Initialization
 
 When creating the `docs/ddd/` directory at Step 0, also set up platform-native hooks:
 
 1. **Detect the Agent platform** by checking which config directories exist (`.cursor/`, `.windsurf/`, `.opencode/`, `.gemini/`) or by the user's environment.
-2. **Generate or merge** the hooks config from the corresponding template in `skills/full-ddd/templates/`. If the project already has an existing hooks config file, **merge** the DDD hooks into it — do NOT overwrite the user's existing hooks.
+2. **Generate or merge** the hooks config from the corresponding template in `skills/full-ddd/assets/templates/`. If the project already has an existing hooks config file, **merge** the DDD hooks into it — do NOT overwrite the user's existing hooks.
 3. **Claude Code** hooks are already defined in this skill's YAML frontmatter and require no additional setup.
 
 ### Three-Layer Defense
@@ -235,17 +236,17 @@ When creating the `docs/ddd/` directory at Step 0, also set up platform-native h
 
 These are real excuses agents use to bypass the import process. Every one of them is wrong.
 
-| Excuse | Reality |
-|:---|:---|
-| "Source document already contains approved decisions, re-approval is redundant" | Source document approval was in a different context. DDD artifacts require separate validation of the EXTRACTION accuracy. |
-| "Gaps are minor, fill them with reasonable defaults" | "Reasonable" to an AI ≠ domain intent. Every gap is a question for the human. Silent gap-filling creates false completeness. |
-| "Approve all artifacts at once — they came from the same source" | Each artifact has different stakeholders. Events errors cascade into wrong boundaries. Sequential approval catches cascading errors early. |
-| "Infer failure events from the happy path" | Inference ≠ extraction. Source silence on failure paths is a GAP, not an invitation to invent. |
-| "The source document is comprehensive, skip the 7-dimension validation" | Comprehensiveness in the author's framework ≠ completeness in DDD's 7 dimensions. |
-| "Existing docs/ddd/ artifacts are outdated, overwrite them" | Existing artifacts contain human-approved decisions. Overwriting requires explicit human directive. |
-| "This is a simple tech solution, skip reverse-extraction of Phase 1-3" | No complexity threshold. Even a 1-page tech solution implies domain events, boundaries, contracts. |
-| "Source citations slow things down — just extract and move on" | Citations are the only proof that extraction is grounded in the source, not hallucinated. Without citations, every extracted item is unverifiable. |
-| "The tech solution uses the same terms as DDD, no translation needed" | Vocabulary alignment is coincidental. The source's "bounded context" may not match DDD's definition. Every term must be verified. |
+| Excuse                                                                          | Reality                                                                                                                                            |
+| :------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "Source document already contains approved decisions, re-approval is redundant" | Source document approval was in a different context. DDD artifacts require separate validation of the EXTRACTION accuracy.                         |
+| "Gaps are minor, fill them with reasonable defaults"                            | "Reasonable" to an AI ≠ domain intent. Every gap is a question for the human. Silent gap-filling creates false completeness.                       |
+| "Approve all artifacts at once — they came from the same source"                | Each artifact has different stakeholders. Events errors cascade into wrong boundaries. Sequential approval catches cascading errors early.         |
+| "Infer failure events from the happy path"                                      | Inference ≠ extraction. Source silence on failure paths is a GAP, not an invitation to invent.                                                     |
+| "The source document is comprehensive, skip the 7-dimension validation"         | Comprehensiveness in the author's framework ≠ completeness in DDD's 7 dimensions.                                                                  |
+| "Existing docs/ddd/ artifacts are outdated, overwrite them"                     | Existing artifacts contain human-approved decisions. Overwriting requires explicit human directive.                                                |
+| "This is a simple tech solution, skip reverse-extraction of Phase 1-3"          | No complexity threshold. Even a 1-page tech solution implies domain events, boundaries, contracts.                                                 |
+| "Source citations slow things down — just extract and move on"                  | Citations are the only proof that extraction is grounded in the source, not hallucinated. Without citations, every extracted item is unverifiable. |
+| "The tech solution uses the same terms as DDD, no translation needed"           | Vocabulary alignment is coincidental. The source's "bounded context" may not match DDD's definition. Every term must be verified.                  |
 
 ## Red Flags — STOP
 

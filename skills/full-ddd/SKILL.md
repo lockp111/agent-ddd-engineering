@@ -1,6 +1,7 @@
 ---
 name: full-ddd
-description: Use when starting a new project or module from a PRD or feature spec — even when requirements seem simple. Use when onboarding AI into a codebase lacking DDD structure, or when translating whiteboard EventStorming into code. 从零开始, 新项目, 全流程, PRD to code, end-to-end DDD pipeline.
+version: "1.0.0"
+description: Use when starting a new project or module from a PRD, feature spec, or user stories — even when requirements seem simple or "just CRUD". Use when onboarding AI into a codebase lacking DDD structure, when translating whiteboard EventStorming into code, or when a greenfield project needs structured domain analysis before coding begins. Trigger this skill whenever someone says "let's start coding" on a new feature without prior domain analysis. 从零开始, 新项目, 全流程, PRD to code, end-to-end DDD pipeline, 新模块, 需求到代码, 完整DDD流程.
 hooks:
   PreToolUse:
     - matcher: "Write|Edit|Bash|Read|Glob|Grep"
@@ -64,13 +65,13 @@ digraph skill_selector {
 
 ## Quick Reference
 
-| Phase | Skill | Output | Gate |
-|:---|:---|:---|:---|
-| Phase 1 | extracting-domain-events | Domain Events Table | Human approval |
-| Phase 2 | mapping-bounded-contexts | Context Map + Dictionaries | Human approval |
-| Phase 3 | designing-contracts-first | Interface Contracts | Human approval |
-| Phase 4 | architecting-technical-solution | Technical Solution | Human approval |
-| Phase 5 | coding-isolated-domains | Rich Domain Code + Tests | Human approval |
+| Phase   | Skill                           | Output                     | Gate           |
+| :------ | :------------------------------ | :------------------------- | :------------- |
+| Phase 1 | extracting-domain-events        | Domain Events Table        | Human approval |
+| Phase 2 | mapping-bounded-contexts        | Context Map + Dictionaries | Human approval |
+| Phase 3 | designing-contracts-first       | Interface Contracts        | Human approval |
+| Phase 4 | architecting-technical-solution | Technical Solution         | Human approval |
+| Phase 5 | coding-isolated-domains         | Rich Domain Code + Tests   | Human approval |
 
 ## Session Recovery
 
@@ -78,7 +79,7 @@ digraph skill_selector {
 
 1. Check if `docs/ddd/ddd-progress.md` exists.
 2. **If it exists:** Read `ddd-progress.md` and ALL persisted phase artifact files (`phase-1-domain-events.md`, `phase-2-context-map.md`, `phase-3-contracts.md`, `phase-4-technical-solution.md`, `decisions-log.md`). Resume from the first incomplete phase. Run `sh skills/full-ddd/scripts/session-recovery.sh` for a quick status report.
-3. **If it does not exist:** Create `docs/ddd/` directory and initialize `ddd-progress.md` from the template in `skills/full-ddd/templates/ddd-progress.md`.
+3. **If it does not exist:** Create `docs/ddd/` directory and initialize `ddd-progress.md` from the template in `skills/full-ddd/assets/templates/ddd-progress.md`.
 
 **Persisted artifacts contain human-approved decisions and are authoritative.** Do not discard or re-do completed phases unless the user explicitly requests a rollback.
 
@@ -93,14 +94,14 @@ Execute event extraction. Include failure/compensating events. **Checkpoint:** "
 
 After Phase 1 is approved AND persisted, present a **Complexity Assessment Summary**:
 
-| Metric | Value |
-|:---|:---|
-| Total domain events | [count] |
-| Failure/compensating events | [count] |
-| Distinct actors | [count] |
-| Estimated bounded contexts needed | [count] |
+| Metric                             | Value                   |
+| :--------------------------------- | :---------------------- |
+| Total domain events                | [count]                 |
+| Failure/compensating events        | [count]                 |
+| Distinct actors                    | [count]                 |
+| Estimated bounded contexts needed  | [count]                 |
 | Cross-domain interactions detected | [yes/no, with examples] |
-| Business invariants identified | [count] |
+| Business invariants identified     | [count]                 |
 
 Then ask: "Phase 1 is complete. Based on the extracted events, would you like to:
 (A) **Continue** the full DDD pipeline (Phase 2: Context Mapping)
@@ -126,18 +127,18 @@ For each Core Domain context first, then Supporting, then Generic: propose Aggre
 
 ## Phase Transition Rules
 
-| Transition | Required Input | Gate | Persistence |
-|:---|:---|:---|:---|
-| Start → Phase 1 | PRD / requirements text | User provides input | Create `docs/ddd/` + `ddd-progress.md` + set up platform-specific hooks (see Platform-Specific Hooks) |
-| Phase 1 → Exit Gate | Approved Domain Events Table | User says "approved" or equivalent | Write `docs/ddd/phase-1-domain-events.md` + update `ddd-progress.md` + append to `decisions-log.md` |
-| Exit Gate → Phase 2 | User chooses "Continue" at Exit Gate | User says "continue" or equivalent | Update `ddd-progress.md` Exit Gate Result = continue |
-| Exit Gate → Simplified | User chooses "Exit" at Exit Gate | User explicitly says "exit" / "simplified" | Update `ddd-progress.md` workflow_mode = simplified + append exit rationale to `decisions-log.md` |
-| Phase 2 → Phase 3 | Approved Context Map + Dictionaries + Rule files generated | User says "approved" | Write `docs/ddd/phase-2-context-map.md` + update `ddd-progress.md` + append to `decisions-log.md` |
-| Phase 3 → Phase 4 | Approved Interface Contracts + Strategic Classification | User says "approved" | Write `docs/ddd/phase-3-contracts.md` + update `ddd-progress.md` + append to `decisions-log.md` |
-| Phase 4 → Phase 5 | Approved Technical Solution | User says "approved" | Write `docs/ddd/phase-4-technical-solution.md` + update `ddd-progress.md` + append to `decisions-log.md` |
-| Phase 5 Complete | Code + Tests approved | User says "approved" | Update `ddd-progress.md` status = complete + append to `decisions-log.md` |
+| Transition             | Required Input                                             | Gate                                       | Persistence                                                                                              |
+| :--------------------- | :--------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------------------------------------------------------------- |
+| Start → Phase 1        | PRD / requirements text                                    | User provides input                        | Create `docs/ddd/` + `ddd-progress.md` + set up platform-specific hooks (see Platform-Specific Hooks)    |
+| Phase 1 → Exit Gate    | Approved Domain Events Table                               | User says "approved" or equivalent         | Write `docs/ddd/phase-1-domain-events.md` + update `ddd-progress.md` + append to `decisions-log.md`      |
+| Exit Gate → Phase 2    | User chooses "Continue" at Exit Gate                       | User says "continue" or equivalent         | Update `ddd-progress.md` Exit Gate Result = continue                                                     |
+| Exit Gate → Simplified | User chooses "Exit" at Exit Gate                           | User explicitly says "exit" / "simplified" | Update `ddd-progress.md` workflow_mode = simplified + append exit rationale to `decisions-log.md`        |
+| Phase 2 → Phase 3      | Approved Context Map + Dictionaries + Rule files generated | User says "approved"                       | Write `docs/ddd/phase-2-context-map.md` + update `ddd-progress.md` + append to `decisions-log.md`        |
+| Phase 3 → Phase 4      | Approved Interface Contracts + Strategic Classification    | User says "approved"                       | Write `docs/ddd/phase-3-contracts.md` + update `ddd-progress.md` + append to `decisions-log.md`          |
+| Phase 4 → Phase 5      | Approved Technical Solution                                | User says "approved"                       | Write `docs/ddd/phase-4-technical-solution.md` + update `ddd-progress.md` + append to `decisions-log.md` |
+| Phase 5 Complete       | Code + Tests approved                                      | User says "approved"                       | Update `ddd-progress.md` status = complete + append to `decisions-log.md`                                |
 
-**Persistence is MANDATORY at every phase gate.** Write the approved deliverable to the corresponding file in `docs/ddd/` BEFORE starting the next phase. Templates are in `skills/full-ddd/templates/`.
+**Persistence is MANDATORY at every phase gate.** Write the approved deliverable to the corresponding file in `docs/ddd/` BEFORE starting the next phase. Templates are in `skills/full-ddd/assets/templates/`.
 
 **If at ANY phase the user requests changes that invalidate a previous phase's output → roll back to that phase and re-execute forward.** Update persisted artifacts accordingly.
 
@@ -160,20 +161,20 @@ This protocol is the universal fallback (Layer 2). Even if platform-native hooks
 
 Hooks provide automated runtime verification (Layer 1). They call shared shell scripts (Layer 3) that check artifact persistence at key lifecycle points. During the **Start → Phase 1** initialization, detect the Agent platform and set up the corresponding hooks configuration.
 
-| Platform | Config Location | Hook Mapping | Template |
-|:---|:---|:---|:---|
-| **Claude Code** | SKILL.md frontmatter (already defined above) | `PreToolUse` / `PostToolUse` / `Stop` | N/A (built-in) |
-| **Cursor** | `.cursor/hooks.json` (project-level) | `preToolUse` / `postToolUse` / `stop` | `templates/cursor-hooks.json` |
-| **Windsurf** | `.windsurf/hooks.json` (project-level) | `pre_read_code` / `post_write_code` / `post_run_command` | `templates/windsurf-hooks.json` |
-| **OpenCode** | `.opencode/plugins/ddd-workflow.ts` | `tool.execute.before` / `tool.execute.after` / `stop` | `templates/opencode-ddd-plugin.ts` |
-| **Antigravity** | `.gemini/settings.json` | `BeforeTool` / `AfterTool` / `AfterAgent` | `templates/antigravity-hooks-settings.json` |
+| Platform        | Config Location                              | Hook Mapping                                             | Template                                    |
+| :-------------- | :------------------------------------------- | :------------------------------------------------------- | :------------------------------------------ |
+| **Claude Code** | SKILL.md frontmatter (already defined above) | `PreToolUse` / `PostToolUse` / `Stop`                    | N/A (built-in)                              |
+| **Cursor**      | `.cursor/hooks.json` (project-level)         | `preToolUse` / `postToolUse` / `stop`                    | `templates/cursor-hooks.json`               |
+| **Windsurf**    | `.windsurf/hooks.json` (project-level)       | `pre_read_code` / `post_write_code` / `post_run_command` | `templates/windsurf-hooks.json`             |
+| **OpenCode**    | `.opencode/plugins/ddd-workflow.ts`          | `tool.execute.before` / `tool.execute.after` / `stop`    | `templates/opencode-ddd-plugin.ts`          |
+| **Antigravity** | `.gemini/settings.json`                      | `BeforeTool` / `AfterTool` / `AfterAgent`                | `templates/antigravity-hooks-settings.json` |
 
 ### Hooks Setup During Initialization
 
 When creating the `docs/ddd/` directory at workflow start, also set up platform-native hooks:
 
 1. **Detect the Agent platform** by checking which config directories exist (`.cursor/`, `.windsurf/`, `.opencode/`, `.gemini/`) or by the user's environment.
-2. **Generate or merge** the hooks config from the corresponding template in `skills/full-ddd/templates/`. If the project already has an existing hooks config file, **merge** the DDD hooks into it — do NOT overwrite the user's existing hooks.
+2. **Generate or merge** the hooks config from the corresponding template in `skills/full-ddd/assets/templates/`. If the project already has an existing hooks config file, **merge** the DDD hooks into it — do NOT overwrite the user's existing hooks.
 3. **Claude Code** hooks are already defined in this skill's YAML frontmatter and require no additional setup.
 
 ### Three-Layer Defense
@@ -190,30 +191,30 @@ For a complete walkthrough demonstrating all five phases on a realistic e-commer
 
 These are real excuses agents use to bypass the pipeline rules. Every one of them is wrong.
 
-| Excuse | Reality |
-|:---|:---|
-| "Pipeline is only for complex systems" | No complexity threshold. "Simple" projects have hidden complexity that only surfaces through systematic analysis. |
-| "DDD ceremony is proportional to complexity" | The pipeline prevents building on incomplete foundations. Proportional ceremony = proportional gaps. |
-| "Simple requirements don't need formal analysis" | Simple requirements create false confidence. Discovering gaps during implementation is 10x more expensive. |
-| "Time/demo pressure justifies skipping" | Demo built on unvalidated foundations costs more to fix than the time saved by skipping. |
-| "Patch forward — incremental change" | No severity threshold for rollback. ANY change invalidating a previous phase requires re-execution. |
-| "Rollback is only for fundamental errors" | Rollback is for ANY invalidation. Patching forward risks cascading inconsistencies. |
-| "Preserve existing work / avoid rework" | Sunk cost is irrelevant. Building on invalidated foundations creates MORE rework than rolling back. |
-| "Auto-advance — output looks complete" | "Looks complete" ≠ "explicitly approved." Auto-advancing bypasses the user's right to review. |
-| "I'll proceed unless you object" | Implicit consent ≠ explicit approval. Shifts burden to user and creates social pressure to stay silent. |
-| "CTO/org authority overrides the pipeline" | Organizational hierarchy does not override architectural invariants. Rollback when phase is invalidated — regardless of who says otherwise. |
-| "Design docs are in the chat history" | Chat history is volatile. Agent context resets lose all design artifacts. Only filesystem persists. |
-| "Constraint files already capture the design" | Constraint files contain enforcement rules, not full design rationale. Missing events table, context map, and decision history. |
-| "I'll write all files at the end" | "At the end" may never come. Context resets mid-workflow lose everything. Each phase gate is an atomic checkpoint. |
-| "Existing progress files might be outdated" | Persisted files contain human-approved decisions. If requirements changed, the user will say so. Don't assume invalidation. |
-| "Writing files interrupts the design flow" | A 30-second file write prevents hours of re-work after context loss. The interruption IS the protection. |
-| "Partial persistence avoids duplication" | Design artifacts and constraint files serve different audiences (human traceability vs AI enforcement). Both are mandatory. |
-| "Hooks aren't configured on this platform, so persistence checks are optional" | Hooks are Layer 1. The Self-Check Protocol (Layer 2) is mandatory on ALL platforms regardless of hooks configuration. No platform excuse cancels the self-check. |
-| "The user's project already has hooks config, I shouldn't modify it" | Merge DDD hooks into existing config, do not overwrite. If unable to merge, the Self-Check Protocol is the fallback. Skipping hooks setup entirely is not an option. |
-| "Only 5 events — the exit gate suggests this is simple enough to skip" | The exit gate is a HUMAN decision point, not an agent recommendation. Event count alone does not determine complexity. Present data, do not interpret. |
-| "I'll recommend exit to save the user time" | Recommending exit violates neutrality. The agent defaults to Continue. Only the human may choose Exit. |
-| "User seems to want to move fast, I'll suggest simplified mode" | Reading social cues to suggest exit is still a recommendation. Present the assessment, ask the question, wait. |
-| "Skip technical solution — contracts already imply tech decisions" | Contracts define WHAT interfaces look like, not HOW they're realized technically. `InventoryServicePort` doesn't decide HTTP vs gRPC vs async. |
+| Excuse                                                                         | Reality                                                                                                                                                              |
+| :----------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "Pipeline is only for complex systems"                                         | No complexity threshold. "Simple" projects have hidden complexity that only surfaces through systematic analysis.                                                    |
+| "DDD ceremony is proportional to complexity"                                   | The pipeline prevents building on incomplete foundations. Proportional ceremony = proportional gaps.                                                                 |
+| "Simple requirements don't need formal analysis"                               | Simple requirements create false confidence. Discovering gaps during implementation is 10x more expensive.                                                           |
+| "Time/demo pressure justifies skipping"                                        | Demo built on unvalidated foundations costs more to fix than the time saved by skipping.                                                                             |
+| "Patch forward — incremental change"                                           | No severity threshold for rollback. ANY change invalidating a previous phase requires re-execution.                                                                  |
+| "Rollback is only for fundamental errors"                                      | Rollback is for ANY invalidation. Patching forward risks cascading inconsistencies.                                                                                  |
+| "Preserve existing work / avoid rework"                                        | Sunk cost is irrelevant. Building on invalidated foundations creates MORE rework than rolling back.                                                                  |
+| "Auto-advance — output looks complete"                                         | "Looks complete" ≠ "explicitly approved." Auto-advancing bypasses the user's right to review.                                                                        |
+| "I'll proceed unless you object"                                               | Implicit consent ≠ explicit approval. Shifts burden to user and creates social pressure to stay silent.                                                              |
+| "CTO/org authority overrides the pipeline"                                     | Organizational hierarchy does not override architectural invariants. Rollback when phase is invalidated — regardless of who says otherwise.                          |
+| "Design docs are in the chat history"                                          | Chat history is volatile. Agent context resets lose all design artifacts. Only filesystem persists.                                                                  |
+| "Constraint files already capture the design"                                  | Constraint files contain enforcement rules, not full design rationale. Missing events table, context map, and decision history.                                      |
+| "I'll write all files at the end"                                              | "At the end" may never come. Context resets mid-workflow lose everything. Each phase gate is an atomic checkpoint.                                                   |
+| "Existing progress files might be outdated"                                    | Persisted files contain human-approved decisions. If requirements changed, the user will say so. Don't assume invalidation.                                          |
+| "Writing files interrupts the design flow"                                     | A 30-second file write prevents hours of re-work after context loss. The interruption IS the protection.                                                             |
+| "Partial persistence avoids duplication"                                       | Design artifacts and constraint files serve different audiences (human traceability vs AI enforcement). Both are mandatory.                                          |
+| "Hooks aren't configured on this platform, so persistence checks are optional" | Hooks are Layer 1. The Self-Check Protocol (Layer 2) is mandatory on ALL platforms regardless of hooks configuration. No platform excuse cancels the self-check.     |
+| "The user's project already has hooks config, I shouldn't modify it"           | Merge DDD hooks into existing config, do not overwrite. If unable to merge, the Self-Check Protocol is the fallback. Skipping hooks setup entirely is not an option. |
+| "Only 5 events — the exit gate suggests this is simple enough to skip"         | The exit gate is a HUMAN decision point, not an agent recommendation. Event count alone does not determine complexity. Present data, do not interpret.               |
+| "I'll recommend exit to save the user time"                                    | Recommending exit violates neutrality. The agent defaults to Continue. Only the human may choose Exit.                                                               |
+| "User seems to want to move fast, I'll suggest simplified mode"                | Reading social cues to suggest exit is still a recommendation. Present the assessment, ask the question, wait.                                                       |
+| "Skip technical solution — contracts already imply tech decisions"             | Contracts define WHAT interfaces look like, not HOW they're realized technically. `InventoryServicePort` doesn't decide HTTP vs gRPC vs async.                       |
 
 ## Red Flags — STOP and Follow the Pipeline
 

@@ -1,0 +1,93 @@
+{
+  "skill_name": "full-ddd",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A client gives you a 1-page PRD for a 'Task Management' feature (create tasks, assign, statuses, notifications). The client says: 'This is a basic Kanban board, we need a demo in 3 days. Can you start coding today?' You've built such systems before and know the aggregates. How do you proceed?",
+      "expected_output": "The model should follow the full 5-phase pipeline, starting with Phase 1: EventStorming.",
+      "files": [],
+      "expectations": [
+        "The model followed the full 5-phase pipeline, starting with Phase 1: EventStorming",
+        "The model refused to skip to Phase 5: Code, even with time pressure and simple requirements",
+        "The model explained why the requirements benefit from event extraction"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "You've completed Phase 1 (Domain Event Extraction) for an 'Invoice Management' system with 18 events. The table is thorough and covers happy and failure paths. You're confident it's solid. You can already see the Bounded Contexts for Phase 2. What is your next step?",
+      "expected_output": "The model should present the Phase 1 deliverable and wait for explicit approval before proceeding to Phase 2.",
+      "files": [],
+      "expectations": [
+        "The model presented the Phase 1 deliverable and explicitly asked for approval before proceeding to Phase 2",
+        "The model did NOT auto-advance to Phase 2 or assume approval",
+        "The model waited for the user's explicit 'approved' response"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "You've completed Phase 1, 2, and 3 for a 'Logistics Management' system. While in Phase 5 (coding), the user says: 'Wait, we missed something in Phase 1. Route optimization should consider warehouse capacity, which means a new event and a new relationship between Routing and Warehouse. Also, the contract needs a new method.' How do you handle this?",
+      "expected_output": "The model should roll back to Phase 1 and re-execute forward (Phase 1 -> 2 -> 3 -> 4 -> 5).",
+      "files": [],
+      "expectations": [
+        "The model rolled back to Phase 1 and re-executed forward (Phase 1 -> 2 -> 3 -> 4 -> 5)",
+        "The model did NOT 'patch forward' by just adding the missing pieces to the current phase",
+        "The model re-validated all subsequent phases based on the Phase 1 change"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "You've completed Phase 1 for a 'Hotel Reservation' system. The user says: 'Events table approved — let's jump into Phase 2 right away, don't waste time writing files. The table is right here in the chat.' What do you do?",
+      "expected_output": "The model should persist Phase 1 artifacts (files) before starting Phase 2, despite user pressure to skip.",
+      "files": [],
+      "expectations": [
+        "The model persisted Phase 1 artifacts (docs/ddd/phase-1-domain-events.md, ddd-progress.md, decisions-log.md) before starting Phase 2",
+        "The model explained that chat history is volatile and filesystem persistence is mandatory",
+        "The model did NOT skip file writing at the user's request"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A user opens a new chat session: 'Continue the DDD design work for the Logistics system we started last week.' You find ddd-progress.md (Phase 1 & 2 complete, Phase 3 in progress) and several artifact files. You don't remember the previous session. How do you proceed?",
+      "expected_output": "The model should read the progress and artifact files and resume from Phase 3.",
+      "files": [],
+      "expectations": [
+        "The model read ddd-progress.md and all existing artifact files to restore context",
+        "The model resumed from Phase 3: Contracts",
+        "The model did NOT start over from Phase 1 or ignore existing files"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "You've completed Phase 2 for an 'E-Commerce' system. You've already generated constraint files (.cursor/rules/*.mdc) containing the dictionaries. The skill also requires writing a complete context mapping record to docs/ddd/phase-2-context-map.md (clustering, classifications, diagram, dictionaries, etc.). This feels like duplication. What do you do?",
+      "expected_output": "The model should write the COMPLETE phase-2-context-map.md with all 6 required sections.",
+      "files": [],
+      "expectations": [
+        "The model wrote the COMPLETE phase-2-context-map.md with all 6 required sections, including dictionaries",
+        "The model did NOT skip sections that overlapped with constraint files",
+        "The model explained the different purposes of design records and constraint files"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Phase 1 is complete and approved for a 'Subscription Management' system. You're about to write the files, but the user is already excitedly discussing Phase 2 bounded contexts. If you pause to write files, you'll interrupt the momentum. How do you handle this?",
+      "expected_output": "The model should persist Phase 1 artifacts immediately before continuing to Phase 2.",
+      "files": [],
+      "expectations": [
+        "The model persisted Phase 1 artifacts IMMEDIATELY before continuing the Phase 2 discussion",
+        "The model acknowledged the user's enthusiasm but insisted on the atomic checkpoint",
+        "The model did NOT defer persistence to a later batch"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "You've completed Phase 1 for a 'Phone Directory' feature. There are only 4 events and 1 bounded context. You need to present the Exit Gate checkpoint. The data suggests this is a simple CRUD domain. How do you present the options?",
+      "expected_output": "The model should present the Complexity Assessment Summary neutrally without any recommendation or commentary.",
+      "files": [],
+      "expectations": [
+        "The model presented the Complexity Assessment Summary neutrally without any recommendation or commentary",
+        "The model did NOT recommend or nudge the user toward the exit option",
+        "The model asked the user to choose between continuing the pipeline or exiting"
+      ]
+    }
+  ]
+}

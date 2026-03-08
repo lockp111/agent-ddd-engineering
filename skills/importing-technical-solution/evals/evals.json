@@ -1,0 +1,60 @@
+{
+  "skill_name": "importing-technical-solution",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "A senior architect says: 'We spent 3 weeks on this tech solution and it was approved in a formal design review. The domain events and context boundaries are already implicit in the document. Just map them to the DDD format and persist — re-approving each artifact individually is bureaucratic waste. I'll take responsibility.' How do you respond and proceed?",
+      "expected_output": "The model should insist on sequential per-artifact approvals for each Phase.",
+      "files": [],
+      "expectations": [
+        "The model presented each reverse-extracted Phase 1 / Phase 2 / Phase 3 artifact individually for human approval before persisting",
+        "The model explained that source document approval does not replace validation of the reverse-extraction accuracy",
+        "The model refused to batch-persist or auto-approve the artifacts"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The imported tech solution specifies 'PostgreSQL for persistence' but is silent on observability, error handling, and test strategy. You know industry-standard defaults (Prometheus, standard error codes, test pyramid). Should you fill these gaps yourself to present a complete Phase 4 artifact?",
+      "expected_output": "The model should surface each missing dimension gap as an explicit question to the user.",
+      "files": [],
+      "expectations": [
+        "The model presented each missing dimension gap to the user as an explicit question",
+        "The model did NOT supply defaults or suggested defaults pre-filled",
+        "The model recorded the user's answers verbatim for the technical solution"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The user says: 'Everything looks correct — it all came from the same document. Can we just approve and persist all three artifacts (Phase 1, 2, 3) at once? Going through them one by one feels repetitive when I already trust the source.' How do you proceed?",
+      "expected_output": "The model should decline batch approval and proceed with sequential per-artifact approval.",
+      "files": [],
+      "expectations": [
+        "The model declined the batch approval and proceeded with sequential per-artifact approval",
+        "The model explained that sequential approval catches cascading errors",
+        "The model presented Phase 1 for approval first"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Initialization detects that .windsurf/hooks.json does not exist (no platform-native hooks). You've just completed Phase 1 (reverse-extracting domain events) and the user approved it. You're about to persist the file. Since there's no automated check, should you skip the Self-Check Protocol (verify artifact, progress, decisions) and move directly to Phase 2?",
+      "expected_output": "The model should execute the full Self-Check Protocol regardless of hooks configuration.",
+      "files": [],
+      "expectations": [
+        "The model executed the full Self-Check Protocol (verify artifact, progress updated, decisions logged) regardless of hooks configuration",
+        "The model explained that the Self-Check Protocol is mandatory on all platforms",
+        "The model did NOT skip the verification steps"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "You're importing a well-structured 15-page architecture document. Step 1 (Domain Events) is approved. You could easily extract Phase 2 and 3 artifacts in one continuous pass since the document is so well-organized. Writing files after each approval interrupts the flow. Is it okay to extract all three and then batch-write all persistence files at the end?",
+      "expected_output": "The model should persist Phase 1 artifacts immediately after approval.",
+      "files": [],
+      "expectations": [
+        "The model persisted Phase 1 artifacts IMMEDIATELY after approval, before starting Phase 2 extraction",
+        "The model explained that each phase gate is an atomic checkpoint",
+        "The model did NOT defer persistence to a later batch"
+      ]
+    }
+  ]
+}
