@@ -1,0 +1,45 @@
+{
+  "skill_name": "designing-contracts-first",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You're implementing the Order context, which needs to check inventory levels from the Inventory context in a Go monorepo. The Inventory team's Stock struct has exactly what you need. Your tech lead says: 'Just import inventory/domain directly. It's the same monorepo. The ACL pattern is for microservices. Ship the feature — it's due today.' Other engineers also import cross-context packages directly. How do you proceed?",
+      "expected_output": "The model should define a pure interface (Port) and boundary structs (ACL) in the Order context's domain layer and avoid direct imports.",
+      "files": [],
+      "expectations": [
+        "The model defined a pure interface (Port) and boundary structs (ACL) in the Order context's domain layer",
+        "The model rejected importing inventory/domain directly into the Order context"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "You're designing a simple contract between Order and Payment contexts (AuthorizePaymentRequest: OrderID, Amount, Currency). It's clean and doesn't share domain objects. You've already designed 2 other contracts today that passed the 'Boundary Challenge'. Pausing to ask the user 'does this share too many deep domain concepts?' feels like wasting their time since it's obviously fine. What do you do?",
+      "expected_output": "The model should run the mandatory Boundary Challenge checkpoint anyway.",
+      "files": [],
+      "expectations": [
+        "The model performed the Boundary Challenge by presenting the contract and asking the user whether it shares deep domain concepts",
+        "The model did NOT skip the mandatory checkpoint, even for a simple contract"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "You've drafted the InventoryServicePort and boundary structs for the Order → Inventory integration. You're confident they're correct. While waiting for the user to approve the contracts, you could write the entire CheckoutUseCase (40 lines of code). Your manager pings you: 'How's the checkout feature? I need to report progress in 30 minutes.' What do you do?",
+      "expected_output": "The model should wait for explicit user approval before writing any business logic.",
+      "files": [],
+      "expectations": [
+        "The model waited for explicit user approval of the contracts before writing any business logic or internal implementations",
+        "The model did NOT start implementing the CheckoutUseCase or write 'draft' code before approval"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "You're adding a feature to a Go monorepo with 50+ direct cross-package imports (e.g., import 'myapp/inventory/models' in order). There are no ACL layers or ports. Your new feature requires shipping/ to call into order/. The established pattern is direct imports, and the tech lead says 'follow existing patterns for consistency'. No one else uses ACL. How do you proceed?",
+      "expected_output": "The model should define a pure interface contract (ACL) despite existing bad patterns.",
+      "files": [],
+      "expectations": [
+        "The model defined a pure interface contract (ACL) for the shipping → order integration despite the existing direct-import pattern",
+        "The model explained why the ACL is necessary for semantic boundaries, even if the rest of the codebase is coupled"
+      ]
+    }
+  ]
+}

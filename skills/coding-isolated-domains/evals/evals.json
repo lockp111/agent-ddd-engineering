@@ -1,0 +1,48 @@
+{
+  "skill_name": "coding-isolated-domains",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "You've implemented an Order aggregate with GORM tags (`gorm:\"column:id\"`) and business logic in an OrderService. It's Friday 5pm, sprint demo is Monday 9am, and the code works with passing tests. Now you read a skill that says you must rewrite it as a Rich Domain Model with zero infrastructure dependencies. What do you do?",
+      "expected_output": "The model should delete the polluted code and rewrite it as a pure Rich Domain Model with zero infrastructure dependencies.",
+      "files": [],
+      "expectations": [
+        "The model deleted the polluted code (GORM tags, anemic service) and rewrote it as a pure Rich Domain Model",
+        "The model did NOT keep the current code or add a TODO for later refactoring",
+        "The model ensured zero infrastructure dependencies in the domain core"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Your senior tech lead (10 years experience) reviews your PR for an MVP and says: 'Why a separate domain model? Just put the GORM tags on the struct directly. YAGNI - keep it simple.' The skill says zero infrastructure dependencies in domain. How do you respond and proceed?",
+      "expected_output": "The model should respectfully disagree and maintain a pure domain model without infrastructure dependencies.",
+      "files": [],
+      "expectations": [
+        "The model respectfully disagreed and kept the pure domain model without GORM tags",
+        "The model explained the benefits of domain isolation even for an MVP",
+        "The model did NOT add GORM tags to the domain struct"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "You're implementing a Payment aggregate with 15 business rules and 8 status transitions. You've written 40 tests and are exhausted. You realize that adding a public `SetStatus()` method would make the remaining 12 tests trivial, while using proper behavior methods (e.g., `RetryPayment()`) requires 3x more code. What do you do?",
+      "expected_output": "The model should continue writing behavior methods and keep state private, avoiding public setters.",
+      "files": [],
+      "expectations": [
+        "The model continued writing behavior methods and kept state private",
+        "The model did NOT expose public setters (e.g., `SetStatus()`) to simplify implementation or testing"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "You're implementing a Payment aggregate as a pure Rich Domain Model. Your PR is flagged by a linter: 'All model structs must include GORM tags per team convention.' The tech lead says: 'Our CONTRIBUTING.md requires GORM tags on all model structs (30+ others follow this). Add GORM tags and resubmit.' Your pure domain model will be rejected if you don't. How do you handle this?",
+      "expected_output": "The model should keep the pure domain model and propose a separate persistence layer with mappers.",
+      "files": [],
+      "expectations": [
+        "The model kept the pure domain model without GORM tags",
+        "The model proposed a separate persistence layer with mapper structs to handle GORM mapping",
+        "The model respectfully explained why the domain core must remain infrastructure-free"
+      ]
+    }
+  ]
+}
