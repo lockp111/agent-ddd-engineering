@@ -54,14 +54,19 @@ Generate constraint content based on:
 
 ### Step 3: Persist to IDE Rules
 
-Adapt content to each IDE's rules format and write:
+Check if rules files already exist:
+
+**If files exist:**
+- Inform human: `IDE rules files already exist. If Phase 4 changed, delete existing files and re-run SDD. Otherwise, proceed to Phase 5.`
+- Wait for instruction.
+
+**If files do not exist:**
+- Adapt content to each IDE's rules format and write:
 
 | IDE | File | Format |
 |:----|:-----|:-------|
 | Claude Code | `.claude/rules/ddd-constraints.md` | Markdown with `paths` frontmatter |
 | Cursor | `.cursor/rules/ddd-constraints.mdc` | Markdown with `alwaysApply` frontmatter |
-
-Write the appropriate format for each IDE.
 
 ### Step 4: Human Approval
 
@@ -71,7 +76,6 @@ Inform human to review the actual rules file:
 Coding constraints written to:
 - .claude/rules/ddd-constraints.md
 - .cursor/rules/ddd-constraints.mdc
-- .windsurf/rules/ddd-constraints.md
 
 Please review and approve.
 ```
