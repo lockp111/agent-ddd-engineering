@@ -2,8 +2,7 @@
 name: spec-driven-development
 description: >
   Use when transitioning from Phase 4 technical solution to Phase 5 implementation.
-  Generates coding-spec.md containing naming conventions, layering rules, and
-  test conventions that guide all subsequent code generation.
+  Generates coding constraints and writes them to IDE rules files for automatic loading.
   OpenAPI/Proto was already generated in Phase 4 as technical decision output.
   SDD, 项目规范, coding spec, naming conventions.
 ---
@@ -12,7 +11,7 @@ description: >
 
 ## Overview
 
-SDD generates `docs/ddd/coding-spec.md` — the coding conventions that guide Phase 5 implementation.
+SDD generates coding constraints and writes them to IDE rules files. These rules are automatically loaded by sub-agents during Phase 5 implementation.
 
 **Note:** OpenAPI/Proto files are Phase 4 outputs (technical decisions). SDD takes those as inputs and generates the coding-specific conventions.
 
@@ -24,7 +23,7 @@ SDD generates `docs/ddd/coding-spec.md` — the coding conventions that guide Ph
 **Anti-hallucination stack:**
 - DDD constrains *what* to build (semantic truth)
 - Phase 4 constrains *interface format* (structural truth via OpenAPI/Proto)
-- SDD constrains *code shape* (coding conventions via coding-spec.md)
+- SDD constrains *code shape* (coding conventions via IDE rules)
 - TDD proves *it works* (execution proof)
 
 ## When to Use
@@ -43,9 +42,9 @@ Read `docs/ddd/phase-4-technical-solution.md` and OpenAPI/Proto files to underst
 - Interface formats
 - Any special requirements
 
-### Step 2: Generate Coding Spec
+### Step 2: Generate Coding Constraints
 
-Generate `docs/ddd/coding-spec.md` based on:
+Generate constraint content based on:
 1. Read [template/coding-spec.md](./template/coding-spec.md) — contains placeholders
 2. Read language-specific conventions (e.g., [go-conventions](./go-conventions.md) for Go projects)
 3. Fill placeholders with language-specific values
@@ -53,34 +52,74 @@ Generate `docs/ddd/coding-spec.md` based on:
 
 **Placeholder format:** `{placeholder_name}` in template gets replaced with value from language conventions.
 
-### Step 3: Persist
+### Step 3: Human Approval
 
-Write `docs/ddd/coding-spec.md`.
-
-### Step 4: Inform Human
-
-Present the generated coding spec:
+Present the generated constraints:
 
 ```
-Coding spec generated: docs/ddd/coding-spec.md
+Coding constraints generated:
 
-Conventions:
-- Naming: [from template]
-- Layering: [from template]
-- Testing: [from template]
+## Naming
+- {naming_rules}
 
-Human can modify this file before Phase 5 begins.
-Phase 5 will read this file to generate code.
+## Layer
+- {layer_rules}
+
+## Testing
+- {testing_rules}
+
+Approve to write to IDE rules files.
 ```
 
-## Output
+**Wait for human approval before proceeding.**
 
-| Artifact | Location |
-|:---------|:---------|
-| Coding Spec | `docs/ddd/coding-spec.md` |
+### Step 4: Persist to IDE Rules
+
+After approval, write to IDE rules files:
+
+| IDE | File | Note |
+|:----|:-----|:-----|
+| Claude Code | `.claude/rules/ddd-constraints.md` | Auto-loaded by Claude Code |
+| Cursor | `.cursor/rules/ddd-constraints.mdc` | Auto-loaded by Cursor |
+| Windsurf | `.windsurf/rules/ddd-constraints.md` | Auto-loaded by Windsurf |
+
+Write the same content to all applicable rules files.
+
+### Step 5: Inform Human
+
+```
+Coding constraints written to:
+- .claude/rules/ddd-constraints.md
+- .cursor/rules/ddd-constraints.mdc
+- .windsurf/rules/ddd-constraints.md
+
+Phase 5 sub-agents will automatically load these constraints.
+```
+
+## IDE Rules File Format
+
+```markdown
+# DDD Coding Constraints
+
+## Naming
+{naming_rules}
+
+## Layer
+{layer_rules}
+
+## Testing
+{testing_rules}
+
+## Hard Constraints
+- domain/ cannot import infra/
+- No ORM tags in domain structs
+- No public setters on entities
+- Value objects are immutable
+- Aggregates reference by ID only
+```
 
 ## Relationship to Other Skills
 
 - [architecting-technical-solution](../architecting-technical-solution/SKILL.md) → Phase 4 prerequisite (provides tech decisions)
-- [coding-isolated-domains](../coding-isolated-domains/SKILL.md) → Phase 5 consumer (reads coding-spec.md)
+- [coding-isolated-domains](../coding-isolated-domains/SKILL.md) → Phase 5 consumer (auto-loads rules)
 - [go-conventions](./go-conventions.md) → Default values for Go projects

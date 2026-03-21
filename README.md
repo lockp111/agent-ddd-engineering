@@ -67,7 +67,7 @@
 | | `mapping-bounded-contexts/` | Phase 2: 限界上下文边界与上下文映射 |
 | | `designing-contracts-first/` | Phase 3: 契约优先设计与 ACL 接口 |
 | | `architecting-technical-solution/` | Phase 4: 7 个维度的技术决策 |
-| | `spec-driven-development/` | SDD: 生成 coding-spec.md |
+| | `spec-driven-development/` | SDD: 生成 IDE Rules |
 | | `coding-isolated-domains/` | Phase 5: 充血模型实现 |
 | **支持** | `test-driven-development/` | TDD 工作流指导 |
 | | `test-driven-development/` | TDD 工作流指导 |
@@ -85,7 +85,7 @@
 | 2 | `mapping-bounded-contexts` | 上下文映射 + 字典 |
 | 3 | `designing-contracts-first` | 接口契约 |
 | 4 | `architecting-technical-solution` | 技术方案 |
-| SDD | `spec-driven-development` | coding-spec.md |
+| SDD | `spec-driven-development` | IDE Rules |
 | 5 | `coding-isolated-domains` | 充血领域代码 + 测试 |
 
 **关键规则：**

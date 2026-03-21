@@ -1,6 +1,6 @@
 # Go Conventions
 
-> Default values for Go projects when generating coding-spec.md.
+> Default values for Go projects when generating IDE rules.
 > SDD uses these to fill in the generic template.
 
 ## Default Values

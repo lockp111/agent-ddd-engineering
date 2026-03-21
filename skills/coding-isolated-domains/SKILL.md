@@ -13,7 +13,7 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 ## When to Use
 - When writing implementation of business rules, Entities, or Aggregates; when you detect an Entity with only properties and no behavior; when ORM tags or HTTP logic leak into the domain layer.
 
-**Do NOT use when:** Writing infrastructure adapters, API controllers, or repositories; working on Generic Subdomains with simple CRUD; or when context boundaries and contracts are not yet defined (**REQUIRED PREREQUISITES:** Phase 4 [architecting-technical-solution](../architecting-technical-solution/SKILL.md), [spec-driven-development](../spec-driven-development/SKILL.md), and `docs/ddd/coding-spec.md` — spec files and coding conventions must exist before domain code is written).
+**Do NOT use when:** Writing infrastructure adapters, API controllers, or repositories; working on Generic Subdomains with simple CRUD; or when context boundaries and contracts are not yet defined (**REQUIRED PREREQUISITES:** Phase 4 [architecting-technical-solution](../architecting-technical-solution/SKILL.md) and SDD must complete first — IDE rules file (.claude/rules/ddd-constraints.md) must exist before domain code is written).
 
 ## Quick Reference
 
@@ -32,7 +32,7 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 When spawning sub-agents for parallel implementation:
 
 **Before spawning:**
-- Load `docs/ddd/coding-spec.md`
+- IDE rules are auto-loaded from `.claude/rules/ddd-constraints.md`
 - Load [_shared/domain-architecture-reference.md](../_shared/domain-architecture-reference.md)
 - Each sub-agent task MUST include hard constraints reminder:
 

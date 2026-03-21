@@ -16,7 +16,7 @@ The `full-ddd` skill orchestrates a mandatory pipeline from PRD to production co
 | 2 | `mapping-bounded-contexts` | Context Map + Dictionaries | `docs/ddd/phase-2-context-map.md` |
 | 3 | `designing-contracts-first` | Interface Contracts | `docs/ddd/phase-3-contracts.md` |
 | 4 | `architecting-technical-solution` | Technical Solution | `docs/ddd/phase-4-technical-solution.md` |
-| SDD | `spec-driven-development` | Coding Spec | `docs/ddd/coding-spec.md` |
+| SDD | `spec-driven-development` | IDE Rules | `.claude/rules/ddd-constraints.md` |
 | 5 | `coding-isolated-domains` | Rich Domain Code + Tests | Per-context implementation |
 
 **Critical Rules:**

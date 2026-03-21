@@ -85,7 +85,7 @@ Language-specific conventions (e.g., Go) are in `spec-driven-development/`. User
 | 2 | `mapping-bounded-contexts` | Context Map + Dictionaries |
 | 3 | `designing-contracts-first` | Interface Contracts |
 | 4 | `architecting-technical-solution` | Technical Solution |
-| SDD | `spec-driven-development` | coding-spec.md |
+| SDD | `spec-driven-development` | IDE Rules |
 | 5 | `coding-isolated-domains` | Rich Domain Code + Tests |
 
 **Critical Rules:**
