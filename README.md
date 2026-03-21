@@ -43,9 +43,20 @@
 | Scope | 描述 | 语言 |
 |:------|:-----|:-----|
 | **Universal** | 语言无关的 DDD 概念和设计原则 | 所有语言 |
-| **Language-Specific** | 特定语言的实现约定 | Go (`go-conventions`) |
+| **Language-Specific** | 特定语言的实现约定 | Go conventions in SDD reference/ |
 
-> **注意：** 只有 `go-conventions` 标记为 `language-specific`。其他所有技能默认都是 **universal**。使用非 Go 语言时，应跳过 `go-conventions` 或用对应语言的约定替代。
+> **注意：** 语言特定约定位于 `spec-driven-development/reference/`。其他所有技能默认都是 **universal**。
+
+### 约束分层
+
+`spec-driven-development` 采用**两层约束设计**：
+
+| 层级 | 位置 | 可定制 | 说明 |
+|:-----|:-----|:-------|:-----|
+| **软约束** | `spec-driven-development/template/` | Yes | 目录布局、包名风格、文件组织 |
+| **硬约束** | `_shared/domain-architecture-reference.md` | No | domain 隔离、充血模型、ORM 不可进 domain |
+
+语言特定约定（如 Go）位于 `spec-driven-development/reference/`。用户可在 Phase 5 前修改 SDD 模板来自定义软约束。
 
 ### 技能分类
 
@@ -56,9 +67,9 @@
 | | `mapping-bounded-contexts/` | Phase 2: 限界上下文边界与上下文映射 |
 | | `designing-contracts-first/` | Phase 3: 契约优先设计与 ACL 接口 |
 | | `architecting-technical-solution/` | Phase 4: 7 个维度的技术决策 |
-| | `spec-driven-development/` | 从契约生成规范（Proto/OpenAPI/AsyncAPI） |
+| | `spec-driven-development/` | SDD: 生成 coding-spec.md |
 | | `coding-isolated-domains/` | Phase 5: 充血模型实现 |
-| **支持** | `go-conventions/` | Go 专属 DDD 约定（**language-specific**） |
+| **支持** | `test-driven-development/` | TDD 工作流指导 |
 | | `test-driven-development/` | TDD 工作流指导 |
 | | `snapshotting-code-context/` | 代码上下文保存 |
 | | `iterating-ddd/` | 迭代改进 |
@@ -74,6 +85,7 @@
 | 2 | `mapping-bounded-contexts` | 上下文映射 + 字典 |
 | 3 | `designing-contracts-first` | 接口契约 |
 | 4 | `architecting-technical-solution` | 技术方案 |
+| SDD | `spec-driven-development` | coding-spec.md |
 | 5 | `coding-isolated-domains` | 充血领域代码 + 测试 |
 
 **关键规则：**

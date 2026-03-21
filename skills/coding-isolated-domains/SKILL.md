@@ -1,6 +1,8 @@
 ---
 name: coding-isolated-domains
 description: Use when implementing core business logic, domain entities, or aggregates. Use when encountering anemic models (entities with only getters/setters), ORM tags or HTTP logic leaking into domain structs, public SetStatus() methods, or business logic living in services instead of entities. 充血模型, 六边形架构, 领域层隔离, rich domain model, hexagonal architecture.
+scope: universal
+phase: 5
 ---
 
 # Coding Isolated Domains
@@ -13,7 +15,7 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 ## When to Use
 - When writing implementation of business rules, Entities, or Aggregates; when you detect an Entity with only properties and no behavior; when ORM tags or HTTP logic leak into the domain layer.
 
-**Do NOT use when:** Writing infrastructure adapters, API controllers, or repositories; working on Generic Subdomains with simple CRUD; or when context boundaries and contracts are not yet defined (**REQUIRED PREREQUISITES:** [mapping-bounded-contexts](../mapping-bounded-contexts/SKILL.md), [designing-contracts-first](../designing-contracts-first/SKILL.md), [architecting-technical-solution](../architecting-technical-solution/SKILL.md), and [spec-driven-development](../spec-driven-development/SKILL.md) — spec files must exist before domain code is written).
+**Do NOT use when:** Writing infrastructure adapters, API controllers, or repositories; working on Generic Subdomains with simple CRUD; or when context boundaries and contracts are not yet defined (**REQUIRED PREREQUISITES:** Phase 4 [architecting-technical-solution](../architecting-technical-solution/SKILL.md), [spec-driven-development](../spec-driven-development/SKILL.md), and `docs/ddd/coding-spec.md` — spec files and coding conventions must exist before domain code is written).
 
 ## Quick Reference
 
@@ -26,6 +28,29 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 | 5 | Domain TDD (MAP→ITERATE→DIFF) | Tests written, RED→GREEN→REFACTOR cycle complete |
 | 6 | Implementation Generation | Rich Domain Model code approved |
 | 7 | Persist Design Decisions | `docs/ddd/decisions-log.md` updated |
+
+## Multi-Agent Handling
+
+When spawning sub-agents for parallel implementation:
+
+**Before spawning:**
+- Load `docs/ddd/coding-spec.md`
+- Load [_shared/domain-architecture-reference.md](../_shared/domain-architecture-reference.md)
+- Each sub-agent task MUST include hard constraints reminder:
+
+```
+Hard Constraints (MUST follow):
+- domain/ cannot import infra/
+- No ORM tags in domain structs
+- No public setters on entities
+- Value objects are immutable
+- Aggregates reference by ID only
+```
+
+**After sub-agents complete:**
+- Run lint check: `grep -r "gorm:" domain/` → should return empty
+- Run lint check: `grep -r "infra/" domain/` → should return empty
+- If violations found: STOP, fix before proceeding
 
 > Architecture red lines for the GREEN step: see [domain-architecture-reference.md](../_shared/domain-architecture-reference.md)
 

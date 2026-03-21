@@ -43,9 +43,20 @@ Skills are designed with language boundaries to prevent contamination:
 | Scope | Description | Languages |
 |:------|:------------|:----------|
 | **Universal** | Language-agnostic DDD concepts and design principles | All |
-| **Language-Specific** | Implementation conventions for a particular language | Go (`go-conventions`) |
+| **Language-Specific** | Implementation conventions for a particular language | Go conventions in SDD reference/ |
 
-> **Note:** Only `go-conventions` is marked `language-specific`. All other skills are **universal** by default. When working with non-Go languages, only `go-conventions` should be skipped or replaced with language-specific equivalents.
+> **Note:** Language-specific conventions are in `spec-driven-development/reference/`. All other skills are **universal** by default.
+
+### Constraint Layers
+
+`spec-driven-development` uses a **two-layer design**:
+
+| Layer | Location | Modifiable | Description |
+|:------|:---------|:-----------|:------------|
+| **Soft** | `spec-driven-development/template/` | Yes | Directory layout, naming conventions, file organization |
+| **Hard** | `_shared/domain-architecture-reference.md` | No | Domain isolation, rich models, no ORM in domain |
+
+Language-specific conventions (e.g., Go) are in `spec-driven-development/reference/`. Users can customize soft constraints by modifying the SDD template before Phase 5.
 
 ### Skill Categories
 
@@ -56,9 +67,9 @@ Skills are designed with language boundaries to prevent contamination:
 | | `mapping-bounded-contexts/` | Phase 2: Bounded context boundaries and context mapping |
 | | `designing-contracts-first/` | Phase 3: Contract-first design with ACL interfaces |
 | | `architecting-technical-solution/` | Phase 4: Technical decisions across 7 dimensions |
-| | `spec-driven-development/` | Spec generation from contracts (Proto/OpenAPI/AsyncAPI) |
+| | `spec-driven-development/` | SDD: Generate coding-spec.toml |
 | | `coding-isolated-domains/` | Phase 5: Rich domain model implementation |
-| **Supporting** | `go-conventions/` | Go-specific DDD conventions (**language-specific**) |
+| **Supporting** | `test-driven-development/` | TDD workflow guidance |
 | | `test-driven-development/` | TDD workflow guidance |
 | | `snapshotting-code-context/` | Code context preservation |
 | | `iterating-ddd/` | Iterative refinement |
@@ -74,6 +85,7 @@ Skills are designed with language boundaries to prevent contamination:
 | 2 | `mapping-bounded-contexts` | Context Map + Dictionaries |
 | 3 | `designing-contracts-first` | Interface Contracts |
 | 4 | `architecting-technical-solution` | Technical Solution |
+| SDD | `spec-driven-development` | coding-spec.md |
 | 5 | `coding-isolated-domains` | Rich Domain Code + Tests |
 
 **Critical Rules:**

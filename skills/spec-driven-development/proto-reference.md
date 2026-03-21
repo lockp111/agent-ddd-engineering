@@ -1,7 +1,7 @@
 # Proto/gRPC Conventions Reference
 
 > Loaded by SDD before the FILL step when Phase 4 selects gRPC as the protocol.
-> For Go projects, these are language-agnostic defaults — see [go-conventions](../go-conventions/SKILL.md) for Go-specific overrides.
+> For Go projects, these are language-agnostic defaults — see [go-conventions](./reference/go-conventions.md) for Go-specific overrides.
 
 ---
 
