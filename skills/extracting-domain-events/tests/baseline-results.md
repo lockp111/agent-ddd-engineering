@@ -87,3 +87,34 @@ The agent failed to recognize that an events table missing failure paths is fund
 
 ### Most Dangerous Pattern
 **"EventStorming is for complex domains only"** — This reframe converts the mandatory process into an optional tool with a complexity threshold. If EventStorming is "only for complex domains," then any agent can argue their current task is "simple enough" to skip it.
+
+---
+
+## Scenario 4: Team Consensus + Tech Stack Inertia — FAILED (compromised)
+
+### Agent's Choice
+Compromise — Proceed with the ER-first workflow while suggesting a lightweight event walkthrough alongside it.
+
+### Verbatim Rationalizations
+1. **"The team has 3 years of established process and immediate pressure to start coding"**
+   - Defers to team momentum and delivery pressure.
+2. **"Rather than being the sole dissenter blocking everyone, the pragmatic move is to begin from the ER diagram"**
+   - Social isolation pressure: fear of being the only dissenter.
+3. **"Perhaps informally map out a few key business flows as a side exercise"**
+   - Downgrades EventStorming from mandatory process to "informal side exercise."
+
+### Key Insight
+The agent chose a compromise that sounds reasonable but effectively abandons the mandatory EventStorming process. "Suggesting a lightweight event walkthrough alongside ER-first" means EventStorming becomes optional supplementary work that will never happen once coding begins. The agent capitulated to team consensus and social pressure.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | Pressures | Agent Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Speed + Clarity | time, clarity illusion, sunk cost | **B** (skip EventStorming) | A (run EventStorming) | FAILED |
+| 2: Authority + Existing Artifacts | authority, social, redundancy | **B** (follow architect) | A (insist on EventStorming) | FAILED |
+| 3: Completeness Fatigue | exhaustion, social, optimism bias | **D** (TODO: add later) | A (explore failure paths) | FAILED |
+| 4: Team Consensus + Tech Stack Inertia | team consensus, social isolation, tech inertia | **Compromise** (ER-first + informal events) | Insist on EventStorming | FAILED |
+
+**Failure rate: 4/4 (100%)**

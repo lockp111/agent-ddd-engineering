@@ -1,0 +1,1546 @@
+Split: 12 train, 8 test (holdout=0.4)
+
+============================================================
+Iteration 1/5
+Description: Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code — especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec驱动开发, 从契约到Spec, spec生成, proto生成, openapi生成, 接口规约, spec-driven development, contract to spec.
+============================================================
+Train: 18/36 correct, precision=100% recall=0% accuracy=50% (154.6s)
+  [FAIL] rate=0/3 expected=True: Finishing up the DDD design phase. I have three bounded cont
+  [FAIL] rate=0/3 expected=True: We already have a v1 order.proto that's been in production f
+  [FAIL] rate=0/3 expected=True: The new developer on our team started writing the Payment ag
+  [FAIL] rate=0/3 expected=True: The team lead wants a spec file for the API review meeting t
+  [FAIL] rate=0/3 expected=True: I've finished phase 3 and phase 4 artifacts for the order co
+  [PASS] rate=0/3 expected=False: How do I add a new bounded context to an existing DDD projec
+  [FAIL] rate=0/3 expected=True: 我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，
+  [PASS] rate=0/3 expected=False: I have my specs/ directory with order.proto and payment.prot
+  [PASS] rate=0/3 expected=False: We want to add distributed tracing to our gRPC services. Sho
+  [PASS] rate=0/3 expected=False: I'm reviewing PR #38 — it adds `gorm:"column:status"` tags d
+  [PASS] rate=0/3 expected=False: Can you help me write unit tests for the Payment aggregate? 
+  [PASS] rate=0/3 expected=False: How do I configure PostgreSQL connection pooling for a high-
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: phase-4-technical-solution.md says we're using gRPC for the 
+  [FAIL] rate=0/3 expected=True: My openapi spec only has 200 OK responses — it's missing all
+  [FAIL] rate=0/3 expected=True: My contracts are approved from the design review. Now I need
+  [FAIL] rate=0/3 expected=True: Every time I update the .proto file, the markdown contracts 
+  [PASS] rate=0/3 expected=False: 我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustome
+  [PASS] rate=0/3 expected=False: 设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。
+  [PASS] rate=0/3 expected=False: The Order aggregate tests are all failing in CI. The test sa
+  [PASS] rate=0/3 expected=False: My gRPC server is returning INVALID_ARGUMENT but I can't tel
+
+Improving description...
+Proposed (56.8s): Use when the task involves generating or updating formal API spec files — .proto, OpenAPI YAML, or AsyncAPI — from design or contract documents before writing implementation code. Triggers on: "how do I generate proto from my contracts?", "should I skip spec files and code directly from design docs?", "what's next after Phase 3 and Phase 4 are approved?", "my proto is outdated after we updated the contracts". Covers creating specs from scratch and reconciling existing spec files with updated contract documents via three-way merge. Does NOT apply once spec files already exist and coding is underway. 从契约生成proto, openapi生成, asyncapi规约, spec驱动开发, 契约转规约.
+
+============================================================
+Iteration 2/5
+Description: Use when the task involves generating or updating formal API spec files — .proto, OpenAPI YAML, or AsyncAPI — from design or contract documents before writing implementation code. Triggers on: "how do I generate proto from my contracts?", "should I skip spec files and code directly from design docs?", "what's next after Phase 3 and Phase 4 are approved?", "my proto is outdated after we updated the contracts". Covers creating specs from scratch and reconciling existing spec files with updated contract documents via three-way merge. Does NOT apply once spec files already exist and coding is underway. 从契约生成proto, openapi生成, asyncapi规约, spec驱动开发, 契约转规约.
+============================================================
+Train: 19/36 correct, precision=100% recall=6% accuracy=53% (153.4s)
+  [FAIL] rate=0/3 expected=True: The team lead wants a spec file for the API review meeting t
+  [FAIL] rate=0/3 expected=True: The new developer on our team started writing the Payment ag
+  [FAIL] rate=0/3 expected=True: Finishing up the DDD design phase. I have three bounded cont
+  [FAIL] rate=1/3 expected=True: We already have a v1 order.proto that's been in production f
+  [FAIL] rate=0/3 expected=True: I've finished phase 3 and phase 4 artifacts for the order co
+  [FAIL] rate=0/3 expected=True: 我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，
+  [PASS] rate=0/3 expected=False: We want to add distributed tracing to our gRPC services. Sho
+  [PASS] rate=0/3 expected=False: How do I add a new bounded context to an existing DDD projec
+  [PASS] rate=0/3 expected=False: I have my specs/ directory with order.proto and payment.prot
+  [PASS] rate=0/3 expected=False: I'm reviewing PR #38 — it adds `gorm:"column:status"` tags d
+  [PASS] rate=0/3 expected=False: Can you help me write unit tests for the Payment aggregate? 
+  [PASS] rate=0/3 expected=False: How do I configure PostgreSQL connection pooling for a high-
+Test : 13/24 correct, precision=100% recall=8% accuracy=54% (0.0s)
+  [FAIL] rate=0/3 expected=True: My openapi spec only has 200 OK responses — it's missing all
+  [FAIL] rate=0/3 expected=True: phase-4-technical-solution.md says we're using gRPC for the 
+  [FAIL] rate=1/3 expected=True: My contracts are approved from the design review. Now I need
+  [FAIL] rate=0/3 expected=True: Every time I update the .proto file, the markdown contracts 
+  [PASS] rate=0/3 expected=False: 我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustome
+  [PASS] rate=0/3 expected=False: 设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。
+  [PASS] rate=0/3 expected=False: The Order aggregate tests are all failing in CI. The test sa
+  [PASS] rate=0/3 expected=False: My gRPC server is returning INVALID_ARGUMENT but I can't tel
+
+Improving description...
+Proposed (89.7s): Use when approved DDD design phases are complete (Phase 3 contracts + Phase 4 technical solution) and the team needs to generate formal API spec files — proto, OpenAPI YAML, or AsyncAPI — before writing implementation code. Also use when debating whether to skip spec generation and code directly from contract documents. Covers: first-time spec generation from markdown contracts; generating async event specs for Kafka/messaging; updating or reconciling existing spec files after contracts are revised. This skill owns the spec-generation step: the bridge between design artifacts and toolchain-consumable specification files. Does not apply once specs exist and implementation is already underway. 从DDD契约生成规约, spec-first, proto/openapi/asyncapi生成, 接口规约.
+
+============================================================
+Iteration 3/5
+Description: Use when approved DDD design phases are complete (Phase 3 contracts + Phase 4 technical solution) and the team needs to generate formal API spec files — proto, OpenAPI YAML, or AsyncAPI — before writing implementation code. Also use when debating whether to skip spec generation and code directly from contract documents. Covers: first-time spec generation from markdown contracts; generating async event specs for Kafka/messaging; updating or reconciling existing spec files after contracts are revised. This skill owns the spec-generation step: the bridge between design artifacts and toolchain-consumable specification files. Does not apply once specs exist and implementation is already underway. 从DDD契约生成规约, spec-first, proto/openapi/asyncapi生成, 接口规约.
+============================================================
+Train: 19/36 correct, precision=100% recall=6% accuracy=53% (149.8s)
+  [FAIL] rate=0/3 expected=True: Finishing up the DDD design phase. I have three bounded cont
+  [FAIL] rate=1/3 expected=True: The new developer on our team started writing the Payment ag
+  [FAIL] rate=0/3 expected=True: We already have a v1 order.proto that's been in production f
+  [FAIL] rate=0/3 expected=True: The team lead wants a spec file for the API review meeting t
+  [FAIL] rate=0/3 expected=True: 我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，
+  [PASS] rate=0/3 expected=False: How do I add a new bounded context to an existing DDD projec
+  [FAIL] rate=0/3 expected=True: I've finished phase 3 and phase 4 artifacts for the order co
+  [PASS] rate=0/3 expected=False: We want to add distributed tracing to our gRPC services. Sho
+  [PASS] rate=0/3 expected=False: I have my specs/ directory with order.proto and payment.prot
+  [PASS] rate=0/3 expected=False: I'm reviewing PR #38 — it adds `gorm:"column:status"` tags d
+  [PASS] rate=0/3 expected=False: How do I configure PostgreSQL connection pooling for a high-
+  [PASS] rate=0/3 expected=False: Can you help me write unit tests for the Payment aggregate? 
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: phase-4-technical-solution.md says we're using gRPC for the 
+  [FAIL] rate=0/3 expected=True: My openapi spec only has 200 OK responses — it's missing all
+  [PASS] rate=0/3 expected=False: 我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustome
+  [FAIL] rate=0/3 expected=True: My contracts are approved from the design review. Now I need
+  [FAIL] rate=0/3 expected=True: Every time I update the .proto file, the markdown contracts 
+  [PASS] rate=0/3 expected=False: 设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。
+  [PASS] rate=0/3 expected=False: The Order aggregate tests are all failing in CI. The test sa
+  [PASS] rate=0/3 expected=False: My gRPC server is returning INVALID_ARGUMENT but I can't tel
+
+Improving description...
+Proposed (115.8s): Use when a user has design contracts or phase-3 DDD artifacts and needs to produce formal spec files (.proto, OpenAPI YAML, AsyncAPI) before writing implementation code. Also use when the team debates whether spec generation can be skipped in favor of coding directly from contract markdown, or when existing spec files have drifted from updated contracts and need reconciliation. The distinguishing situation: contract documents exist but formal, toolchain-consumable spec files are absent or out of sync. Covers first-time spec generation, async event specs for Kafka/messaging (AsyncAPI), and three-way merge of human-edited specs against updated contracts. Not for writing domain code or tests once specs already exist. 有合约文档需要生成spec, proto/openapi/asyncapi生成, spec-first vs 直接写代码.
+
+============================================================
+Iteration 4/5
+Description: Use when a user has design contracts or phase-3 DDD artifacts and needs to produce formal spec files (.proto, OpenAPI YAML, AsyncAPI) before writing implementation code. Also use when the team debates whether spec generation can be skipped in favor of coding directly from contract markdown, or when existing spec files have drifted from updated contracts and need reconciliation. The distinguishing situation: contract documents exist but formal, toolchain-consumable spec files are absent or out of sync. Covers first-time spec generation, async event specs for Kafka/messaging (AsyncAPI), and three-way merge of human-edited specs against updated contracts. Not for writing domain code or tests once specs already exist. 有合约文档需要生成spec, proto/openapi/asyncapi生成, spec-first vs 直接写代码.
+============================================================
+Train: 19/36 correct, precision=100% recall=6% accuracy=53% (147.8s)
+  [FAIL] rate=0/3 expected=True: Finishing up the DDD design phase. I have three bounded cont
+  [FAIL] rate=0/3 expected=True: The new developer on our team started writing the Payment ag
+  [FAIL] rate=0/3 expected=True: We already have a v1 order.proto that's been in production f
+  [FAIL] rate=1/3 expected=True: The team lead wants a spec file for the API review meeting t
+  [PASS] rate=0/3 expected=False: How do I add a new bounded context to an existing DDD projec
+  [FAIL] rate=0/3 expected=True: 我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，
+  [FAIL] rate=0/3 expected=True: I've finished phase 3 and phase 4 artifacts for the order co
+  [PASS] rate=0/3 expected=False: I have my specs/ directory with order.proto and payment.prot
+  [PASS] rate=0/3 expected=False: We want to add distributed tracing to our gRPC services. Sho
+  [PASS] rate=0/3 expected=False: I'm reviewing PR #38 — it adds `gorm:"column:status"` tags d
+  [PASS] rate=0/3 expected=False: Can you help me write unit tests for the Payment aggregate? 
+  [PASS] rate=0/3 expected=False: How do I configure PostgreSQL connection pooling for a high-
+Test : 12/24 correct, precision=100% recall=0% accuracy=50% (0.0s)
+  [FAIL] rate=0/3 expected=True: My openapi spec only has 200 OK responses — it's missing all
+  [FAIL] rate=0/3 expected=True: phase-4-technical-solution.md says we're using gRPC for the 
+  [FAIL] rate=0/3 expected=True: My contracts are approved from the design review. Now I need
+  [FAIL] rate=0/3 expected=True: Every time I update the .proto file, the markdown contracts 
+  [PASS] rate=0/3 expected=False: 我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustome
+  [PASS] rate=0/3 expected=False: The Order aggregate tests are all failing in CI. The test sa
+  [PASS] rate=0/3 expected=False: 设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。
+  [PASS] rate=0/3 expected=False: My gRPC server is returning INVALID_ARGUMENT but I can't tel
+
+Improving description...
+Proposed (60.7s): Use when you have design or contract documents and need to create formal API spec files before writing code. Invoke for: generating .proto files from gRPC contracts; generating OpenAPI YAML from REST contract documents; generating AsyncAPI for Kafka/event interfaces; deciding whether it's OK to skip spec generation and code directly from contracts; updating spec files that have drifted after contracts were revised. The defining trigger: contract or design documents exist but no formal spec files yet, OR the question is whether spec files are necessary before coding begins. Not for writing domain code or tests — those come after specs exist. 从合约生成proto/openapi/asyncapi, 规约驱动开发, 生成接口规约.
+
+============================================================
+Iteration 5/5
+Description: Use when you have design or contract documents and need to create formal API spec files before writing code. Invoke for: generating .proto files from gRPC contracts; generating OpenAPI YAML from REST contract documents; generating AsyncAPI for Kafka/event interfaces; deciding whether it's OK to skip spec generation and code directly from contracts; updating spec files that have drifted after contracts were revised. The defining trigger: contract or design documents exist but no formal spec files yet, OR the question is whether spec files are necessary before coding begins. Not for writing domain code or tests — those come after specs exist. 从合约生成proto/openapi/asyncapi, 规约驱动开发, 生成接口规约.
+============================================================
+Train: 20/36 correct, precision=100% recall=11% accuracy=56% (128.0s)
+  [FAIL] rate=0/3 expected=True: Finishing up the DDD design phase. I have three bounded cont
+  [FAIL] rate=1/3 expected=True: The team lead wants a spec file for the API review meeting t
+  [FAIL] rate=1/3 expected=True: The new developer on our team started writing the Payment ag
+  [FAIL] rate=0/3 expected=True: We already have a v1 order.proto that's been in production f
+  [FAIL] rate=0/3 expected=True: I've finished phase 3 and phase 4 artifacts for the order co
+  [FAIL] rate=0/3 expected=True: 我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，
+  [PASS] rate=0/3 expected=False: How do I add a new bounded context to an existing DDD projec
+  [PASS] rate=0/3 expected=False: I have my specs/ directory with order.proto and payment.prot
+  [PASS] rate=0/3 expected=False: I'm reviewing PR #38 — it adds `gorm:"column:status"` tags d
+  [PASS] rate=0/3 expected=False: We want to add distributed tracing to our gRPC services. Sho
+  [PASS] rate=0/3 expected=False: Can you help me write unit tests for the Payment aggregate? 
+  [PASS] rate=0/3 expected=False: How do I configure PostgreSQL connection pooling for a high-
+Test : 13/24 correct, precision=100% recall=8% accuracy=54% (0.0s)
+  [FAIL] rate=0/3 expected=True: My openapi spec only has 200 OK responses — it's missing all
+  [FAIL] rate=0/3 expected=True: phase-4-technical-solution.md says we're using gRPC for the 
+  [FAIL] rate=1/3 expected=True: My contracts are approved from the design review. Now I need
+  [FAIL] rate=0/3 expected=True: Every time I update the .proto file, the markdown contracts 
+  [PASS] rate=0/3 expected=False: The Order aggregate tests are all failing in CI. The test sa
+  [PASS] rate=0/3 expected=False: 我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustome
+  [PASS] rate=0/3 expected=False: 设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。
+  [PASS] rate=0/3 expected=False: My gRPC server is returning INVALID_ARGUMENT but I can't tel
+
+Max iterations reached (5).
+
+Exit reason: max_iterations (5)
+Best score: 4/8 (iteration 1)
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code \u2014 especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec\u9a71\u52a8\u5f00\u53d1, \u4ece\u5951\u7ea6\u5230Spec, spec\u751f\u6210, proto\u751f\u6210, openapi\u751f\u6210, \u63a5\u53e3\u89c4\u7ea6, spec-driven development, contract to spec.",
+  "best_description": "Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code \u2014 especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec\u9a71\u52a8\u5f00\u53d1, \u4ece\u5951\u7ea6\u5230Spec, spec\u751f\u6210, proto\u751f\u6210, openapi\u751f\u6210, \u63a5\u53e3\u89c4\u7ea6, spec-driven development, contract to spec.",
+  "best_score": "4/8",
+  "best_train_score": "6/12",
+  "best_test_score": "4/8",
+  "final_description": "Use when you have design or contract documents and need to create formal API spec files before writing code. Invoke for: generating .proto files from gRPC contracts; generating OpenAPI YAML from REST contract documents; generating AsyncAPI for Kafka/event interfaces; deciding whether it's OK to skip spec generation and code directly from contracts; updating spec files that have drifted after contracts were revised. The defining trigger: contract or design documents exist but no formal spec files yet, OR the question is whether spec files are necessary before coding begins. Not for writing domain code or tests \u2014 those come after specs exist. \u4ece\u5408\u7ea6\u751f\u6210proto/openapi/asyncapi, \u89c4\u7ea6\u9a71\u52a8\u5f00\u53d1, \u751f\u6210\u63a5\u53e3\u89c4\u7ea6.",
+  "iterations_run": 5,
+  "holdout": 0.4,
+  "train_size": 12,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code \u2014 especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec\u9a71\u52a8\u5f00\u53d1, \u4ece\u5951\u7ea6\u5230Spec, spec\u751f\u6210, proto\u751f\u6210, openapi\u751f\u6210, \u63a5\u53e3\u89c4\u7ea6, spec-driven development, contract to spec.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "phase-4-technical-solution.md says we're using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My openapi spec only has 200 OK responses \u2014 it's missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService \u2014 it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn't require manually keeping both files updated?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4e3aOrderRepository\u8bbe\u8ba1\u4e00\u5957\u63a5\u53e3\u65b9\u6cd5\u3002\u76ee\u524d\u6709FindById, Save, FindByCustomerId\u4e09\u4e2a\u3002\u4f46\u4ea7\u54c1\u8bf4\u8fd8\u9700\u8981\u6309\u65f6\u95f4\u8303\u56f4\u67e5\u8be2\uff0c\u5e94\u8be5\u52a0\u5728Repository\u63a5\u53e3\u4e0a\u8fd8\u662f\u7528Specification\u6a21\u5f0f\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u8bbe\u8ba1\u4e00\u4e2a\u652f\u6301\u591a\u8d27\u5e01\u548c\u591a\u8bed\u8a00\u7684\u7535\u5546\u8ba2\u5355\u6570\u636e\u5e93\u8868\u7ed3\u6784\uff0c\u9700\u8981\u8003\u8651\u7d22\u5f15\u4f18\u5316\u548c\u5206\u9875\u67e5\u8be2\u6027\u80fd\u3002",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The Order aggregate tests are all failing in CI. The test says 'only pending orders can be paid' but the Pay() method body is not checking order status at all. How do I debug this systematically?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My gRPC server is returning INVALID_ARGUMENT but I can't tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use when the task involves generating or updating formal API spec files \u2014 .proto, OpenAPI YAML, or AsyncAPI \u2014 from design or contract documents before writing implementation code. Triggers on: \"how do I generate proto from my contracts?\", \"should I skip spec files and code directly from design docs?\", \"what's next after Phase 3 and Phase 4 are approved?\", \"my proto is outdated after we updated the contracts\". Covers creating specs from scratch and reconciling existing spec files with updated contract documents via three-way merge. Does NOT apply once spec files already exist and coding is underway. \u4ece\u5951\u7ea6\u751f\u6210proto, openapi\u751f\u6210, asyncapi\u89c4\u7ea6, spec\u9a71\u52a8\u5f00\u53d1, \u5951\u7ea6\u8f6c\u89c4\u7ea6.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "My openapi spec only has 200 OK responses \u2014 it's missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "phase-4-technical-solution.md says we're using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService \u2014 it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn't require manually keeping both files updated?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4e3aOrderRepository\u8bbe\u8ba1\u4e00\u5957\u63a5\u53e3\u65b9\u6cd5\u3002\u76ee\u524d\u6709FindById, Save, FindByCustomerId\u4e09\u4e2a\u3002\u4f46\u4ea7\u54c1\u8bf4\u8fd8\u9700\u8981\u6309\u65f6\u95f4\u8303\u56f4\u67e5\u8be2\uff0c\u5e94\u8be5\u52a0\u5728Repository\u63a5\u53e3\u4e0a\u8fd8\u662f\u7528Specification\u6a21\u5f0f\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u8bbe\u8ba1\u4e00\u4e2a\u652f\u6301\u591a\u8d27\u5e01\u548c\u591a\u8bed\u8a00\u7684\u7535\u5546\u8ba2\u5355\u6570\u636e\u5e93\u8868\u7ed3\u6784\uff0c\u9700\u8981\u8003\u8651\u7d22\u5f15\u4f18\u5316\u548c\u5206\u9875\u67e5\u8be2\u6027\u80fd\u3002",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The Order aggregate tests are all failing in CI. The test says 'only pending orders can be paid' but the Pay() method body is not checking order status at all. How do I debug this systematically?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My gRPC server is returning INVALID_ARGUMENT but I can't tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Use when approved DDD design phases are complete (Phase 3 contracts + Phase 4 technical solution) and the team needs to generate formal API spec files \u2014 proto, OpenAPI YAML, or AsyncAPI \u2014 before writing implementation code. Also use when debating whether to skip spec generation and code directly from contract documents. Covers: first-time spec generation from markdown contracts; generating async event specs for Kafka/messaging; updating or reconciling existing spec files after contracts are revised. This skill owns the spec-generation step: the bridge between design artifacts and toolchain-consumable specification files. Does not apply once specs exist and implementation is already underway. \u4eceDDD\u5951\u7ea6\u751f\u6210\u89c4\u7ea6, spec-first, proto/openapi/asyncapi\u751f\u6210, \u63a5\u53e3\u89c4\u7ea6.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "phase-4-technical-solution.md says we're using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My openapi spec only has 200 OK responses \u2014 it's missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4e3aOrderRepository\u8bbe\u8ba1\u4e00\u5957\u63a5\u53e3\u65b9\u6cd5\u3002\u76ee\u524d\u6709FindById, Save, FindByCustomerId\u4e09\u4e2a\u3002\u4f46\u4ea7\u54c1\u8bf4\u8fd8\u9700\u8981\u6309\u65f6\u95f4\u8303\u56f4\u67e5\u8be2\uff0c\u5e94\u8be5\u52a0\u5728Repository\u63a5\u53e3\u4e0a\u8fd8\u662f\u7528Specification\u6a21\u5f0f\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService \u2014 it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn't require manually keeping both files updated?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u8bbe\u8ba1\u4e00\u4e2a\u652f\u6301\u591a\u8d27\u5e01\u548c\u591a\u8bed\u8a00\u7684\u7535\u5546\u8ba2\u5355\u6570\u636e\u5e93\u8868\u7ed3\u6784\uff0c\u9700\u8981\u8003\u8651\u7d22\u5f15\u4f18\u5316\u548c\u5206\u9875\u67e5\u8be2\u6027\u80fd\u3002",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The Order aggregate tests are all failing in CI. The test says 'only pending orders can be paid' but the Pay() method body is not checking order status at all. How do I debug this systematically?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My gRPC server is returning INVALID_ARGUMENT but I can't tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "Use when a user has design contracts or phase-3 DDD artifacts and needs to produce formal spec files (.proto, OpenAPI YAML, AsyncAPI) before writing implementation code. Also use when the team debates whether spec generation can be skipped in favor of coding directly from contract markdown, or when existing spec files have drifted from updated contracts and need reconciliation. The distinguishing situation: contract documents exist but formal, toolchain-consumable spec files are absent or out of sync. Covers first-time spec generation, async event specs for Kafka/messaging (AsyncAPI), and three-way merge of human-edited specs against updated contracts. Not for writing domain code or tests once specs already exist. \u6709\u5408\u7ea6\u6587\u6863\u9700\u8981\u751f\u6210spec, proto/openapi/asyncapi\u751f\u6210, spec-first vs \u76f4\u63a5\u5199\u4ee3\u7801.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "My openapi spec only has 200 OK responses \u2014 it's missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "phase-4-technical-solution.md says we're using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService \u2014 it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn't require manually keeping both files updated?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4e3aOrderRepository\u8bbe\u8ba1\u4e00\u5957\u63a5\u53e3\u65b9\u6cd5\u3002\u76ee\u524d\u6709FindById, Save, FindByCustomerId\u4e09\u4e2a\u3002\u4f46\u4ea7\u54c1\u8bf4\u8fd8\u9700\u8981\u6309\u65f6\u95f4\u8303\u56f4\u67e5\u8be2\uff0c\u5e94\u8be5\u52a0\u5728Repository\u63a5\u53e3\u4e0a\u8fd8\u662f\u7528Specification\u6a21\u5f0f\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The Order aggregate tests are all failing in CI. The test says 'only pending orders can be paid' but the Pay() method body is not checking order status at all. How do I debug this systematically?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u8bbe\u8ba1\u4e00\u4e2a\u652f\u6301\u591a\u8d27\u5e01\u548c\u591a\u8bed\u8a00\u7684\u7535\u5546\u8ba2\u5355\u6570\u636e\u5e93\u8868\u7ed3\u6784\uff0c\u9700\u8981\u8003\u8651\u7d22\u5f15\u4f18\u5316\u548c\u5206\u9875\u67e5\u8be2\u6027\u80fd\u3002",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My gRPC server is returning INVALID_ARGUMENT but I can't tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "Use when you have design or contract documents and need to create formal API spec files before writing code. Invoke for: generating .proto files from gRPC contracts; generating OpenAPI YAML from REST contract documents; generating AsyncAPI for Kafka/event interfaces; deciding whether it's OK to skip spec generation and code directly from contracts; updating spec files that have drifted after contracts were revised. The defining trigger: contract or design documents exist but no formal spec files yet, OR the question is whether spec files are necessary before coding begins. Not for writing domain code or tests \u2014 those come after specs exist. \u4ece\u5408\u7ea6\u751f\u6210proto/openapi/asyncapi, \u89c4\u7ea6\u9a71\u52a8\u5f00\u53d1, \u751f\u6210\u63a5\u53e3\u89c4\u7ea6.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "My openapi spec only has 200 OK responses \u2014 it's missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "phase-4-technical-solution.md says we're using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService \u2014 it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn't require manually keeping both files updated?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The Order aggregate tests are all failing in CI. The test says 'only pending orders can be paid' but the Pay() method body is not checking order status at all. How do I debug this systematically?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4e3aOrderRepository\u8bbe\u8ba1\u4e00\u5957\u63a5\u53e3\u65b9\u6cd5\u3002\u76ee\u524d\u6709FindById, Save, FindByCustomerId\u4e09\u4e2a\u3002\u4f46\u4ea7\u54c1\u8bf4\u8fd8\u9700\u8981\u6309\u65f6\u95f4\u8303\u56f4\u67e5\u8be2\uff0c\u5e94\u8be5\u52a0\u5728Repository\u63a5\u53e3\u4e0a\u8fd8\u662f\u7528Specification\u6a21\u5f0f\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u8bbe\u8ba1\u4e00\u4e2a\u652f\u6301\u591a\u8d27\u5e01\u548c\u591a\u8bed\u8a00\u7684\u7535\u5546\u8ba2\u5355\u6570\u636e\u5e93\u8868\u7ed3\u6784\uff0c\u9700\u8981\u8003\u8651\u7d22\u5f15\u4f18\u5316\u548c\u5206\u9875\u67e5\u8be2\u6027\u80fd\u3002",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My gRPC server is returning INVALID_ARGUMENT but I can't tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment \u2014 all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says 'contracts doc is good enough, skip the spec files.'",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We already have a v1 order.proto that's been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I'm worried about breaking existing clients. How do I handle this merge carefully?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I've finished phase 3 and phase 4 artifacts for the order context \u2014 docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What's the next step? I want to start writing Go code for the domain layer.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u4eec\u6709\u4e86phase-3-contracts.md\uff0c\u4e0b\u4e00\u6b65\u5e94\u8be5\u751f\u6210proto\u6587\u4ef6\u8fd8\u662f\u76f4\u63a5\u5199\u4ee3\u7801\uff1f\u56e2\u961f\u6709\u4eba\u8bf4\u76f4\u63a5\u5199\u4ee3\u7801\u4e5f\u884c\uff0c\u56e0\u4e3a\u5408\u7ea6\u6587\u6863\u5df2\u7ecf\u5f88\u8be6\u7ec6\u4e86\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn't fit cleanly into any existing context.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What's the right TDD approach here?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #38 \u2014 it adds `gorm:\"column:status\"` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it's just temporary to get the demo working. Should I block this PR?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I configure PostgreSQL connection pooling for a high-throughput Go service? We're seeing connection exhaustion during peak load.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
+Report: /var/folders/n9/ldkjvsm103q550sxlv7mtg740000gn/T/skill_description_report_spec-driven-development_20260317_151643.html
+Results saved to: /Users/admin/Desktop/agent-ddd-engineering/skills/spec-driven-development-workspace/description-opt/loop-results/2026-03-17_151643
+

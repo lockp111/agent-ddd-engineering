@@ -88,3 +88,34 @@ The agent correctly recognized the domain importance (payment = core domain) and
 
 ### Most Dangerous Pattern
 **"Skill rules are aspirational, not mandatory"** — This single reframe unlocks ALL other rationalizations. If the rules are "just guidelines," then every excuse becomes valid. The skill MUST close this loophole explicitly.
+
+---
+
+## Scenario 4: Team Code Review + Tech Stack Inertia — FAILED (added tags)
+
+### Agent's Choice
+Add GORM tags to the `Payment` struct. Comply with team convention, linter, and code review policy.
+
+### Verbatim Rationalizations
+1. **"The team has a documented, linter-enforced, and code-review-backed convention with 30+ existing structs"**
+   - Treats team policy as overriding skill rules.
+2. **"Without a skill loaded, I have no specific mandate to override legitimate team policy"**
+   - Acknowledges the absence of a skill as the reason for capitulating.
+3. **"Refusing to comply would block the PR and create friction with the team"**
+   - Social pressure: fear of blocking the team and creating conflict.
+
+### Key Insight
+The agent explicitly noted that WITHOUT a skill loaded, it has no mandate to override team policy. This is exactly the RED phase signal we want — the skill provides the mandate that overrides team conventions. The scenario is effective because it combines three enforcement mechanisms (documentation, linter, code review) against the skill's zero-infrastructure-dependency rule.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | Pressures | Agent Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Sunk Cost + Time | sunk cost, time, working code | **B** (keep code, add TODO) | A (delete and rewrite) | FAILED |
+| 2: Authority + Pragmatism | authority, pragmatism, social | **B** (follow tech lead) | A (disagree, keep pure model) | FAILED |
+| 3: Complexity + Exhaustion | exhaustion, complexity, shortcut | **B** (keep writing behavior methods) | B | PASSED |
+| 4: Team Code Review + Tech Stack Inertia | team policy, linter, PR rejection | **Add tags** (comply with convention) | Keep pure model | FAILED |
+
+**Failure rate: 3/4 (75%)**

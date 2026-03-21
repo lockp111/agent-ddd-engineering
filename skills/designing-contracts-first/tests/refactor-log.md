@@ -44,3 +44,25 @@ REFACTOR cycle complete.
 - [x] Agent cites skill sections as justification
 - [x] Agent acknowledges temptation but follows rule anyway
 - [x] No new rationalizations discovered in GREEN phase
+
+---
+
+## Iteration 2: Tech Stack Inertia (S4) — GREEN Phase Review
+
+### New Rationalizations Found
+**None.** The agent:
+- Defined ACL despite 50+ existing direct imports in the codebase
+- Cited Rationalization Table: "Same repo != same context"
+- Framed the new integration as "the exemplar for the correct pattern"
+- Rejected "consistency with bad patterns" as a valid argument
+
+### Updated TDD Summary (S1-S4)
+
+| Phase | Action | Result |
+|:---|:---|:---|
+| RED (Baseline) | 4 pressure scenarios, no skill | 4/4 failed (100% failure rate) |
+| GREEN (With Skill) | Same 4 scenarios, with skill | 4/4 passed (100% pass rate) |
+| REFACTOR | Review for new rationalizations | None found — bulletproof |
+
+### Additional Rationalization Defeated (S4)
+9. "Follow existing patterns for consistency" → Rationalization Table (consistency with coupling perpetuates coupling)

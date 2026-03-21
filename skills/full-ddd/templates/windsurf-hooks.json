@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "pre_read_code": [
+      {
+        "command": "cat docs/ddd/ddd-progress.md 2>/dev/null | head -20 || true"
+      }
+    ],
+    "post_write_code": [
+      {
+        "command": "sh skills/full-ddd/scripts/check-persistence.sh 2>/dev/null || true"
+      }
+    ],
+    "post_run_command": [
+      {
+        "command": "sh skills/full-ddd/scripts/check-persistence.sh 2>/dev/null || true"
+      }
+    ],
+    "post_session": [
+      {
+        "command": "sh skills/full-ddd/scripts/verify-artifacts.sh 2>/dev/null || true"
+      }
+    ]
+  }
+}

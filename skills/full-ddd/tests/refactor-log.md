@@ -94,3 +94,31 @@ REFACTOR cycle complete.
 - [x] Agent persists immediately, does not defer to "later" or "end of workflow"
 - [x] Agent cites specific Rationalization Table entries as justification
 - [x] No new rationalizations discovered in GREEN phase
+
+---
+
+## Iteration 3: Exit Gate Neutrality (S8) — GREEN Phase Review
+
+### New Rationalizations Found
+**None.** The agent in the GREEN phase:
+- Chose A (neutral presentation) correctly
+- Cited Exit Gate Rules: "Agent MUST NOT recommend option B. Present data neutrally."
+- Referenced Rationalization Table entries for Exit Gate violations
+
+### Assessment
+The Exit Gate neutrality rule is **bulletproof** for this pressure scenario. The explicit prohibition in the Exit Gate Rules was sufficient.
+
+### Decision
+No further REFACTOR iterations needed.
+
+## Updated TDD Summary (S1-S8)
+
+| Phase | Action | Result |
+|:---|:---|:---|
+| RED (Baseline) | 8 pressure scenarios, no skill | 6/8 failed (75% failure rate) |
+| GREEN (With Skill) | Same 8 scenarios, with skill | 8/8 passed (100% pass rate) |
+| REFACTOR | Review for new rationalizations | None found — bulletproof |
+
+### Additional Rationalization Defeated (S8)
+9. "Neutrality is withholding information" → Exit Gate Rules (neutrality IS the requirement)
+10. "Soft observation is not a recommendation" → Exit Gate Rules (any commentary = recommendation)

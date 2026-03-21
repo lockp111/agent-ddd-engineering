@@ -41,3 +41,27 @@ REFACTOR cycle complete.
 - [x] Agent cites skill sections as justification
 - [x] Agent acknowledges temptation but follows rule anyway
 - [x] No new rationalizations discovered in GREEN phase
+
+---
+
+## Iteration 2: Team Code Review (S4) — GREEN Phase Review
+
+### New Rationalizations Found
+**None.** The agent:
+- Kept pure domain model WITHOUT GORM tags despite documented team convention, linter enforcement, and code review rejection risk
+- Cited Quick Reference: "Infrastructure Dependencies: Zero"
+- Cited Rationalization Table: "Tooling is configurable. Add a mapper layer."
+- Proposed concrete solution: domain model → mapper → GORM-tagged persistence struct
+- Proposed updating CONTRIBUTING.md to allow the pattern
+
+### Updated TDD Summary (S1-S4)
+
+| Phase | Action | Result |
+|:---|:---|:---|
+| RED (Baseline) | 4 pressure scenarios, no skill | 3/4 failed (75% failure rate) |
+| GREEN (With Skill) | Same 4 scenarios, with skill | 4/4 passed (100% pass rate) |
+| REFACTOR | Review for new rationalizations | None found — bulletproof |
+
+### Additional Rationalization Defeated (S4)
+7. "Team policy (CONTRIBUTING.md) overrides skill rules" → Rationalization Table (skill rules are mandatory constraints)
+8. "Linter will block the PR" → Rationalization Table (tooling is configurable)

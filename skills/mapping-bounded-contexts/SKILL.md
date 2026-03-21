@@ -1,7 +1,6 @@
 ---
 name: mapping-bounded-contexts
-version: "1.0.0"
-description: Use when determining system boundaries, setting up a new module, or after domain events have been extracted. Trigger IMMEDIATELY when you see: a shared God-object model (e.g. a User struct with 20+ fields used across multiple domains), code organized by technical layers (src/services/, src/models/) instead of business capabilities, vocabulary drift where the same concept has different names across teams, or any team pressure to "put everything in one module for now". Do NOT skip context mapping under launch deadlines or when the team votes for a shared model. 划分上下文, bounded context, context map, ubiquitous language, 限界上下文, 上下文映射.
+description: Use when determining system boundaries, setting up a new module, or encountering a shared God-object model (e.g. a User struct used across multiple domains). Use when facing vocabulary drift, terms used inconsistently, or code organized by technical layers instead of business capabilities. 划分上下文, bounded context, context map, ubiquitous language.
 ---
 
 # Mapping Bounded Contexts
@@ -16,19 +15,40 @@ This skill forces the physical and cognitive isolation of different domain areas
 - When terms are used inconsistently (e.g., `User`/`Account` interchangeably) or code leaks across domains.
 - **When a shared God-object model exists** (e.g., a 25-field `User` struct across multiple domains).
 
-**Do NOT use when:** boundaries are already defined (**NEXT STEP:** `designing-contracts-first`), or working within a single context (use `coding-isolated-domains`).
+**Do NOT use when:** boundaries are already defined, or working within a single context (use [coding-isolated-domains](../coding-isolated-domains/SKILL.md)), or domain events have not yet been extracted (**REQUIRED PREREQUISITE:** [extracting-domain-events](../extracting-domain-events/SKILL.md)).
 
 ## Quick Reference
 
-| Step | Action                   | Output                                |
-| :--- | :----------------------- | :------------------------------------ |
-| 1    | Event Clustering         | Proposed Bounded Contexts             |
-| 2    | Boundary Confirmation    | Human-approved boundaries             |
-| 3    | Strategic Classification | Core / Supporting / Generic           |
-| 4    | Context Mapping          | Relationship pattern diagram          |
-| 5    | Ubiquitous Language      | Term dictionary + prohibited synonyms |
-| 6    | Constraint Files         | Agent rules files                     |
-| 7    | Persist Approved Output  | `docs/ddd/phase-2-context-map.md`     |
+| Step | Action | Output |
+|:---|:---|:---|
+| 1 | Event Clustering | Proposed Bounded Contexts |
+| 2 | Boundary Confirmation | Human-approved boundaries |
+| 3 | Strategic Classification | Core / Supporting / Generic |
+| 4 | Context Mapping | Relationship pattern diagram |
+| 5 | Ubiquitous Language | Term dictionary + prohibited synonyms |
+| 6 | Constraint Files | Agent rules files |
+| 7 | Persist Approved Output | `docs/ddd/phase-2-context-map.md` |
+
+## Ambiguity Handling
+
+Follow the [Ambiguity Handling Protocol](../_shared/ambiguity-handling-reference.md) throughout this phase.
+
+**Phase 2 STOP triggers — confirm immediately:**
+
+| Ambiguity | Why STOP |
+|:----------|:---------|
+| Which bounded context an event belongs to | Wrong assignment redraws boundaries → Phase 3-5 must redo |
+| Strategic classification (Core/Supporting/Generic) | Determines analysis depth for Phase 4; wrong = misallocated effort |
+| Context relationship pattern (ACL vs Conformist vs Open Host) | Wrong pattern = wrong coupling model → Phase 3 contract redesign |
+| Ubiquitous Language term with unclear business meaning | Vocabulary drift propagates to constraint files and all downstream phases |
+
+**Phase 2 ASSUME & RECORD — proceed with explicit assumption:**
+
+| Ambiguity | Default assumption |
+|:----------|:------------------|
+| Bounded context naming | Choose the primary business capability the context owns |
+| Prohibited synonym list completeness | Start with obvious synonyms; add more as they surface |
+| Constraint file format details | Follow existing files in same project; use platform default |
 
 ## Implementation (Interactive Q&A Session)
 
@@ -43,8 +63,10 @@ This skill forces the physical and cognitive isolation of different domain areas
    - **Cursor**: `.cursor/rules/[context-name].mdc` (with `globs` targeting `[context-dir]/**/*`)
    - **Windsurf**: `.windsurf/rules/[context-name].md`
    - **Claude Code**: `.claude/rules/[context-name].md` (reference in `CLAUDE.md`)
+   - **OpenCode**: `.opencode/rules/[context-name].md`
+   - **Antigravity (Gemini)**: `.gemini/settings.json`
    - Each file MUST include: context definition, relationship pattern, Ubiquitous Language dictionary, and out-of-boundary dependency prohibitions.
-7. **Persist to Filesystem:** After user approval, write the COMPLETE context mapping record to `docs/ddd/phase-2-context-map.md`. This MUST include: event clustering, boundary decisions, strategic classification (Core/Supporting/Generic), context map diagram, ALL Ubiquitous Language dictionaries, and a list of generated constraint files. Use the template from `skills/full-ddd/assets/templates/phase-2-context-map.md`. Update `docs/ddd/ddd-progress.md` Phase 2 status to `complete`. Append key decisions to `docs/ddd/decisions-log.md`. **Write the full record even though constraint files contain partial information — they serve different purposes (AI enforcement vs human traceability).**
+7. **Persist to Filesystem:** After user approval, write the COMPLETE context mapping record to `docs/ddd/phase-2-context-map.md`. This MUST include: event clustering, boundary decisions, strategic classification (Core/Supporting/Generic), context map diagram, ALL Ubiquitous Language dictionaries, and a list of generated constraint files. Use the template from `skills/full-ddd/templates/phase-2-context-map.md`. Update `docs/ddd/ddd-progress.md` Phase 2 status to `complete`. Append key decisions to `docs/ddd/decisions-log.md`. **Write the full record even though constraint files contain partial information — they serve different purposes (AI enforcement vs human traceability).**
 
 ### Example Output
 **Context: Inventory (Core Domain)**
@@ -57,7 +79,6 @@ This skill forces the physical and cognitive isolation of different domain areas
 **Generated Constraint File:** `.cursor/rules/inventory.mdc`
 ```markdown
 ---
-version: "1.0.0"
 description: Context mapping rules and ubiquitous language for the Inventory Bounded Context.
 globs:
   - "inventory/**/*"
@@ -67,19 +88,33 @@ globs:
 ... (Includes Dictionary and Relationship Pattern) ...
 ```
 
+**NEXT STEP:** → [designing-contracts-first](../designing-contracts-first/SKILL.md)
+
+## Self-Check Protocol
+
+Follow the [Persistence Defense Reference](../_shared/persistence-defense-reference.md) after Step 7, with this context-specific item 4:
+
+4. **Phase 2 Artifact Exists:** Verify `docs/ddd/phase-2-context-map.md` exists and contains event clustering, strategic classifications, relationship map, UL dictionaries, and constraint file references.
+
+**If the check fails → STOP. Write the missing file. Do NOT proceed to Phase 3.**
+
+Note: This skill has no platform hooks. When invoked by [full-ddd](../full-ddd/SKILL.md), the orchestrator's hooks provide Layer 1 defense. When invoked standalone, this Self-Check Protocol (Layer 2) is the primary defense.
+
 ## Rationalization Table
 
 These are real excuses agents use to bypass context mapping rules. Every one of them is wrong.
 
-| Excuse                                            | Reality                                                                                                                    |
-| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------- |
-| "Launch deadline overrides context splitting"     | Splitting is cheaper now than retrofitting. A 25-field God-object across 40+ files costs 10x more to refactor post-launch. |
-| "Document ideal boundaries, implement later"      | "Later" never comes. Only enforced boundaries (code + constraint files) prevent drift.                                     |
-| "Shared model is fine — sunk cost too high"       | Sunk cost grows daily. Every new import adds another dependency to refactor. The cost curve only goes up.                  |
-| "Dictionaries are documentation overhead"         | Dictionaries enforce Ubiquitous Language. Without them, `User`/`Customer`/`Account`/`Member` blur your boundaries.         |
-| "Constraint files are optional / team won't read" | Constraint files are for AI agents to enforce, not humans to read. Skipping = zero runtime enforcement.                    |
-| "Split directories but share the model"           | Directories without separate models are fake boundaries — just organizational theater.                                     |
-| "Team voted against splitting"                    | Team votes cannot override mandatory deliverables. A 4-1 vote does not make a God-object maintainable.                     |
+| Excuse | Reality |
+|:---|:---|
+| "Launch deadline overrides context splitting" | Splitting is cheaper now than retrofitting. A 25-field God-object across 40+ files costs 10x more to refactor post-launch. |
+| "Document ideal boundaries, implement later" | "Later" never comes. Only enforced boundaries (code + constraint files) prevent drift. |
+| "Shared model is fine — sunk cost too high" | Sunk cost grows daily. Every new import adds another dependency to refactor. The cost curve only goes up. |
+| "Dictionaries are documentation overhead" | Dictionaries enforce Ubiquitous Language. Without them, `User`/`Customer`/`Account`/`Member` blur your boundaries. |
+| "Constraint files are optional / team won't read" | Constraint files are for AI agents to enforce, not humans to read. Skipping = zero runtime enforcement. |
+| "Split directories but share the model" | Directories without separate models are fake boundaries — just organizational theater. |
+| "Team voted against splitting" | Team votes cannot override mandatory deliverables. A 4-1 vote does not make a God-object maintainable. |
+| "This term ambiguity is minor, skip it" | Vocabulary ambiguity grows into Ubiquitous Language violations. Every unclear term must be STOP-confirmed or ASSUME-recorded. |
+| "I'll decide the classification myself, it's obvious" | Strategic classification is a business judgment, not a technical one. Agent defaults to Core Domain when uncertain — always confirm. |
 
 ## Red Flags — STOP and Redo Boundaries
 

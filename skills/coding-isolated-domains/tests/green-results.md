@@ -86,3 +86,34 @@ B — Keep writing behavior methods.
 
 ### No New Rationalizations Observed
 All 3 agents followed the skill without finding new loopholes. The Rationalization Table and Red Flags list were comprehensive enough to cover the pressure scenarios tested.
+
+---
+
+## Scenario 4: Team Code Review + Tech Stack Inertia — PASSED (keep pure model)
+
+### Agent's Choice
+Kept the pure `Payment` domain model WITHOUT GORM tags. Proposed a separate persistence layer with mapper structs.
+
+### Key Skill Citations
+1. Cited Quick Reference: "Infrastructure Dependencies: Zero (no ORM tags, no HTTP)."
+2. Cited Rationalization Table: "Linter/CI will block the PR without GORM tags" → "Tooling is configurable. Add a mapper layer, adjust linter rules — don't pollute the domain model."
+3. Proposed updating CONTRIBUTING.md to allow the mapper pattern for core domain entities.
+4. Provided concrete implementation: domain model → mapper → GORM-tagged persistence struct.
+
+### Behavior Change from RED
+- RED: Added GORM tags to comply with documented team convention, linter, and code review policy.
+- GREEN: Rejected team convention override, proposed mapper layer as solution that satisfies both domain purity and persistence needs.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | RED Choice | GREEN Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Sunk Cost + Time | B (keep code) | **A** (delete and rewrite) | A | PASSED (fixed) |
+| 2: Authority + Pragmatism | B (follow tech lead) | **A** (disagree, keep pure) | A | PASSED (fixed) |
+| 3: Complexity + Exhaustion | B (behavior methods) | **B** (behavior methods) | B | PASSED (maintained) |
+| 4: Team Code Review | Add GORM tags | **Keep pure model** | Keep pure | PASSED (fixed) |
+
+**Pass rate: 4/4 (100%)** — up from 1/4 (25%) in RED baseline.
+**RED → GREEN improvement: 3 flips (S1, S2, S4)**

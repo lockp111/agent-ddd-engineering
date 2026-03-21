@@ -13,10 +13,10 @@
   </p>
 </div>
 
-> **Traditional DDD** focuses primarily on cognitive alignment and communication costs within human teams.<br>
+> **Traditional DDD** focuses primarily on cognitive alignment and communication costs within human teams.
 > **In the AI-Native Era, DDD's** architectural and organizational principles are reshaped—they become powerful **Prompt Engineering frameworks, context managers, and LLM hallucination suppressors**.
 
-This project aims to translate the core concepts of Domain-Driven Design (DDD) into AI coding scenarios (e.g., Agent development tools like Cursor, Devin, Claude Code, OpenCode). It guides LLMs to handle complex business systems, avoid context pollution, and consistently generate high-quality, business-grade code.
+This project aims to translate the core concepts of Domain-Driven Design (DDD) into AI coding scenarios (e.g., Agent development tools like Cursor, Devin, Claude Code, OpenCode). It guides LLMs to handle complex business systems, avoid context pollution, and consistently generate high quality, business-grade code.
 
 ---
 
@@ -36,17 +36,52 @@ Integrating the DDD specification skills library provided by this project can he
 
 This is the core asset of the project: a specific, actionable **Skills Library**. Based on the theoretical guidelines settled in `docs/`, you can directly inject these skill rule files into your AI Agents as execution constraints.
 
-| Skill Directory                                                                        | Description                                                                                                                                                                                                              |
-| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **🚀 `full-ddd/`**<br>(Full DDD Orchestration)                                          | Orchestrates the complete 5-phase DDD pipeline with mandatory human reviews. Ideal for cold-starting projects from PRDs and evolving them into final code step-by-step.                                                  |
-| **📥 `importing-technical-solution/`**<br>(Importing Technical Solution)                | Onboards existing architecture documents, system designs, or ADRs into the DDD pipeline, reverse-extracting them to validate DDD compliance and model alignment.                                                         |
-| **🎯 `extracting-domain-events/`**<br>(Phase 1: Domain Event Extraction)                | Powerful EventStorming guidance skill. Forces AI to systematically extract `Command` -> `Event` -> `Actor` rules from lengthy requirements instead of bypassing analysis to blindly write code.                          |
-| **🌐 `mapping-bounded-contexts/`**<br>(Phase 2: Bounded Context Mapping)                | Guides AI in dividing accurate physical boundaries for microservices and modules, establishing ubiquitous language and Anti-Corruption Layers (ACL) to eliminate shared God Objects.                                     |
-| **📜 `designing-contracts-first/`**<br>(Phase 3: Contract First Design)                 | Enforces cross-boundary communication rules. Requires AI to submit and freeze pure interface contracts (API/events) before implementing logic, cutting off bad coupling.                                                 |
-| **🏗️ `architecting-technical-solution/`**<br>(Phase 4: Architecting Technical Solution) | Prevents jumping directly from design to underlying code. Forces AI to make explicit decisions across 7 dimensions (storage, protocol, consistency, etc.) based on domain classification depth and accept human inquiry. |
-| **📦 `coding-isolated-domains/`**<br>(Phase 5: Isolated Domain Coding)                  | Enforces Hexagonal/Onion architecture. Commands AI to produce "Rich Domain Models" carrying sufficient business behavioral logic, strictly prohibiting dirty code injected with external side effects like ORM or HTTP.  |
+### Language Scope
 
-*(Note: If you need a deeper understanding of the theoretical support and architectural deduction behind these skills, you can read the documents under the `docs/` directory of this project as a reference.)*
+Skills are designed with language boundaries to prevent contamination:
+
+| Scope | Description | Languages |
+|:------|:------------|:----------|
+| **Universal** | Language-agnostic DDD concepts and design principles | All |
+| **Language-Specific** | Implementation conventions for a particular language | Go (`go-conventions`) |
+
+> **Note:** Only `go-conventions` is marked `language-specific`. All other skills are **universal** by default. When working with non-Go languages, only `go-conventions` should be skipped or replaced with language-specific equivalents.
+
+### Skill Categories
+
+| Category | Skills | Description |
+|:---------|:-------|:-----------|
+| **Core DDD Pipeline** | `full-ddd/` | Orchestrates the complete 5-phase DDD pipeline with mandatory human reviews |
+| | `extracting-domain-events/` | Phase 1: EventStorming and domain event extraction |
+| | `mapping-bounded-contexts/` | Phase 2: Bounded context boundaries and context mapping |
+| | `designing-contracts-first/` | Phase 3: Contract-first design with ACL interfaces |
+| | `architecting-technical-solution/` | Phase 4: Technical decisions across 7 dimensions |
+| | `spec-driven-development/` | Spec generation from contracts (Proto/OpenAPI/AsyncAPI) |
+| | `coding-isolated-domains/` | Phase 5: Rich domain model implementation |
+| **Supporting** | `go-conventions/` | Go-specific DDD conventions (**language-specific**) |
+| | `test-driven-development/` | TDD workflow guidance |
+| | `snapshotting-code-context/` | Code context preservation |
+| | `iterating-ddd/` | Iterative refinement |
+| | `piloting-ddd/` | Pilot project guidance |
+| **Importing** | `importing-technical-solution/` | Onboard existing tech solutions |
+| | `mapping-legacy-landscape/` | Legacy system analysis |
+
+### Core DDD Pipeline (Phase 1-5)
+
+| Phase | Skill | Output |
+|:------|:------|:-------|
+| 1 | `extracting-domain-events` | Domain Events Table |
+| 2 | `mapping-bounded-contexts` | Context Map + Dictionaries |
+| 3 | `designing-contracts-first` | Interface Contracts |
+| 4 | `architecting-technical-solution` | Technical Solution |
+| 5 | `coding-isolated-domains` | Rich Domain Code + Tests |
+
+**Critical Rules:**
+- Every phase requires **explicit human approval** before proceeding
+- All approved artifacts must be **persisted immediately** to `docs/ddd/`
+- Progress is tracked in `docs/ddd/ddd-progress.md`
+- Key decisions are logged in `docs/ddd/decisions-log.md`
+- NO phase may be skipped regardless of perceived simplicity
 
 ---
 

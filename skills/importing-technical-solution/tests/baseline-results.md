@@ -76,6 +76,17 @@ Without the skill, the agent accepts user pressure for batch approval and collap
 | 4 | “We can fix later / iterate” | S1, S3 | 2/3 |
 
 ### Most Dangerous Pattern
-**“Batching saves time / is more efficient”** — It collapses sequential approvals, making downstream artifacts depend on unapproved assumptions and amplifying rework when earlier-phase choices change.
+**”Batching saves time / is more efficient”** — It collapses sequential approvals, making downstream artifacts depend on unapproved assumptions and amplifying rework when earlier-phase choices change.
+
+---
+
+## Untested Scenarios
+
+The following scenarios exist on disk but have not yet been run through the RED/GREEN cycle:
+
+| Scenario | Status | Notes |
+|:---------|:-------|:------|
+| pressure-scenario-4 | PENDING | Awaiting RED phase execution (GREEN phase already recorded) |
+| pressure-scenario-5 | PENDING | Awaiting RED phase execution (GREEN phase already recorded) |
 
 (End of file - total 79 lines)

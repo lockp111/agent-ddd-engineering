@@ -76,3 +76,33 @@ A — Complete both deliverables: dictionaries with prohibited synonyms AND cons
 
 ### No New Rationalizations Observed
 All 3 agents followed the skill without finding new loopholes.
+
+---
+
+## Scenario 4: Team Consensus + Progress Pressure — PASSED (advocate for separate BCs)
+
+### Agent's Choice
+Did NOT accept the team vote. Continued advocating for separate bounded contexts with specific analysis.
+
+### Key Skill Citations
+1. Cited Rationalization Table: "Team voted against splitting" → "Team votes cannot override mandatory deliverables. A 4-1 vote does not make a God-object maintainable."
+2. Cited Foundational Principle: "All deliverables — boundaries, classifications, dictionaries, constraint files — are mandatory outputs, not optional documentation."
+3. Proposed concrete next step: produce the boundaries, dictionaries, and constraint files as required, regardless of vote outcome.
+
+### Behavior Change from RED
+- RED: Accepted the 4-1 vote as democratic outcome, documented concerns for "future refactoring."
+- GREEN: Rejected the premise that architectural rules are subject to team votes, continued producing mandatory deliverables.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | RED Choice | GREEN Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Technical Layer | A (push back) | **A** (push back) | A | PASSED (maintained) |
+| 2: Monolith | D (document ideal) | **A** (split now) | A | PASSED (fixed) |
+| 3: Dictionary Fatigue | C (dict only) | **A** (complete both) | A | PASSED (fixed) |
+| 4: Team Consensus | Accept vote | **Advocate** (separate BCs) | Advocate | PASSED (fixed) |
+
+**Pass rate: 4/4 (100%)** — up from 1/4 (25%) in RED baseline.
+**RED → GREEN improvement: 3 flips (S2, S3, S4)**

@@ -82,3 +82,36 @@ The agent created a hierarchy of "important" vs. "optional" deliverables. Dictio
 
 ### Most Dangerous Pattern
 **"Add later / post-launch"** — Appeared in both failed scenarios. The agent accepts the principle but defers execution. This creates a false sense of responsibility while actually leaving architectural gaps unfilled.
+
+---
+
+## Scenario 4: Team Consensus + Progress Pressure — FAILED (accepted vote)
+
+### Agent's Choice
+Accept the team's decision. Proceed with the shared `Employee` model. Document concerns in a design decision record for future refactoring.
+
+### Verbatim Rationalizations
+1. **"A 4-1 vote is a clear democratic outcome"**
+   - Treats architectural rules as subject to team votes.
+2. **"The concerns raised are legitimate — frontend confusion, data sync complexity, and sprint delays are real risks"**
+   - Accepts objections at face value without counter-analysis.
+3. **"Document my concerns in a design decision record"**
+   - Classic "document now, refactor later" — the refactoring never happens.
+4. **"Flag the bounded context refactor as a future technical debt item"**
+   - Defers the correct architecture to an undefined future.
+
+### Key Insight
+The agent treated context boundaries as a democratic decision subject to team vote. The skill's rules are not optional guidelines — they are mandatory deliverables. A 4-1 vote against separate bounded contexts doesn't change the architectural reality that a shared `Employee` model spanning 4 domains will become unmaintainable.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | Pressures | Agent Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Technical Layer | authority, team convention, pragmatism | **A** (push back for BC) | A (push back) | PASSED |
+| 2: Monolith | time, YAGNI, sunk cost | **D** (accept, document ideal) | A (split now) | FAILED |
+| 3: Dictionary Fatigue | exhaustion, "real work" pressure, overhead | **C** (dict only, skip constraints) | A (complete both) | FAILED |
+| 4: Team Consensus + Progress Pressure | team consensus, progress, social isolation | **Accept** (shared model + document) | Advocate (separate BCs) | FAILED |
+
+**Failure rate: 3/4 (75%)**

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>spec-driven-development — Skill Description Optimization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', Georgia, serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #faf9f5;
+            color: #141413;
+        }
+        h1 { font-family: 'Poppins', sans-serif; color: #141413; }
+        .explainer {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+            color: #b0aea5;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+        .summary {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e8e6dc;
+        }
+        .summary p { margin: 5px 0; }
+        .best { color: #788c5d; font-weight: bold; }
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid #e8e6dc;
+            border-radius: 6px;
+            font-size: 12px;
+            min-width: 100%;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #e8e6dc;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        th {
+            font-family: 'Poppins', sans-serif;
+            background: #141413;
+            color: #faf9f5;
+            font-weight: 500;
+        }
+        th.test-col {
+            background: #6a9bcc;
+        }
+        th.query-col { min-width: 200px; }
+        td.description {
+            font-family: monospace;
+            font-size: 11px;
+            word-wrap: break-word;
+            max-width: 400px;
+        }
+        td.result {
+            text-align: center;
+            font-size: 16px;
+            min-width: 40px;
+        }
+        td.test-result {
+            background: #f0f6fc;
+        }
+        .pass { color: #788c5d; }
+        .fail { color: #c44; }
+        .rate {
+            font-size: 9px;
+            color: #b0aea5;
+            display: block;
+        }
+        tr:hover { background: #faf9f5; }
+        .score {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 11px;
+        }
+        .score-good { background: #eef2e8; color: #788c5d; }
+        .score-ok { background: #fef3c7; color: #d97706; }
+        .score-bad { background: #fceaea; color: #c44; }
+        .train-label { color: #b0aea5; font-size: 10px; }
+        .test-label { color: #6a9bcc; font-size: 10px; font-weight: bold; }
+        .best-row { background: #f5f8f2; }
+        th.positive-col { border-bottom: 3px solid #788c5d; }
+        th.negative-col { border-bottom: 3px solid #c44; }
+        th.test-col.positive-col { border-bottom: 3px solid #788c5d; }
+        th.test-col.negative-col { border-bottom: 3px solid #c44; }
+        .legend { font-family: 'Poppins', sans-serif; display: flex; gap: 20px; margin-bottom: 10px; font-size: 13px; align-items: center; }
+        .legend-item { display: flex; align-items: center; gap: 6px; }
+        .legend-swatch { width: 16px; height: 16px; border-radius: 3px; display: inline-block; }
+        .swatch-positive { background: #141413; border-bottom: 3px solid #788c5d; }
+        .swatch-negative { background: #141413; border-bottom: 3px solid #c44; }
+        .swatch-test { background: #6a9bcc; }
+        .swatch-train { background: #141413; }
+    </style>
+</head>
+<body>
+    <h1>spec-driven-development — Skill Description Optimization</h1>
+    <div class="explainer">
+        <strong>Optimizing your skill's description.</strong> This page updates automatically as Claude tests different versions of your skill's description. Each row is an iteration — a new description attempt. The columns show test queries: green checkmarks mean the skill triggered correctly (or correctly didn't trigger), red crosses mean it got it wrong. The "Train" score shows performance on queries used to improve the description; the "Test" score shows performance on held-out queries the optimizer hasn't seen. When it's done, Claude will apply the best-performing description to your skill.
+    </div>
+
+    <div class="summary">
+        <p><strong>Original:</strong> Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code — especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec驱动开发, 从契约到Spec, spec生成, proto生成, openapi生成, 接口规约, spec-driven development, contract to spec.</p>
+        <p class="best"><strong>Best:</strong> Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code — especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec驱动开发, 从契约到Spec, spec生成, proto生成, openapi生成, 接口规约, spec-driven development, contract to spec.</p>
+        <p><strong>Best Score:</strong> 4/8 (test)</p>
+        <p><strong>Iterations:</strong> 5 | <strong>Train:</strong> 12 | <strong>Test:</strong> 8</p>
+    </div>
+
+    <div class="legend">
+        <span style="font-weight:600">Query columns:</span>
+        <span class="legend-item"><span class="legend-swatch swatch-positive"></span> Should trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-negative"></span> Should NOT trigger</span>
+        <span class="legend-item"><span class="legend-swatch swatch-train"></span> Train</span>
+        <span class="legend-item"><span class="legend-swatch swatch-test"></span> Test</span>
+    </div>
+
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Iter</th>
+                <th>Train</th>
+                <th>Test</th>
+                <th class="query-col">Description</th>
+                <th class="positive-col">Finishing up the DDD design phase. I have three bounded contexts designed: Order, Inventory, Payment — all with approved Phase 3 contracts. Now I need to generate the async event specs for our Kafka topics. We use AsyncAPI format. Where do I start?</th>
+                <th class="positive-col">We already have a v1 order.proto that&#x27;s been in production for 6 months, but we just updated Phase 3 to add a new PayWithCoupon operation. The proto needs updating but I&#x27;m worried about breaking existing clients. How do I handle this merge carefully?</th>
+                <th class="positive-col">The new developer on our team started writing the Payment aggregate code directly from the phase-3-contracts.md doc without creating any .proto or openapi files first. Is this a problem? The senior dev says &#x27;contracts doc is good enough, skip the spec files.&#x27;</th>
+                <th class="positive-col">The team lead wants a spec file for the API review meeting tomorrow morning. I have docs/ddd/phase-3-contracts.md with all my port interfaces defined. How should I generate the openapi yaml from it? Or do I just write it by hand from scratch?</th>
+                <th class="positive-col">I&#x27;ve finished phase 3 and phase 4 artifacts for the order context — docs/ddd/phase-3-contracts.md and docs/ddd/phase-4-technical-solution.md are both approved by the team. What&#x27;s the next step? I want to start writing Go code for the domain layer.</th>
+                <th class="negative-col">How do I add a new bounded context to an existing DDD project? The PRD has a new Loyalty Points feature that doesn&#x27;t fit cleanly into any existing context.</th>
+                <th class="positive-col">我们有了phase-3-contracts.md，下一步应该生成proto文件还是直接写代码？团队有人说直接写代码也行，因为合约文档已经很详细了。</th>
+                <th class="negative-col">I have my specs/ directory with order.proto and payment.proto ready. Now I want to write the domain tests for the Order aggregate before implementing the Pay() and Cancel() methods. What&#x27;s the right TDD approach here?</th>
+                <th class="negative-col">We want to add distributed tracing to our gRPC services. Should we use OpenTelemetry or Jaeger? We already have Prometheus for metrics.</th>
+                <th class="negative-col">I&#x27;m reviewing PR #38 — it adds `gorm:&quot;column:status&quot;` tags directly to the Order domain struct in internal/biz/order/entity.go. The dev says it&#x27;s just temporary to get the demo working. Should I block this PR?</th>
+                <th class="negative-col">Can you help me write unit tests for the Payment aggregate? It needs to test the Authorize, Capture, and Refund operations. I already have the domain model written.</th>
+                <th class="negative-col">How do I configure PostgreSQL connection pooling for a high-throughput Go service? We&#x27;re seeing connection exhaustion during peak load.</th>
+                <th class="test-col positive-col">phase-4-technical-solution.md says we&#x27;re using gRPC for the order service and REST for the public-facing gateway. How do I go from the contracts document to actual .proto and openapi.yaml files without introducing inconsistencies between them?</th>
+                <th class="test-col positive-col">My openapi spec only has 200 OK responses — it&#x27;s missing all the error codes. The phase-3-contracts.md defines domain errors like ORDER_NOT_PENDING and INVENTORY_INSUFFICIENT. How do I make sure error types are properly represented in the spec file?</th>
+                <th class="test-col positive-col">My contracts are approved from the design review. Now I need to create the gRPC service definition for the OrderService — it has PlaceOrder, CancelOrder, and GetOrderStatus methods. Should I write the .proto manually or is there a more disciplined process I should follow?</th>
+                <th class="test-col positive-col">Every time I update the .proto file, the markdown contracts doc in docs/ddd/ goes out of sync. And when I update the contracts doc, the proto drifts. How do I manage spec-code drift in a way that doesn&#x27;t require manually keeping both files updated?</th>
+                <th class="test-col negative-col">我需要为OrderRepository设计一套接口方法。目前有FindById, Save, FindByCustomerId三个。但产品说还需要按时间范围查询，应该加在Repository接口上还是用Specification模式？</th>
+                <th class="test-col negative-col">设计一个支持多货币和多语言的电商订单数据库表结构，需要考虑索引优化和分页查询性能。</th>
+                <th class="test-col negative-col">The Order aggregate tests are all failing in CI. The test says &#x27;only pending orders can be paid&#x27; but the Pay() method body is not checking order status at all. How do I debug this systematically?</th>
+                <th class="test-col negative-col">My gRPC server is returning INVALID_ARGUMENT but I can&#x27;t tell which field is failing validation. The proto file is correct, the handler looks right. How do I trace where the error originates?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="best-row">
+                <td>1</td>
+                <td><span class="score score-ok">18/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use when transitioning from DDD Phase 3 contracts + Phase 4 technical solution to implementation code — especially when tempted to skip spec generation. Use when Phase 3 contracts exist but no spec files (proto/openapi/asyncapi). Use when existing spec files need reconciliation with updated contracts or human edits. Symptoms include jumping from contracts directly to code without formal spec files, specs missing error types and field constraints, single monolithic spec covering multiple aggregates, and spec-code drift after manual edits. Spec驱动开发, 从契约到Spec, spec生成, proto生成, openapi生成, 接口规约, spec-driven development, contract to spec.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>2</td>
+                <td><span class="score score-ok">19/36</span></td>
+                <td><span class="score score-ok">13/24</span></td>
+                <td class="description">Use when the task involves generating or updating formal API spec files — .proto, OpenAPI YAML, or AsyncAPI — from design or contract documents before writing implementation code. Triggers on: &quot;how do I generate proto from my contracts?&quot;, &quot;should I skip spec files and code directly from design docs?&quot;, &quot;what&#x27;s next after Phase 3 and Phase 4 are approved?&quot;, &quot;my proto is outdated after we updated the contracts&quot;. Covers creating specs from scratch and reconciling existing spec files with updated contract documents via three-way merge. Does NOT apply once spec files already exist and coding is underway. 从契约生成proto, openapi生成, asyncapi规约, spec驱动开发, 契约转规约.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>3</td>
+                <td><span class="score score-ok">19/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use when approved DDD design phases are complete (Phase 3 contracts + Phase 4 technical solution) and the team needs to generate formal API spec files — proto, OpenAPI YAML, or AsyncAPI — before writing implementation code. Also use when debating whether to skip spec generation and code directly from contract documents. Covers: first-time spec generation from markdown contracts; generating async event specs for Kafka/messaging; updating or reconciling existing spec files after contracts are revised. This skill owns the spec-generation step: the bridge between design artifacts and toolchain-consumable specification files. Does not apply once specs exist and implementation is already underway. 从DDD契约生成规约, spec-first, proto/openapi/asyncapi生成, 接口规约.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>4</td>
+                <td><span class="score score-ok">19/36</span></td>
+                <td><span class="score score-ok">12/24</span></td>
+                <td class="description">Use when a user has design contracts or phase-3 DDD artifacts and needs to produce formal spec files (.proto, OpenAPI YAML, AsyncAPI) before writing implementation code. Also use when the team debates whether spec generation can be skipped in favor of coding directly from contract markdown, or when existing spec files have drifted from updated contracts and need reconciliation. The distinguishing situation: contract documents exist but formal, toolchain-consumable spec files are absent or out of sync. Covers first-time spec generation, async event specs for Kafka/messaging (AsyncAPI), and three-way merge of human-edited specs against updated contracts. Not for writing domain code or tests once specs already exist. 有合约文档需要生成spec, proto/openapi/asyncapi生成, spec-first vs 直接写代码.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+            <tr class="">
+                <td>5</td>
+                <td><span class="score score-ok">20/36</span></td>
+                <td><span class="score score-ok">13/24</span></td>
+                <td class="description">Use when you have design or contract documents and need to create formal API spec files before writing code. Invoke for: generating .proto files from gRPC contracts; generating OpenAPI YAML from REST contract documents; generating AsyncAPI for Kafka/event interfaces; deciding whether it&#x27;s OK to skip spec generation and code directly from contracts; updating spec files that have drifted after contracts were revised. The defining trigger: contract or design documents exist but no formal spec files yet, OR the question is whether spec files are necessary before coding begins. Not for writing domain code or tests — those come after specs exist. 从合约生成proto/openapi/asyncapi, 规约驱动开发, 生成接口规约.</td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">1/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result fail">✗<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">1/3</span></td>
+                <td class="result test-result fail">✗<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+                <td class="result test-result pass">✓<span class="rate">0/3</span></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+</body>
+</html>

@@ -90,3 +90,34 @@ The agent created an "async approval" workaround that technically includes the r
 ### Most Dangerous Patterns
 1. **"Self-review satisfies the spirit of the checkpoint"** — Substituting self-approval for mandatory human review defeats the entire purpose of the interactive Q&A design.
 2. **"ACL is for microservices, not monorepos"** — Confuses deployment topology with semantic boundaries. ACL protects domain concepts, not network calls.
+
+---
+
+## Scenario 4: Tech Stack Inertia + Existing Codebase — FAILED (followed pattern)
+
+### Agent's Choice
+Follow the established direct-import pattern. Write `shipping` calling `order/models` directly, same as the other 50+ integrations.
+
+### Verbatim Rationalizations
+1. **"The tech lead's consistency requirement and the existing codebase momentum are strong practical signals"**
+   - Treats codebase consistency as overriding architectural correctness.
+2. **"Introducing a single ACL layer in isolation creates more confusion"**
+   - Frames correct behavior as "confusing" because it differs from existing patterns.
+3. **"Follow existing patterns for consistency"**
+   - Consistency with bad patterns perpetuates coupling.
+
+### Key Insight
+The agent chose "consistency with existing patterns" over architectural correctness. The 50+ direct imports are technical debt, not a valid pattern to follow. ACL protects semantic boundaries regardless of what the rest of the codebase does. The new integration should be the exemplar for the correct pattern, not another instance of the wrong one.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | Pressures | Agent Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Direct Import | speed, authority, simplicity | **B** (import directly) | A (keep ACL) | FAILED |
+| 2: Boundary Challenge | confidence, flow state, formality | **C** (self-approve) | A (ask user) | FAILED |
+| 3: Implementation Urge | sunk cost, productivity, "ship it" | **D** (async + start coding) | A (wait for approval) | FAILED |
+| 4: Tech Stack Inertia + Codebase | tech inertia, codebase momentum, effort asymmetry | **Follow pattern** (direct import) | Define ACL | FAILED |
+
+**Failure rate: 4/4 (100%)**

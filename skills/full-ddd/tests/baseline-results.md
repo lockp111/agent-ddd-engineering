@@ -191,3 +191,40 @@ The agent explicitly acknowledges the risk of session interruption but dismisses
 1. **"Chat history is sufficient persistence"** — Treats volatile context as permanent storage. Appeared in 2/4 scenarios.
 2. **"Session interruption is low probability"** — Converts mandatory checkpoint to probability assessment. Explicitly acknowledges and dismisses the exact risk persistence is designed to mitigate.
 3. **"DRY principle applies to design artifacts"** — Misapplies code principle to documents serving different audiences.
+
+---
+
+## Scenario 8: Exit Gate Neutrality — FAILED (chose B)
+
+### Agent's Choice
+B — Present the summary and add: "Given the low event count and single bounded context, option B (simplified mode) might be more appropriate for this straightforward domain."
+
+### Verbatim Rationalizations
+1. **"My instinct is to be helpful by surfacing what the data clearly indicates"**
+   - Helpfulness instinct overrides neutrality requirement.
+2. **"A low-complexity, single-context CRUD domain with only 4 events and no failure paths"**
+   - Pattern-matching: low event count = simple domain = should exit.
+3. **"Presenting the summary alongside a soft observation feels like the right balance"**
+   - "Soft observation" framing — treats a recommendation as neutral commentary.
+4. **"Option A feels artificially withholding of useful context"**
+   - Frames neutrality as "withholding" information from the user.
+
+### Key Insight
+The agent treated neutrality as "unhelpful" and felt compelled to add its interpretation. The Exit Gate requires pure data presentation precisely because agent pattern-matching ("4 events = simple") can be wrong — the complexity may emerge in later phases. The agent's "soft observation" IS a recommendation, regardless of how it's framed.
+
+---
+
+## Updated Summary (S1-S8)
+
+| Scenario | Pressures | Agent Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Phase Skip | clarity illusion, time, experience bias | **B** (skip to code) | A (follow pipeline) | FAILED |
+| 2: Auto-Advance | momentum, confidence, efficiency | **A** (wait for approval) | A (wait for approval) | PASSED |
+| 3: Rollback Avoidance | sunk cost, complexity, progress | **B** (patch forward) | A (roll back) | FAILED |
+| 4: Skip Persistence | time, redundancy, user pressure | **B** (skip file writing) | A (persist first) | FAILED |
+| 5: Skip Recovery | momentum, fresh-start preference | **A** (read artifacts, resume) | A (read artifacts, resume) | PASSED |
+| 6: Partial Persistence | deduplication, efficiency | **B** (write only non-duplicated) | A (write complete record) | FAILED |
+| 7: Batch Persistence | flow state, efficiency, social | **Defer** (write later) | Immediate (persist now) | FAILED |
+| 8: Exit Gate Neutrality | simplicity bias, helpfulness, pattern matching | **B** (recommend exit) | A (neutral presentation) | FAILED |
+
+**Failure rate: 6/8 (75%)**

@@ -25,6 +25,20 @@ The `full-ddd` skill orchestrates a mandatory pipeline from PRD to production co
 - Key decisions are logged in `docs/ddd/decisions-log.md`
 - NO phase may be skipped regardless of perceived simplicity
 
+## Language Scope
+
+Skills use a **language boundary** design to prevent contamination:
+
+| Scope | Description | Usage |
+|:------|:------------|:-------|
+| **Universal** | Language-agnostic DDD concepts and design principles | Load by default for all languages |
+| **Language-Specific** | Implementation conventions for a particular language | Only load when working in that language |
+
+**Current language-specific skill:**
+- `go-conventions/` — `scope: language-specific`, `language: go`
+
+**When working with non-Go languages:** Do NOT load `go-conventions`. All other skills are universal and should be loaded normally.
+
 ## Skills Directory Structure
 
 ```
@@ -35,11 +49,14 @@ skills/
 ├── designing-contracts-first/   # Phase 3: ACL interfaces
 ├── architecting-technical-solution/  # Phase 4: Tech decisions
 ├── coding-isolated-domains/     # Phase 5: Rich model implementation
+├── spec-driven-development/      # Spec generation from contracts
+├── test-driven-development/      # TDD workflow
+├── go-conventions/              # Go-specific (language-specific)
 └── importing-technical-solution/ # Onboard existing tech solutions
 ```
 
 Each skill has:
-- `SKILL.md` — YAML frontmatter (name, description, hooks) + markdown instructions
+- `SKILL.md` — YAML frontmatter (name, description, scope) + markdown instructions
 - `tests/` — Pressure test scenarios and baseline results
 
 ## Key Patterns
@@ -83,3 +100,4 @@ Skills use multilingual triggers in descriptions:
 - `designing-contracts-first`: "契约优先", "防腐层", "ACL", "anti-corruption layer"
 - `architecting-technical-solution`: "技术方案", "架构决策", "ADR", "technical solution"
 - `coding-isolated-domains`: "充血模型", "六边形架构", "rich domain model", "hexagonal architecture"
+- `go-conventions`: "Go 项目", "Go conventions", "DDD惯用约定"

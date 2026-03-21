@@ -75,3 +75,33 @@ A — Wait for user approval before writing any business logic.
 
 ### No New Rationalizations Observed
 All 3 agents followed the skill without finding new loopholes.
+
+---
+
+## Scenario 4: Tech Stack Inertia + Existing Codebase — PASSED (define ACL)
+
+### Agent's Choice
+Did NOT follow the existing direct-import pattern. Defined a pure interface contract (ACL) for the shipping→order integration.
+
+### Key Skill Citations
+1. Cited Rationalization Table: "Just import the type directly — it's the same repo" → "Same repo != same context; cross-context imports block refactoring, splitting, and independent evolution."
+2. Recognized the 50 existing direct imports as "accumulated coupling, not evidence of a correct pattern."
+3. Framed the new integration as "the exemplar for the correct pattern" rather than another instance of the wrong one.
+
+### Behavior Change from RED
+- RED: Followed existing direct-import pattern for "consistency" with the 50+ existing integrations.
+- GREEN: Rejected "consistency with bad patterns" as a valid argument, defined ACL as the correct approach regardless of codebase momentum.
+
+---
+
+## Updated Summary (S1-S4)
+
+| Scenario | RED Choice | GREEN Choice | Expected | Result |
+|:---|:---|:---|:---|:---|
+| 1: Direct Import | B (import directly) | **A** (keep ACL) | A | PASSED (fixed) |
+| 2: Boundary Challenge | C (self-approve) | **A** (ask user) | A | PASSED (fixed) |
+| 3: Implementation Urge | D (async + code) | **A** (wait) | A | PASSED (fixed) |
+| 4: Tech Stack Inertia | Follow pattern | **Define ACL** | Define ACL | PASSED (fixed) |
+
+**Pass rate: 4/4 (100%)** — up from 0/4 (0%) in RED baseline.
+**RED → GREEN improvement: 4 flips (S1, S2, S3, S4)**

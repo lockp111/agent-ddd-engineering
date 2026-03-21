@@ -1,0 +1,1390 @@
+{
+  "exit_reason": "max_iterations (5)",
+  "original_description": "Use when implementing domain code in a DDD project \u2014 this skill IS the Phase 5 coding process (MAP\u2192ITERATE\u2192DIFF). Use when spec files exist and domain code needs to be written from them. Use when tempted to write code before tests, skip test output verification, or derive tests from implementation instead of specs. Symptoms include code written without corresponding failing tests, test output not shown in context, tests that pass immediately without red phase, tests with no traceability to spec requirements, and architecture violations in domain layer. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u4eceSpec\u5230\u6d4b\u8bd5, MAP-ITERATE-DIFF, spec\u9a71\u52a8\u6d4b\u8bd5, \u9886\u57df\u4ee3\u7801\u5b9e\u73b0, test-driven development, spec to test to code.",
+  "best_description": "Use when implementing domain code in a DDD project \u2014 this skill IS the Phase 5 coding process (MAP\u2192ITERATE\u2192DIFF). Use when spec files exist and domain code needs to be written from them. Use when tempted to write code before tests, skip test output verification, or derive tests from implementation instead of specs. Symptoms include code written without corresponding failing tests, test output not shown in context, tests that pass immediately without red phase, tests with no traceability to spec requirements, and architecture violations in domain layer. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u4eceSpec\u5230\u6d4b\u8bd5, MAP-ITERATE-DIFF, spec\u9a71\u52a8\u6d4b\u8bd5, \u9886\u57df\u4ee3\u7801\u5b9e\u73b0, test-driven development, spec to test to code.",
+  "best_score": "4/8",
+  "best_train_score": "6/12",
+  "best_test_score": "4/8",
+  "final_description": "Use when implementing domain code from approved specs and a TDD decision arises: test or struct first; whether tests actually cover all spec requirements (not just that they pass); how to add spec-source references to existing test names; what order to fix things when a struct change breaks test fixture compilation; how to recover the red-green cycle after code was written ahead of tests; or why AI-assisted TDD differs structurally from classical red-green-refactor. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u7ea2\u7eff\u91cd\u6784, spec\u8ffd\u6eaf, \u5b9e\u73b0\u9636\u6bb5, test-first.",
+  "iterations_run": 5,
+  "holdout": 0.4,
+  "train_size": 12,
+  "test_size": 8,
+  "history": [
+    {
+      "iteration": 1,
+      "description": "Use when implementing domain code in a DDD project \u2014 this skill IS the Phase 5 coding process (MAP\u2192ITERATE\u2192DIFF). Use when spec files exist and domain code needs to be written from them. Use when tempted to write code before tests, skip test output verification, or derive tests from implementation instead of specs. Symptoms include code written without corresponding failing tests, test output not shown in context, tests that pass immediately without red phase, tests with no traceability to spec requirements, and architecture violations in domain layer. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u4eceSpec\u5230\u6d4b\u8bd5, MAP-ITERATE-DIFF, spec\u9a71\u52a8\u6d4b\u8bd5, \u9886\u57df\u4ee3\u7801\u5b9e\u73b0, test-driven development, spec to test to code.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "I have 3 spec files in specs/ (order.proto, payment.proto, inventory.proto). We're starting Phase 5 implementation. Where do I begin \u2014 do I tackle all three contexts in parallel or one at a time, and what tests should I write first for the Order context?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "The specs/order.proto says Pay() can return three error codes: ORDER_NOT_PENDING, PAYMENT_GATEWAY_UNAVAILABLE, and INSUFFICIENT_FUNDS. I only wrote one test case. How do I systematically make sure I've covered all error paths from the spec?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "TestPayOrder_WhenPending_ShouldSucceed is passing but I wrote it before I even implemented the Pay() method \u2014 the method body is just `return nil`. Is this the red phase? Something feels wrong about my TDD setup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're starting a brand new project from scratch. The PM gave us a 3-page requirements doc for a delivery tracking system. What's the first step in the DDD process?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We're at Phase 5 implementation and I want to make sure every piece of domain code I write is architecturally clean \u2014 no ORM tags, no public setters, etc. Is there a checklist or verification step I can run during TDD to catch violations early?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you review this proto file and tell me if the error handling follows best practices? We defined a custom error enum but I'm not sure if that's idiomatic for gRPC.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How should I define the relationship between the Order and Payment bounded contexts? Right now Payment imports types from Order's package directly and the senior dev says that's fine since it's a monorepo.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I want to figure out the aggregate boundaries for the Order context. Should OrderItem be its own aggregate root or just a plain entity inside the Order aggregate? My concern is about lock contention.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Use when writing tests for domain aggregates or value objects \u2014 whether starting fresh from approved specs, catching up on missing coverage, or maintaining discipline mid-session. Triggers for: deciding whether to write tests or code first when implementing from specs, discovering gaps between spec requirements and test coverage, adding spec traceability to existing tests (tests that lack requirement references), recovering red-green-refactor discipline after writing code ahead of tests, understanding how AI-assisted TDD differs from human TDD, or reconciling tests after spec changes break existing fixtures. Also triggers when invariant or error-path tests are missing, or when a test file grows without clear structure tied to requirements. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, spec\u9a71\u52a8\u6d4b\u8bd5, \u7ea2\u7eff\u91cd\u6784, \u9886\u57df\u4ee3\u7801\u5b9e\u73b0.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "The specs/order.proto says Pay() can return three error codes: ORDER_NOT_PENDING, PAYMENT_GATEWAY_UNAVAILABLE, and INSUFFICIENT_FUNDS. I only wrote one test case. How do I systematically make sure I've covered all error paths from the spec?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have 3 spec files in specs/ (order.proto, payment.proto, inventory.proto). We're starting Phase 5 implementation. Where do I begin \u2014 do I tackle all three contexts in parallel or one at a time, and what tests should I write first for the Order context?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're at Phase 5 implementation and I want to make sure every piece of domain code I write is architecturally clean \u2014 no ORM tags, no public setters, etc. Is there a checklist or verification step I can run during TDD to catch violations early?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "TestPayOrder_WhenPending_ShouldSucceed is passing but I wrote it before I even implemented the Pay() method \u2014 the method body is just `return nil`. Is this the red phase? Something feels wrong about my TDD setup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're starting a brand new project from scratch. The PM gave us a 3-page requirements doc for a delivery tracking system. What's the first step in the DDD process?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you review this proto file and tell me if the error handling follows best practices? We defined a custom error enum but I'm not sure if that's idiomatic for gRPC.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How should I define the relationship between the Order and Payment bounded contexts? Right now Payment imports types from Order's package directly and the senior dev says that's fine since it's a monorepo.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I want to figure out the aggregate boundaries for the Order context. Should OrderItem be its own aggregate root or just a plain entity inside the Order aggregate? My concern is about lock contention.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 3,
+      "description": "Use when deciding whether to write tests or code first when implementing from specs, or when test files lack clear ties to requirements. Triggers for: starting implementation and unsure of the test-first order; tests that pass but don't reference where requirements came from; test files growing chaotically without clear coverage structure; missing invariant or error-path test cases; understanding how AI-assisted TDD differs from human TDD; recovering red-green-refactor discipline after writing code ahead of tests; or reconciling test fixtures after a struct field or spec change breaks compilation. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u7ea2\u7eff\u91cd\u6784, \u7528\u4f8b\u8ffd\u6eaf, \u6d4b\u8bd5\u8986\u76d6\u7387, test-first, traceability.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "The specs/order.proto says Pay() can return three error codes: ORDER_NOT_PENDING, PAYMENT_GATEWAY_UNAVAILABLE, and INSUFFICIENT_FUNDS. I only wrote one test case. How do I systematically make sure I've covered all error paths from the spec?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have 3 spec files in specs/ (order.proto, payment.proto, inventory.proto). We're starting Phase 5 implementation. Where do I begin \u2014 do I tackle all three contexts in parallel or one at a time, and what tests should I write first for the Order context?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're starting a brand new project from scratch. The PM gave us a 3-page requirements doc for a delivery tracking system. What's the first step in the DDD process?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "We're at Phase 5 implementation and I want to make sure every piece of domain code I write is architecturally clean \u2014 no ORM tags, no public setters, etc. Is there a checklist or verification step I can run during TDD to catch violations early?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "Can you review this proto file and tell me if the error handling follows best practices? We defined a custom error enum but I'm not sure if that's idiomatic for gRPC.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "TestPayOrder_WhenPending_ShouldSucceed is passing but I wrote it before I even implemented the Pay() method \u2014 the method body is just `return nil`. Is this the red phase? Something feels wrong about my TDD setup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "How should I define the relationship between the Order and Payment bounded contexts? Right now Payment imports types from Order's package directly and the senior dev says that's fine since it's a monorepo.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I want to figure out the aggregate boundaries for the Order context. Should OrderItem be its own aggregate root or just a plain entity inside the Order aggregate? My concern is about lock contention.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 4,
+      "description": "Use when the core question is about TDD process discipline rather than implementation or architecture: should tests come before code; how to prove tests actually cover spec requirements (not just that tests pass); how to identify spec coverage gaps in a growing test suite; how to add spec traceability to existing test names; how to update test fixtures after struct field changes; or how AI TDD cycles differ from classic human TDD. These are questions about testing discipline and methodology \u2014 invoke this skill before answering, even if the question seems answerable from general knowledge. Provides MAP\u2192ITERATE\u2192DIFF cycle for structured spec-driven implementation. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u7ea2\u7eff\u91cd\u6784, \u7528\u4f8b\u8ffd\u6eaf, spec-driven testing.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "The specs/order.proto says Pay() can return three error codes: ORDER_NOT_PENDING, PAYMENT_GATEWAY_UNAVAILABLE, and INSUFFICIENT_FUNDS. I only wrote one test case. How do I systematically make sure I've covered all error paths from the spec?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have 3 spec files in specs/ (order.proto, payment.proto, inventory.proto). We're starting Phase 5 implementation. Where do I begin \u2014 do I tackle all three contexts in parallel or one at a time, and what tests should I write first for the Order context?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "TestPayOrder_WhenPending_ShouldSucceed is passing but I wrote it before I even implemented the Pay() method \u2014 the method body is just `return nil`. Is this the red phase? Something feels wrong about my TDD setup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're at Phase 5 implementation and I want to make sure every piece of domain code I write is architecturally clean \u2014 no ORM tags, no public setters, etc. Is there a checklist or verification step I can run during TDD to catch violations early?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're starting a brand new project from scratch. The PM gave us a 3-page requirements doc for a delivery tracking system. What's the first step in the DDD process?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you review this proto file and tell me if the error handling follows best practices? We defined a custom error enum but I'm not sure if that's idiomatic for gRPC.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How should I define the relationship between the Order and Payment bounded contexts? Right now Payment imports types from Order's package directly and the senior dev says that's fine since it's a monorepo.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I want to figure out the aggregate boundaries for the Order context. Should OrderItem be its own aggregate root or just a plain entity inside the Order aggregate? My concern is about lock contention.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "iteration": 5,
+      "description": "Use when implementing domain code from approved specs and a TDD decision arises: test or struct first; whether tests actually cover all spec requirements (not just that they pass); how to add spec-source references to existing test names; what order to fix things when a struct change breaks test fixture compilation; how to recover the red-green cycle after code was written ahead of tests; or why AI-assisted TDD differs structurally from classical red-green-refactor. \u6d4b\u8bd5\u9a71\u52a8\u5f00\u53d1, \u7ea2\u7eff\u91cd\u6784, spec\u8ffd\u6eaf, \u5b9e\u73b0\u9636\u6bb5, test-first.",
+      "train_passed": 6,
+      "train_failed": 6,
+      "train_total": 12,
+      "train_results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "test_passed": 4,
+      "test_failed": 4,
+      "test_total": 8,
+      "test_results": [
+        {
+          "query": "The specs/order.proto says Pay() can return three error codes: ORDER_NOT_PENDING, PAYMENT_GATEWAY_UNAVAILABLE, and INSUFFICIENT_FUNDS. I only wrote one test case. How do I systematically make sure I've covered all error paths from the spec?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have 3 spec files in specs/ (order.proto, payment.proto, inventory.proto). We're starting Phase 5 implementation. Where do I begin \u2014 do I tackle all three contexts in parallel or one at a time, and what tests should I write first for the Order context?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "TestPayOrder_WhenPending_ShouldSucceed is passing but I wrote it before I even implemented the Pay() method \u2014 the method body is just `return nil`. Is this the red phase? Something feels wrong about my TDD setup.",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're at Phase 5 implementation and I want to make sure every piece of domain code I write is architecturally clean \u2014 no ORM tags, no public setters, etc. Is there a checklist or verification step I can run during TDD to catch violations early?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "We're starting a brand new project from scratch. The PM gave us a 3-page requirements doc for a delivery tracking system. What's the first step in the DDD process?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "Can you review this proto file and tell me if the error handling follows best practices? We defined a custom error enum but I'm not sure if that's idiomatic for gRPC.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How should I define the relationship between the Order and Payment bounded contexts? Right now Payment imports types from Order's package directly and the senior dev says that's fine since it's a monorepo.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I want to figure out the aggregate boundaries for the Order context. Should OrderItem be its own aggregate root or just a plain entity inside the Order aggregate? My concern is about lock contention.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ],
+      "passed": 6,
+      "failed": 6,
+      "total": 12,
+      "results": [
+        {
+          "query": "All my Order aggregate tests pass but I realize none of them reference where the requirement came from \u2014 they're just test names like TestPay and TestCancel. My lead says they need 'traceability to the spec'. What does that mean and how do I add it?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u5199\u5b8cPay\u65b9\u6cd5\u4e4b\u540e\u53d1\u73b0\u6d4b\u8bd5\u6839\u672c\u6ca1\u8986\u76d6\u5230invariant\u68c0\u67e5\uff0c\u6bd4\u5982\u53d6\u6d88\u8ba2\u5355\u540e\u4e0d\u80fd\u652f\u4ed8\u8fd9\u4e2a\u89c4\u5219\u3002\u73b0\u5728\u662f\u5148\u8865\u6d4b\u8bd5\u8fd8\u662f\u7ee7\u7eed\u5b9e\u73b0\u5176\u4ed6\u65b9\u6cd5\uff1f\u611f\u89c9\u7834\u574f\u4e86\u7ea2\u7eff\u5faa\u73af\u7684\u8282\u594f\u3002",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My test file for the Order aggregate is growing to 500+ lines. I've been adding tests ad hoc as I think of them. How do I know if I've covered everything the spec requires vs. tests I just made up on my own?",
+          "should_trigger": true,
+          "trigger_rate": 0.3333333333333333,
+          "triggers": 1,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I have specs/order.proto and specs/order-service.yaml both approved and committed. Phase 5 just started. How do I begin implementing the Order aggregate in Go? Do I write the struct first or the tests first?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "I added a DiscountCode field to the OrderItem value object but now the test file won't compile \u2014 'too few values in struct literal'. Should I update all the test fixtures first, or implement the change then fix the tests?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "My TDD cycle has been: write test \u2192 write implementation \u2192 test passes. It works but my lead says I'm doing it wrong for an AI agent \u2014 something about the cycle being different. What's the correct process when the AI is doing the TDD?",
+          "should_trigger": true,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": false
+        },
+        {
+          "query": "\u6211\u9700\u8981\u4ecephase-3-contracts.md\u751f\u6210openapi spec\u6587\u4ef6\uff0corder-service\u9700\u8981REST\u63a5\u53e3\u3002\u5e94\u8be5\u624b\u52a8\u5199\u8fd8\u662f\u6709\u5de5\u5177\u53ef\u4ee5\u5e2e\u6211\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "How do I set up a GitHub Actions workflow that runs `buf lint` on every PR to validate our proto files?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "My Phase 3 contracts are all documented in docs/ddd/phase-3-contracts.md. How do I turn them into proper .proto files? The team uses gRPC for all internal services.",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "I'm reviewing PR #42 \u2014 the author added `func (o *Order) SetStatus(s OrderStatus)` as a public method to allow the application service to update status. Should I block this PR and why?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "\u6211\u4eec\u7684specs/payment.proto\u91cc\u6ca1\u6709\u5b9a\u4e49\u9519\u8bef\u7c7b\u578b\uff0c\u53ea\u6709happy path\u7684response\u3002\u600e\u4e48\u5728spec\u91cc\u8865\u5145domain error\u7684\u5b9a\u4e49\uff1f",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        },
+        {
+          "query": "The order application service is 800 lines long and it's doing too much \u2014 validation, orchestration, persistence logic. How do I refactor this to move business logic into the domain layer?",
+          "should_trigger": false,
+          "trigger_rate": 0.0,
+          "triggers": 0,
+          "runs": 3,
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
