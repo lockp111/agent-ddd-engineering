@@ -1,7 +1,7 @@
 # OpenAPI/REST Conventions Reference
 
 > Loaded before writing OpenAPI specs when Phase 4 selects REST as the protocol.
-> For Go projects, these are language-agnostic defaults — see [go-conventions](../../spec-driven-development/reference/go-conventions.md) for Go-specific overrides.
+> For Go projects, these are language-agnostic defaults — see [go-conventions](../../spec-driven-development/go-conventions.md) for Go-specific overrides.
 
 ---
 

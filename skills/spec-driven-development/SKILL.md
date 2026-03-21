@@ -47,7 +47,7 @@ Read `docs/ddd/phase-4-technical-solution.md` and OpenAPI/Proto files to underst
 
 Generate `docs/ddd/coding-spec.md` based on:
 - Phase 4 technical decisions
-- Language-specific conventions (e.g., [go-conventions](./reference/go-conventions.md) for Go projects)
+- Language-specific conventions (e.g., [go-conventions](./go-conventions.md) for Go projects)
 - Project-specific overrides
 
 ### Step 3: Persist
@@ -80,4 +80,4 @@ Phase 5 will read this file to generate code.
 
 - [architecting-technical-solution](../architecting-technical-solution/SKILL.md) → Phase 4 prerequisite (provides tech decisions)
 - [coding-isolated-domains](../coding-isolated-domains/SKILL.md) → Phase 5 consumer (reads coding-spec.md)
-- [go-conventions](./reference/go-conventions.md) → Default values for Go projects
+- [go-conventions](./go-conventions.md) → Default values for Go projects

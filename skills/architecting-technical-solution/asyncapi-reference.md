@@ -1,7 +1,7 @@
 # AsyncAPI/Event-Driven Conventions Reference
 
 > Loaded before writing AsyncAPI specs when Phase 4 selects async messaging (Kafka, NATS, RabbitMQ, etc.).
-> For Go projects, these are language-agnostic defaults — see [go-conventions](../../spec-driven-development/reference/go-conventions.md) for Go-specific overrides.
+> For Go projects, these are language-agnostic defaults — see [go-conventions](../../spec-driven-development/go-conventions.md) for Go-specific overrides.
 
 ---
 

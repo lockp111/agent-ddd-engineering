@@ -36,7 +36,7 @@ Skills use a **language boundary** design to prevent contamination:
 | **Language-Specific** | Implementation conventions for a particular language | Only load when working in that language |
 
 **Current language-specific conventions:**
-- `spec-driven-development/reference/go-conventions.md` — Go-specific defaults for SDD template generation
+- `spec-driven-development/go-conventions.md` — Go-specific defaults for SDD template generation
 
 **When working with non-Go languages:** Use language-specific conventions in `spec-driven-development/reference/` if available, or skip.
 
@@ -64,7 +64,7 @@ skills/
 │   ├── openapi-reference.md    # Protocol conventions (REST)
 │   └── asyncapi-reference.md   # Protocol conventions (async messaging)
 ├── spec-driven-development/      # SDD: Coding spec generation
-│   ├── reference/               # Language-specific conventions (e.g., go-conventions.md)
+│   ├── go-conventions.md        # Language-specific conventions (Go)
 │   └── template/                # Coding spec template
 ├── coding-isolated-domains/     # Phase 5: Rich model implementation
 ├── test-driven-development/      # TDD workflow
