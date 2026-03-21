@@ -60,10 +60,9 @@ skills/
 ├── mapping-bounded-contexts/    # Phase 2: Context boundaries
 ├── designing-contracts-first/   # Phase 3: ACL interfaces
 ├── architecting-technical-solution/  # Phase 4: Tech decisions
-│   └── reference/             # Protocol conventions
-│       ├── proto-reference.md      # gRPC
-│       ├── openapi-reference.md    # REST
-│       └── asyncapi-reference.md   # Async messaging
+│   ├── proto-reference.md      # Protocol conventions (gRPC)
+│   ├── openapi-reference.md    # Protocol conventions (REST)
+│   └── asyncapi-reference.md   # Protocol conventions (async messaging)
 ├── spec-driven-development/      # SDD: Coding spec generation
 │   ├── reference/               # Language-specific conventions (e.g., go-conventions.md)
 │   └── template/                # Coding spec template

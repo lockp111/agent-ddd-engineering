@@ -99,9 +99,9 @@ For full depth guidance with trade-off tables, see [technical-dimensions-referen
 ## Protocol Reference Files
 
 When writing interface specs, load the appropriate reference:
-- [proto-reference.md](reference/proto-reference.md) — For gRPC specs
-- [openapi-reference.md](reference/openapi-reference.md) — For REST/OpenAPI specs
-- [asyncapi-reference.md](reference/asyncapi-reference.md) — For async messaging specs
+- [proto-reference.md](proto-reference.md) — For gRPC specs
+- [openapi-reference.md](openapi-reference.md) — For REST/OpenAPI specs
+- [asyncapi-reference.md](asyncapi-reference.md) — For async messaging specs
 
 ## Self-Check Protocol
 
