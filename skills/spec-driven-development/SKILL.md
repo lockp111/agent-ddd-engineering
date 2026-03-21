@@ -46,9 +46,12 @@ Read `docs/ddd/phase-4-technical-solution.md` and OpenAPI/Proto files to underst
 ### Step 2: Generate Coding Spec
 
 Generate `docs/ddd/coding-spec.md` based on:
-- Phase 4 technical decisions
-- Language-specific conventions (e.g., [go-conventions](./go-conventions.md) for Go projects)
-- Project-specific overrides
+1. Read [template/coding-spec.md](./template/coding-spec.md) — contains placeholders
+2. Read language-specific conventions (e.g., [go-conventions](./go-conventions.md) for Go projects)
+3. Fill placeholders with language-specific values
+4. Apply project-specific overrides
+
+**Placeholder format:** `{placeholder_name}` in template gets replaced with value from language conventions.
 
 ### Step 3: Persist
 

@@ -7,22 +7,25 @@
 
 | Category | Key | Default Value |
 |:---------|:----|:-------------|
-| Naming | style | lowercase |
-| Naming | aggregate_file | {context}.go |
-| Naming | value_object_file | {name}.go |
-| Naming | test_file | {source}_test.go |
-| Layer | transport | server/ |
-| Layer | application | app/ |
-| Layer | domain | domain/ |
-| Layer | cross_domain | kernel/ |
-| Layer | infrastructure_model | infra/model/ |
-| Layer | config | internal/config/ |
-| Config | path | configs/ |
-| Error | style | sentinel |
-| Error | wrapping | once |
-| Testing | framework | standard |
+| Naming | naming_style | lowercase |
+| Naming | naming_style_example | order, payment |
+| Naming | ext | go |
+| Layer | dir_transport | server/ |
+| Layer | dir_application | app/ |
+| Layer | dir_domain | domain/ |
+| Layer | dir_infra | infra/ |
+| Layer | dir_infra_model | infra/model/ |
+| Layer | dir_kernel | kernel/ |
+| Layer | dir_config | internal/config/ |
+| Config | dir_configs | configs/ |
+| Config | config_ext | yaml |
+| Error | error_style | sentinel |
+| Error | error_style_example | var ErrNotFound = errors.New(...) |
+| Error | error_wrapping | once |
+| Testing | test_framework | Go standard library (testing package) |
+| Testing | test_naming_pattern | TestFunctionName or TestType_Method |
 | Testing | mock_style | interface |
-| Testing | dir | tests/ |
+| Testing | dir_tests | tests/ |
 
 ## Hard Constraints
 

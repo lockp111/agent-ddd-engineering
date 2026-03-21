@@ -5,53 +5,53 @@
 ## Naming
 
 ### Package Names
-- Style: lowercase (order, payment)
+- Style: {naming_style} (e.g., {naming_style_example})
 - No underscores in package names
 
 ### File Names
-- Aggregate: `{context}.go` (e.g., order.go)
-- Value Object: `{name}.go` (e.g., status.go)
-- Test: `{source}_test.go` (e.g., order_test.go)
-- Command Handler: `{context}_cmd.go`
-- Query Handler: `{context}_query.go`
+- Aggregate: {context}.{ext} (e.g., order.{ext})
+- Value Object: {name}.{ext} (e.g., status.{ext})
+- Test: {source}_test.{ext} (e.g., order_test.{ext})
+- Command Handler: {context}_cmd.{ext}
+- Query Handler: {context}_query.{ext}
 
 ## Layer
 
 | Layer | Directory | Description |
 |:------|:----------|:------------|
-| Transport | server/ | HTTP/gRPC handlers |
-| Application | app/ | Use case orchestration |
-| Domain | domain/ | Business logic (flat, no subdirs) |
-| Infrastructure | infra/ | DB, cache, adapters |
-| Infrastructure Model | infra/model/ | ORM models (not in domain/) |
-| Cross-domain | kernel/ | Shared types (UserID, Money) |
-| Config | internal/config/ | Configuration structs |
+| Transport | {dir_transport} | HTTP/gRPC handlers |
+| Application | {dir_application} | Use case orchestration |
+| Domain | {dir_domain} | Business logic (flat, no subdirs) |
+| Infrastructure | {dir_infra} | DB, cache, adapters |
+| Infrastructure Model | {dir_infra_model} | ORM models (not in domain/) |
+| Cross-domain | {dir_kernel} | Shared types (UserID, Money) |
+| Config | {dir_config} | Configuration structs |
 
-**Dependency Direction:** server → app → domain ← infra
+**Dependency Direction:** {dir_transport} → {dir_application} → {dir_domain} ← {dir_infra}
 
 ## Config
 
-- Path: `configs/` (e.g., `configs/config.yaml`)
+- Path: {dir_configs}/ (e.g., {dir_configs}/config.{config_ext})
 
 ## Error Handling
 
-- Style: Sentinel errors (var ErrNotFound = errors.New(...))
-- Wrapping: Only at boundary layers
+- Style: {error_style} (e.g., {error_style_example})
+- Wrapping: {error_wrapping}
 - No error codes
 
 ## Testing
 
-- Framework: Go standard library (testing package)
+- Framework: {test_framework}
 - Test file location: Same directory as source
-- Integration tests: `tests/` directory at project root
-- Naming: `TestFunctionName` or `TestType_Method`
-- Mocking: Interface-based, no mock frameworks
+- Integration tests: {dir_tests}/ directory at project root
+- Naming: {test_naming_pattern}
+- Mocking: {mock_style}
 
 ## Hard Constraints
 
 These constraints CANNOT be modified. See [_shared/domain-architecture-reference.md](../../_shared/domain-architecture-reference.md):
 
-- domain/ cannot import infra/
+- {dir_domain}/ cannot import {dir_infra}/
 - No ORM tags in domain structs
 - No public setters on entities
 - Value objects are immutable
