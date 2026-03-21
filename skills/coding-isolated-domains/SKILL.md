@@ -1,8 +1,6 @@
 ---
 name: coding-isolated-domains
 description: Use when implementing core business logic, domain entities, or aggregates. Use when encountering anemic models (entities with only getters/setters), ORM tags or HTTP logic leaking into domain structs, public SetStatus() methods, or business logic living in services instead of entities. 充血模型, 六边形架构, 领域层隔离, rich domain model, hexagonal architecture.
-scope: universal
-phase: 5
 ---
 
 # Coding Isolated Domains

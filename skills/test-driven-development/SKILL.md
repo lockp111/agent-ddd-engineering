@@ -285,8 +285,8 @@ This skill references supporting files on demand — do not preload them all:
 
 - **During MAP**: read `test-derivation-reference.md` for the relevant test category derivation guidance.
 - **During GREEN**: reference [domain-architecture-reference](../_shared/domain-architecture-reference.md) for the full red line checklist.
-- **First full cycle**: reference `example-tdd-cycle.md` for a complete MAP→ITERATE→DIFF walkthrough.
-- **First spec change encounter**: reference `example-reconcile.md` for a RECONCILE walkthrough.
+- **First full cycle**: reference `./example-tdd-cycle.md` for a complete MAP→ITERATE→DIFF walkthrough.
+- **First spec change encounter**: reference `./example-reconcile.md` for a RECONCILE walkthrough.
 
 **NEXT STEP:** → Archive (`sh skills/full-ddd/scripts/archive-artifacts.sh`) or → [iterating-ddd](../iterating-ddd/SKILL.md) for next iteration
 
