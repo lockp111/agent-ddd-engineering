@@ -23,6 +23,6 @@
 
 These CANNOT be modified. See [_shared/domain-architecture-reference.md](../../_shared/domain-architecture-reference.md).
 
-## References
+## Go Project Structure
 
-For detailed Go DDD conventions (code examples, directory tree, mapping table), see [go-conventions-reference.md](./go-conventions-reference.md).
+For complete Go DDD project structure, see [full-ddd skill](../full-ddd/SKILL.md).
