@@ -54,15 +54,15 @@ Generate constraint content based on:
 
 ### Step 3: Persist to IDE Rules
 
-Write to IDE rules files (draft state):
+Adapt content to each IDE's rules format and write:
 
-| IDE | File | Note |
-|:----|:-----|:-----|
-| Claude Code | `.claude/rules/ddd-constraints.md` | Auto-loaded by Claude Code |
-| Cursor | `.cursor/rules/ddd-constraints.mdc` | Auto-loaded by Cursor |
-| Windsurf | `.windsurf/rules/ddd-constraints.md` | Auto-loaded by Windsurf |
+| IDE | File | Format |
+|:----|:-----|:-------|
+| Claude Code | `.claude/rules/ddd-constraints.md` | Markdown |
+| Cursor | `.cursor/rules/ddd-constraints.mdc` | Markdown with Claude directives (`.mdc`) |
+| Windsurf | `.windsurf/rules/ddd-constraints.md` | Markdown |
 
-Write the same content to all applicable rules files.
+Each IDE has its own rules file format. Write the appropriate format for each.
 
 ### Step 4: Human Approval
 
@@ -80,6 +80,8 @@ Please review and approve.
 **Wait for human approval before proceeding to Phase 5.**
 
 ## IDE Rules File Format
+
+### Claude Code (.md)
 
 ```markdown
 # DDD Coding Constraints
@@ -100,6 +102,35 @@ Please review and approve.
 - Value objects are immutable
 - Aggregates reference by ID only
 ```
+
+### Cursor (.mdc)
+
+```markdown
+# DDD Coding Constraints
+# @Claude
+
+## Naming
+{naming_rules}
+
+## Layer
+{layer_rules}
+
+## Testing
+{testing_rules}
+
+## Hard Constraints
+- domain/ cannot import infra/
+- No ORM tags in domain structs
+- No public setters on entities
+- Value objects are immutable
+- Aggregates reference by ID only
+```
+
+### Windsurf (.md)
+
+Same format as Claude Code.
+
+**Note:** If unsure about the exact format for an IDE, write Markdown format. All three IDEs support Markdown as the base format.
 
 ## Relationship to Other Skills
 
