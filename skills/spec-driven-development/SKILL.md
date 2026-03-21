@@ -52,30 +52,9 @@ Generate constraint content based on:
 
 **Placeholder format:** `{placeholder_name}` in template gets replaced with value from language conventions.
 
-### Step 3: Human Approval
+### Step 3: Persist to IDE Rules
 
-Present the generated constraints:
-
-```
-Coding constraints generated:
-
-## Naming
-- {naming_rules}
-
-## Layer
-- {layer_rules}
-
-## Testing
-- {testing_rules}
-
-Approve to write to IDE rules files.
-```
-
-**Wait for human approval before proceeding.**
-
-### Step 4: Persist to IDE Rules
-
-After approval, write to IDE rules files:
+Write to IDE rules files (draft state):
 
 | IDE | File | Note |
 |:----|:-----|:-----|
@@ -85,7 +64,9 @@ After approval, write to IDE rules files:
 
 Write the same content to all applicable rules files.
 
-### Step 5: Inform Human
+### Step 4: Human Approval
+
+Inform human to review the actual rules file:
 
 ```
 Coding constraints written to:
@@ -93,8 +74,10 @@ Coding constraints written to:
 - .cursor/rules/ddd-constraints.mdc
 - .windsurf/rules/ddd-constraints.md
 
-Phase 5 sub-agents will automatically load these constraints.
+Please review and approve.
 ```
+
+**Wait for human approval before proceeding to Phase 5.**
 
 ## IDE Rules File Format
 
