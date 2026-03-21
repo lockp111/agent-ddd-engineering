@@ -1,7 +1,6 @@
 # Proto/gRPC Conventions Reference
 
 > Loaded before writing Proto specs when Phase 4 selects gRPC as the protocol.
-> For Go projects, these are language-agnostic defaults — see [go-conventions](../../spec-driven-development/go-conventions.md) for Go-specific overrides.
 
 ---
 
