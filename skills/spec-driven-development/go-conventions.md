@@ -15,10 +15,14 @@
 | Layer | application | app/ |
 | Layer | domain | domain/ |
 | Layer | cross_domain | kernel/ |
+| Layer | infrastructure_model | infra/model/ |
+| Layer | config | internal/config/ |
+| Config | path | configs/ |
 | Error | style | sentinel |
 | Error | wrapping | once |
 | Testing | framework | standard |
 | Testing | mock_style | interface |
+| Testing | dir | tests/ |
 
 ## Hard Constraints
 

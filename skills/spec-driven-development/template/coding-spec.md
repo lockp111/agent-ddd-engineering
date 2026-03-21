@@ -23,9 +23,15 @@
 | Application | app/ | Use case orchestration |
 | Domain | domain/ | Business logic (flat, no subdirs) |
 | Infrastructure | infra/ | DB, cache, adapters |
+| Infrastructure Model | infra/model/ | ORM models (not in domain/) |
 | Cross-domain | kernel/ | Shared types (UserID, Money) |
+| Config | internal/config/ | Configuration structs |
 
 **Dependency Direction:** server → app → domain ← infra
+
+## Config
+
+- Path: `configs/` (e.g., `configs/config.yaml`)
 
 ## Error Handling
 
@@ -37,6 +43,7 @@
 
 - Framework: Go standard library (testing package)
 - Test file location: Same directory as source
+- Integration tests: `tests/` directory at project root
 - Naming: `TestFunctionName` or `TestType_Method`
 - Mocking: Interface-based, no mock frameworks
 
