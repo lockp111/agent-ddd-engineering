@@ -43,9 +43,9 @@ Skills are designed with language boundaries to prevent contamination:
 | Scope | Description | Languages |
 |:------|:------------|:----------|
 | **Universal** | Language-agnostic DDD concepts and design principles | All |
-| **Language-Specific** | Implementation conventions for a particular language | Go conventions in SDD reference/ |
+| **Language-Specific** | Implementation conventions for a particular language | Go conventions in SDD |
 
-> **Note:** Language-specific conventions are in `spec-driven-development/reference/`. All other skills are **universal** by default.
+> **Note:** Language-specific conventions are in `spec-driven-development/`. All other skills are **universal** by default.
 
 ### Constraint Layers
 
@@ -56,7 +56,7 @@ Skills are designed with language boundaries to prevent contamination:
 | **Soft** | `spec-driven-development/template/` | Yes | Directory layout, naming conventions, file organization |
 | **Hard** | `_shared/domain-architecture-reference.md` | No | Domain isolation, rich models, no ORM in domain |
 
-Language-specific conventions (e.g., Go) are in `spec-driven-development/reference/`. Users can customize soft constraints by modifying the SDD template before Phase 5.
+Language-specific conventions (e.g., Go) are in `spec-driven-development/`. Users can customize soft constraints by modifying the SDD template before Phase 5.
 
 ### Skill Categories
 

@@ -43,9 +43,9 @@
 | Scope | 描述 | 语言 |
 |:------|:-----|:-----|
 | **Universal** | 语言无关的 DDD 概念和设计原则 | 所有语言 |
-| **Language-Specific** | 特定语言的实现约定 | Go conventions in SDD reference/ |
+| **Language-Specific** | 特定语言的实现约定 | Go conventions in SDD |
 
-> **注意：** 语言特定约定位于 `spec-driven-development/reference/`。其他所有技能默认都是 **universal**。
+> **注意：** 语言特定约定位于 `spec-driven-development/`。其他所有技能默认都是 **universal**。
 
 ### 约束分层
 
@@ -56,7 +56,7 @@
 | **软约束** | `spec-driven-development/template/` | Yes | 目录布局、包名风格、文件组织 |
 | **硬约束** | `_shared/domain-architecture-reference.md` | No | domain 隔离、充血模型、ORM 不可进 domain |
 
-语言特定约定（如 Go）位于 `spec-driven-development/reference/`。用户可在 Phase 5 前修改 SDD 模板来自定义软约束。
+语言特定约定（如 Go）位于 `spec-driven-development/`。用户可在 Phase 5 前修改 SDD 模板来自定义软约束。
 
 ### 技能分类
 

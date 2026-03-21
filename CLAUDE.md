@@ -38,7 +38,7 @@ Skills use a **language boundary** design to prevent contamination:
 **Current language-specific conventions:**
 - `spec-driven-development/go-conventions.md` — Go-specific defaults for SDD template generation
 
-**When working with non-Go languages:** Use language-specific conventions in `spec-driven-development/reference/` if available, or skip.
+**When working with non-Go languages:** Use language-specific conventions in `spec-driven-development/` if available, or skip.
 
 ## Constraint Layers
 
@@ -49,7 +49,7 @@ SDD uses a **two-layer design**:
 | **Soft** | `spec-driven-development/template/` | Yes | Directory layout, naming conventions, file organization |
 | **Hard** | `_shared/domain-architecture-reference.md` | No | Domain isolation, rich models, no ORM in domain |
 
-Language-specific defaults (e.g., Go conventions) are in `spec-driven-development/reference/`. Users can customize soft constraints by modifying the SDD template before Phase 5.
+Language-specific defaults (e.g., Go conventions) are in `spec-driven-development/`. Users can customize soft constraints by modifying the SDD template before Phase 5.
 
 ## Skills Directory Structure
 
