@@ -58,11 +58,10 @@ Adapt content to each IDE's rules format and write:
 
 | IDE | File | Format |
 |:----|:-----|:-------|
-| Claude Code | `.claude/rules/ddd-constraints.md` | Markdown |
-| Cursor | `.cursor/rules/ddd-constraints.mdc` | Markdown with Claude directives (`.mdc`) |
-| Windsurf | `.windsurf/rules/ddd-constraints.md` | Markdown |
+| Claude Code | `.claude/rules/ddd-constraints.md` | Markdown with `paths` frontmatter |
+| Cursor | `.cursor/rules/ddd-constraints.mdc` | Markdown with `alwaysApply` frontmatter |
 
-Each IDE has its own rules file format. Write the appropriate format for each.
+Write the appropriate format for each IDE.
 
 ### Step 4: Human Approval
 
@@ -133,12 +132,6 @@ alwaysApply: true
 - Value objects are immutable
 - Aggregates reference by ID only
 ```
-
-### Windsurf (.md)
-
-Same format as Claude Code.
-
-**Note:** If unsure about the exact format for an IDE, write Markdown format. All three IDEs support Markdown as the base format.
 
 ## Relationship to Other Skills
 
