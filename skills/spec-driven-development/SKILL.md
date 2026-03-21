@@ -78,6 +78,6 @@ Phase 5 will read this file to generate code.
 
 ## Relationship to Other Skills
 
-- [architecting-technical-solution](../architecting-technical-solution/SKILL.md) → Phase 4 prerequisite (provides OpenAPI/Proto)
+- [architecting-technical-solution](../architecting-technical-solution/SKILL.md) → Phase 4 prerequisite (provides tech decisions)
 - [coding-isolated-domains](../coding-isolated-domains/SKILL.md) → Phase 5 consumer (reads coding-spec.md)
 - [go-conventions](./reference/go-conventions.md) → Default values for Go projects

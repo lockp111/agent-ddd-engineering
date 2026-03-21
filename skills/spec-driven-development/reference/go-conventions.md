@@ -13,6 +13,7 @@
 | Naming | test_file | {source}_test.go |
 | Layer | transport | server/ |
 | Layer | application | app/ |
+| Layer | domain | domain/ |
 | Layer | cross_domain | kernel/ |
 | Error | style | sentinel |
 | Error | wrapping | once |

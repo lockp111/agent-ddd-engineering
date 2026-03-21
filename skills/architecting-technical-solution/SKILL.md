@@ -96,6 +96,13 @@ For full depth guidance with trade-off tables, see [technical-dimensions-referen
 
 **NEXT STEP:** → [spec-driven-development](../spec-driven-development/SKILL.md)
 
+## Protocol Reference Files
+
+When writing interface specs, load the appropriate reference:
+- [proto-reference.md](reference/proto-reference.md) — For gRPC specs
+- [openapi-reference.md](reference/openapi-reference.md) — For REST/OpenAPI specs
+- [asyncapi-reference.md](reference/asyncapi-reference.md) — For async messaging specs
+
 ## Self-Check Protocol
 
 Follow the [Persistence Defense Reference](../_shared/persistence-defense-reference.md) at every phase gate, with this context-specific item 4:
