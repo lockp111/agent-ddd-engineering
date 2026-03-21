@@ -84,6 +84,11 @@ Please review and approve.
 ### Claude Code (.md)
 
 ```markdown
+---
+paths:
+  - "*.go"
+---
+
 # DDD Coding Constraints
 
 ## Naming
@@ -106,8 +111,11 @@ Please review and approve.
 ### Cursor (.mdc)
 
 ```markdown
+---
+alwaysApply: true
+---
+
 # DDD Coding Constraints
-# @Claude
 
 ## Naming
 {naming_rules}
