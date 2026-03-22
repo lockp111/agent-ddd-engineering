@@ -189,13 +189,32 @@ func (o *Order) Pay() error {
 
 ### Example (Test at Wrong Layer — ❌ DO NOT DO)
 
-**Anti-pattern in any language:**
+**What the anti-pattern looks like:**
 
-An `OrderService.Pay()` test passes, but the `Order` entity's `Pay()` method is empty — all business logic lives in the service. The test passes because it tests the service, not the entity. This is anemia confirmed by test location, not by test result.
+A service method `Pay(orderId, amount)` does:
+1. Finds the Order from storage
+2. Validates `amount > 0`
+3. Sets `order.status = "paid"` (direct field mutation)
+4. Saves the Order
+5. The entity's `Pay()` method is empty or only delegates back to the service
 
-**Correct approach — test entity directly:**
+The service test passes because it exercises the service. But the entity is anemic — it holds data with no behavior, and the business rule (`amount > 0`) is in the service layer.
 
-Test `Order.Pay()` as a behavior on the entity itself. The service, if it exists, should only orchestrate — it finds the aggregate, calls its behavior method, and persists the result.
+**What the correct approach looks like:**
+
+The entity's `Pay(amount)` method does:
+1. Validates `amount > 0` → returns error if not
+2. Validates current status allows payment → returns error if not
+3. Changes internal state to `paid`
+4. Returns nil on success
+
+The service's `Pay(orderId, amount)` does only orchestration:
+1. Finds the Order from storage
+2. Calls `order.Pay(amount)` — the entity enforces its own invariants
+3. Persists if the call succeeded
+4. Returns the result
+
+Test the entity's `Pay(amount)` directly. The service test, if it exists, only verifies orchestration happened — it should never assert business rules like `amount > 0`.
 
 **Distinguishing Service Test Types:**
 
