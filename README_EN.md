@@ -70,7 +70,6 @@ Language-specific conventions (e.g., Go) are in `spec-driven-development/`. User
 | | `spec-driven-development/` | SDD: Generate coding-spec.toml |
 | | `coding-isolated-domains/` | Phase 5: Rich domain model implementation |
 | **Supporting** | `test-driven-development/` | TDD workflow guidance |
-| | `test-driven-development/` | TDD workflow guidance |
 | | `snapshotting-code-context/` | Code context preservation |
 | | `iterating-ddd/` | Iterative refinement |
 | | `piloting-ddd/` | Pilot project guidance |

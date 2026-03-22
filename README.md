@@ -70,7 +70,6 @@
 | | `spec-driven-development/` | SDD: 生成 IDE Rules |
 | | `coding-isolated-domains/` | Phase 5: 充血模型实现 |
 | **支持** | `test-driven-development/` | TDD 工作流指导 |
-| | `test-driven-development/` | TDD 工作流指导 |
 | | `snapshotting-code-context/` | 代码上下文保存 |
 | | `iterating-ddd/` | 迭代改进 |
 | | `piloting-ddd/` | 试点项目指导 |
