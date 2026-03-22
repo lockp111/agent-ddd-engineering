@@ -23,7 +23,7 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 | 2 | Zero Infrastructure Dependencies | No ORM/HTTP in domain structs confirmed |
 | 3 | Mandatory Rich Domain Models | Behavior methods defined, no public setters |
 | 4 | Eric Evans 4 Aggregate Rules | Consistency boundaries validated |
-| 5 | Domain TDD (MAP→ITERATE→DIFF) | Tests written, RED→GREEN→REFACTOR cycle complete |
+| 5 | Domain TDD (MAP→ITERATE→DIFF) | Tests on domain entities, RED→GREEN→REFACTOR cycle complete |
 | 6 | Implementation Generation | Rich Domain Model code approved |
 | 7 | Persist Design Decisions | `docs/ddd/decisions-log.md` updated |
 
@@ -43,6 +43,7 @@ Hard Constraints (MUST follow):
 - No public setters on entities
 - Value objects are immutable
 - Aggregates reference by ID only
+- Business logic tests MUST target domain entities, NOT services
 ```
 
 **After sub-agents complete:**
@@ -109,6 +110,13 @@ value objects are immutable · no public setters on entities · domain events na
 - In the GREEN step of each TDD cycle, verify every Architecture Red Line from [domain-architecture-reference.md](../_shared/domain-architecture-reference.md). If a violation is detected, stop immediately, delete the violating code, and rewrite.
 - **Ask:** "Do these tests cover all expected behaviors and edge cases? Shall I proceed to implement the logic to make these tests pass?"
 
+**Test Layer Constraint (CRITICAL):**
+- Business logic tests MUST be written against domain entities/aggregates, NOT against application services.
+- A test that calls `OrderService.Pay()` and validates `amount > 0` is NOT a domain test — business logic is in the service, entity is anemic.
+- A domain test calls `order.Pay()` directly and validates the entity's state change or returned error.
+- Service-layer orchestration tests (coordinating multiple aggregates) are legitimate — but they must NOT contain business invariants that belong in entities.
+- **How to detect the anti-pattern:** If `service.Pay()` test passes but `order.Pay()` is empty or only delegates to the service — that is anemia, not orchestration.
+
 ### Step 6: Implementation Generation
 - ONLY after user approval of the Aggregate design and TDD tests, implement the Rich Domain Model conforming to the rules above.
 
@@ -159,6 +167,71 @@ func (o *Order) Pay() error {
 	return nil
 }
 ```
+
+### Example (Test at Wrong Layer — ❌ DO NOT DO)
+
+```go
+// ❌ Wrong: Test written against service, not entity
+// tests/order_service_test.go
+func TestOrderService_Pay(t *testing.T) {
+    service := NewOrderService(orderRepo)
+    err := service.Pay(orderID, 100)
+
+    if err != nil {
+        t.Errorf("unexpected error: %v", err)
+    }
+    // This test passes even if Order.Pay() is completely empty!
+    // The business logic lives in service, entity is anemic.
+}
+
+// Service implementation — actual logic is HERE, not in entity
+func (s *OrderService) Pay(orderID string, amount int) error {
+    order := s.repo.Find(orderID)
+    if amount < 0 {
+        return errors.New("invalid amount")
+    }
+    order.Status = "paid"  // Direct mutation — no behavior method used
+    return s.repo.Save(order)
+}
+
+// Entity — empty shell, no real behavior
+type Order struct {
+    id     string
+    Status string
+}
+```
+
+**Correct approach — test entity directly:**
+
+```go
+// ✅ tests/order_test.go
+func TestOrder_Pay(t *testing.T) {
+    order := &Order{
+        id:     "order-1",
+        status: StatusPending,
+    }
+
+    err := order.Pay(100)
+
+    assert.Nil(t, err)
+    assert.Equal(t, StatusPaid, order.status)
+    assert.Equal(t, 100, order.paidAmount)
+}
+```
+
+**Distinguishing Service Test Types:**
+
+| Type | What it tests | Location | Allowed? |
+|:-----|:--------------|:---------|:---------|
+| **Orchestration** | Coordinates multiple aggregates (e.g., `PlaceOrder` calls Order + Payment + Inventory) | `app/` or `service/` | ✓ Yes |
+| **Business logic** | Enforces invariants or validates business rules (e.g., `amount > 0`) | Entity | ✓ Yes |
+| **Business logic disguised as orchestration** | Logic that belongs in entity but is called via service | `app/` or `service/` | ✗ Anemia |
+
+**The key question:** Does the service method contain business rules that **should** be on the entity?
+- `OrderService.PlaceOrder()` coordinating aggregates → orchestration → OK
+- `OrderService.Pay()` validating `amount > 0` and mutating order state → business logic in service → Anemia
+
+When in doubt, ask: **"Can this entity exist and enforce its invariants without this service?"** If no, the logic belongs in the entity.
 
 ## Self-Check Protocol
 
