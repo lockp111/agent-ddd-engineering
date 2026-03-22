@@ -10,10 +10,29 @@ This is the ultimate architectural defense skill. It explicitly forbids the gene
 
 **Foundational Principle:** All rules are mandatory constraints, not aspirational guidelines. No "temporarily" or "just for now."
 
+## Hard Constraints (MUST follow — all invocations, not just sub-agents)
+
+```
+- domain/ cannot import infra/
+- No ORM tags in domain structs
+- No public setters on entities
+- Value objects are immutable
+- Aggregates reference by ID only
+- Business logic tests MUST target domain entities, NOT services
+```
+
+Violating any of these is grounds for STOP and rewrite, regardless of phase.
+
 ## When to Use
 - When writing implementation of business rules, Entities, or Aggregates; when you detect an Entity with only properties and no behavior; when ORM tags or HTTP logic leak into the domain layer.
 
 **Do NOT use when:** Writing infrastructure adapters, API controllers, or repositories; working on Generic Subdomains with simple CRUD; or when context boundaries and contracts are not yet defined (**REQUIRED PREREQUISITES:** Phase 4 [architecting-technical-solution](../architecting-technical-solution/SKILL.md) and SDD must complete first — IDE rules file (.claude/rules/ddd-constraints.md) must exist before domain code is written).
+
+**Prerequisite Check (MUST verify before starting):**
+If invoked standalone (not via full-ddd or iterating-ddd orchestrator):
+1. Verify `.claude/rules/ddd-constraints.md` exists — if not, STOP and inform human: "Phase 5 requires the IDE rules file from SDD. Run SDD first to generate .claude/rules/ddd-constraints.md."
+2. Load `.claude/rules/ddd-constraints.md` as context for this session.
+3. Load [_shared/domain-architecture-reference.md](../_shared/domain-architecture-reference.md).
 
 ## Quick Reference
 
