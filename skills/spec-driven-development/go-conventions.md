@@ -15,7 +15,7 @@
 | Layer | dir_domain | domain/ |
 | Layer | dir_infra | infra/ |
 | Layer | dir_infra_model | infra/model/ |
-| Layer | dir_kernel | kernel/ |
+| Layer | dir_kernel | domain/kernel/ |
 | Layer | dir_config | internal/config/ |
 | Config | dir_configs | configs/ |
 | Config | config_ext | yaml |
