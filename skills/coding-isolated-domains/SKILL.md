@@ -189,54 +189,13 @@ func (o *Order) Pay() error {
 
 ### Example (Test at Wrong Layer — ❌ DO NOT DO)
 
-```go
-// ❌ Wrong: Test written against service, not entity
-// tests/order_service_test.go
-func TestOrderService_Pay(t *testing.T) {
-    service := NewOrderService(orderRepo)
-    err := service.Pay(orderID, 100)
+**Anti-pattern in any language:**
 
-    if err != nil {
-        t.Errorf("unexpected error: %v", err)
-    }
-    // This test passes even if Order.Pay() is completely empty!
-    // The business logic lives in service, entity is anemic.
-}
-
-// Service implementation — actual logic is HERE, not in entity
-func (s *OrderService) Pay(orderID string, amount int) error {
-    order := s.repo.Find(orderID)
-    if amount < 0 {
-        return errors.New("invalid amount")
-    }
-    order.Status = "paid"  // Direct mutation — no behavior method used
-    return s.repo.Save(order)
-}
-
-// Entity — empty shell, no real behavior
-type Order struct {
-    id     string
-    Status string
-}
-```
+An `OrderService.Pay()` test passes, but the `Order` entity's `Pay()` method is empty — all business logic lives in the service. The test passes because it tests the service, not the entity. This is anemia confirmed by test location, not by test result.
 
 **Correct approach — test entity directly:**
 
-```go
-// ✅ tests/order_test.go
-func TestOrder_Pay(t *testing.T) {
-    order := &Order{
-        id:     "order-1",
-        status: StatusPending,
-    }
-
-    err := order.Pay(100)
-
-    assert.Nil(t, err)
-    assert.Equal(t, StatusPaid, order.status)
-    assert.Equal(t, 100, order.paidAmount)
-}
-```
+Test `Order.Pay()` as a behavior on the entity itself. The service, if it exists, should only orchestrate — it finds the aggregate, calls its behavior method, and persists the result.
 
 **Distinguishing Service Test Types:**
 
